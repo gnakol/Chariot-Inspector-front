@@ -1,0 +1,15 @@
+mat-toolbar {
+    background: #006064; /* Un bleu plus profond pour la barre de navigation */
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px; /* Ajuster la taille du logo */
+    margin-right: 10px; /* Espacement à droite du logo */
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  

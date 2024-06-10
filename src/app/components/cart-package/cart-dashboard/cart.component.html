@@ -1,0 +1,33 @@
+<div class="carts-dashboard">
+  <mat-toolbar color="primary">
+    <span class="toolbar-title">Suivi des Chariots</span>
+  </mat-toolbar>
+  <div class="scapartois-reception">
+    Scapartois Smile Reception
+  </div>
+  <div class="action-buttons">
+    <button mat-raised-button color="primary" (click)="createCart()" routerLink="add-new-cart">
+      <mat-icon>add</mat-icon>
+      Créer un nouveau suivi
+    </button>
+    <button mat-raised-button color="accent" (click)="updateCart()">
+      <mat-icon>edit</mat-icon>
+      Mettre à jour un suivi
+    </button>
+    <button mat-raised-button color="warn" (click)="deleteCart()">
+      <mat-icon>delete</mat-icon>
+      Supprimer un suivi
+    </button>
+    <button mat-raised-button color="accent" (click)="searchCart()">
+      <mat-icon>search</mat-icon>
+      Rechercher un suivi
+    </button>
+    <button mat-raised-button color="accent" (click)="allCart()" routerLink="all-cart">
+      <mat-icon>list</mat-icon>
+      Liste des chariots
+    </button>
+  </div>
+  <div class="child-content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

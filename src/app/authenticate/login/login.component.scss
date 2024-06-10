@@ -1,0 +1,74 @@
+/* Container général de la page de connexion */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Pleine hauteur de la fenêtre */
+    background-color: #0A2E36; /* Utilisation du thème de la phrase "Scapartois Chariot Inspector!" */
+    color: white; /* Couleur du texte en blanc pour contraster */
+  }
+  
+  /* Style pour la phrase "Smile Reception" */
+  .smile-reception {
+    font-size: 32px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+    color: #FFD700; /* Or pour un effet élégant */
+    margin-bottom: 20px; /* Espace sous la phrase */
+    text-align: center; /* Centre le texte */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Légère ombre pour la profondeur */
+  }
+  
+  /* Carte de connexion pour une meilleure mise en forme */
+  mat-card {
+    width: 100%;
+    max-width: 400px; /* Largeur maximale de la carte */
+    margin: 20px; /* Espace autour de la carte */
+    padding: 20px; /* Padding à l'intérieur de la carte */
+    background: rgba(255, 255, 255, 0.8); /* Fond légèrement transparent pour correspondre à l'accueil */
+    border-radius: 10px; /* Bordures arrondies */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Ombre douce pour la profondeur */
+  }
+  
+  /* Style des champs de formulaire */
+  mat-form-field {
+    width: 100%; /* Largeur complète pour étendre à la carte */
+    margin-top: 16px; /* Espace au-dessus de chaque champ de formulaire */
+  }
+  
+  /* Boutons avec un peu plus de personnalité */
+  button {
+    margin-top: 24px; /* Espace au-dessus du bouton */
+    width: 100%; /* Faire en sorte que le bouton s'étende à la largeur complète */
+    color: white; /* Texte blanc pour le contraste */
+    background-color: #4CAF50; /* Vert vif pour correspondre au bouton PLUS D'INFO de la page d'accueil */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Petite ombre pour un effet de relief */
+  }
+  
+  /* Animation légère pour le bouton au survol */
+  button:hover {
+    transform: scale(1.05); /* Légère augmentation de taille */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Ombre plus prononcée */
+  }
+  
+  /* Style pour les messages d'erreur */
+  mat-error {
+    font-size: 0.75rem;
+    color: #f44336; /* Couleur rouge pour les erreurs, cohérente avec Material */
+  }
+  
+  /* Style pour le footer pour le rendre toujours visible */
+  .footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  /* Ajustement du header */
+  mat-toolbar {
+    background: #006064; /* Un bleu plus profond pour la barre de navigation */
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ombre douce pour le détacher du reste de la page */
+  }
+  

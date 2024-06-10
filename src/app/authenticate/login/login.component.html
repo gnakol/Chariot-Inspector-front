@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="login-container">
+  <div class="smile-reception">Smile Reception</div>
+  <mat-card [formGroup]="loginFormGroup">
+    <mat-card-header>
+      <mat-card-title>Authentication</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Username Or Email</mat-label>
+        <input matInput formControlName="username">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input type="Password" matInput formControlName="password">
+      </mat-form-field>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="login()" [disabled]="!loginFormGroup.valid">Login</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-footer class="footer"></app-footer>

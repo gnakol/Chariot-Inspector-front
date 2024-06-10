@@ -1,0 +1,29 @@
+<div class="card-container">
+    <h1 class="title">Liste de vérification visuelle du chariot</h1>
+    <mat-card *ngFor="let cart of dataSource.data">
+      <mat-card-header>
+        <mat-card-subtitle>{{ cart.cartNumber }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <p><span class="label">État du châssis / carter :</span> <span class="value">{{ cart.conditionChassis }}</span></p>
+        <p><span class="label">Roues non déchirées et absence de plat :</span> <span class="value">{{ cart.wheelsTornPlat }}</span></p>
+        <p><span class="label">Câbles et prises batterie :</span> <span class="value">{{ cart.batteryCablesSockets }}</span></p>
+        <p><span class="label">État des fourches :</span> <span class="value">{{ cart.conditionForks }}</span></p>
+        <p><span class="label">Plateforme propre et anti-dérapante :</span> <span class="value">{{ cart.cleanNonSlipPlatform }}</span></p>
+        <p><span class="label">Pare-brise (pour chariot frontal) :</span> <span class="value">{{ cart.windshield }}</span></p>
+        <p><span class="label">Bloc gaz + sangle (pour chariot frontal) :</span> <span class="value">{{ cart.gasBlockStrap }}</span></p>
+        <p><span class="label">Commandes de marche avant/arrière :</span> <span class="value">{{ cart.forwardReverseControl }}</span></p>
+        <p><span class="label">Klaxon :</span> <span class="value">{{ cart.honk }}</span></p>
+        <p><span class="label">Système d'élévation fonctionnel :</span> <span class="value">{{ cart.functionalElevationSystem }}</span></p>
+        <p><span class="label">Arrêt d'urgence :</span> <span class="value">{{ cart.emergencyStop }}</span></p>
+        <p><span class="label">Absence de fuite :</span> <span class="value">{{ cart.noLeak }}</span></p>
+        <p><span class="label">Bouton anti écrasement :</span> <span class="value">{{ cart.antiCrushButton }}</span></p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="viewDetails(cart)">Voir les détails</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <footer class="footer">2024 scapartoi - Tous droits réservés</footer>
+  
