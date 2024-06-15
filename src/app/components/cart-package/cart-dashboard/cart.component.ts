@@ -17,7 +17,7 @@ export class CartComponent {
 
   createCart(){
 
-    this.route.navigateByUrl("/add-new-cart");
+    this.route.navigateByUrl("/suivi");
 
   }
 

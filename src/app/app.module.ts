@@ -13,11 +13,47 @@ import { CartComponent } from './components/cart-package/cart-dashboard/cart.com
 import { CartMModule } from './components/cart-package/modul/cart-m/cart-m.module';
 import { AllCartComponent } from './components/cart-package/web-services/all-cart/all-cart.component';
 import { AddCartComponent } from './components/cart-package/web-services/add-cart/add-cart.component';
+import { AllBatteryComponent } from './components/battery-package/web-services/all-battery/all-battery.component';
+import { AddBatteryComponent } from './components/battery-package/web-services/add-battery/add-battery.component';
+import { RemoveBatteryComponent } from './components/battery-package/web-services/remove-battery/remove-battery.component';
+import { UpdateBatteryComponent } from './components/battery-package/web-services/update-battery/update-battery.component';
+import { UpdateUserComponent } from './components/user-package/web-services/update-user/update-user.component';
+import { AllUserComponent } from './components/user-package/web-services/all-user/all-user.component';
+import { AddUserComponent } from './components/user-package/web-services/add-user/add-user.component';
+import { RemoveUserComponent } from './components/user-package/web-services/remove-user/remove-user.component';
+import { AllIssueComponent } from './components/issue-package/web-services/all-issue/all-issue.component';
+import { AddIssueComponent } from './components/issue-package/web-services/add-issue/add-issue.component';
+import { UpdateIssueComponent } from './components/issue-package/web-services/update-issue/update-issue.component';
+import { RemoveIssueComponent } from './components/issue-package/web-services/remove-issue/remove-issue.component';
+import { RemoveActionCarriedOutComponent } from './components/action-carried-out-package/web-services/remove-action-carried-out/remove-action-carried-out.component';
+import { UpdateActionCarriedOutComponent } from './components/action-carried-out-package/web-services/update-action-carried-out/update-action-carried-out.component';
+import { AddActionCarriedOutComponent } from './components/action-carried-out-package/web-services/add-action-carried-out/add-action-carried-out.component';
+import { AllActionCarriedOutComponent } from './components/action-carried-out-package/web-services/all-action-carried-out/all-action-carried-out.component';
+import { SuiviComponent } from './components/suivi-dashboard/suivi/suivi.component';
+import { SuiviMModule } from './components/suivi-dashboard/modul/suivi-m/suivi-m.module';
+import { HeaderComponent } from './components/suivi-dashboard/header/header.component';
+import { FooterComponent } from './components/suivi-dashboard/footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AllBatteryComponent,
+    AddBatteryComponent,
+    RemoveBatteryComponent,
+    UpdateBatteryComponent,
+    UpdateUserComponent,
+    AllUserComponent,
+    AddUserComponent,
+    RemoveUserComponent,
+    AllIssueComponent,
+    AddIssueComponent,
+    UpdateIssueComponent,
+    RemoveIssueComponent,
+    RemoveActionCarriedOutComponent,
+    UpdateActionCarriedOutComponent,
+    AddActionCarriedOutComponent,
+    AllActionCarriedOutComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +61,8 @@ import { AddCartComponent } from './components/cart-package/web-services/add-car
     HomeMModule,
     LoginMModule,
     DashboardMModule,
-    CartMModule
+    CartMModule,
+    SuiviMModule
   ],
   providers: [
     provideAnimationsAsync()

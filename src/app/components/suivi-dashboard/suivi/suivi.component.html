@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="suivi-container">
+  <div class="scapartois-title">Scapartois Smile Reception</div>
+  <div class="buttons-container">
+    <button mat-raised-button class="custom-button" (click)="navigateTo('utilisateur')">
+      <mat-icon>person</mat-icon> Utilisateur
+    </button>
+    <button mat-raised-button class="custom-button" (click)="navigateTo('chariot')">
+      <mat-icon>shopping_cart</mat-icon> Chariot
+    </button>
+    <button mat-raised-button class="custom-button" (click)="navigateTo('batterie')">
+      <mat-icon>battery_charging_full</mat-icon> Batterie
+    </button>
+    <button mat-raised-button class="custom-button" (click)="navigateTo('probleme')">
+      <mat-icon>report_problem</mat-icon> Problème
+    </button>
+    <button mat-raised-button class="custom-button" [disabled]="!isFormComplete">
+      <mat-icon>edit</mat-icon> Signature
+    </button>
+    <button mat-raised-button class="custom-button" [disabled]="!isFormComplete">
+      <mat-icon>check_circle</mat-icon> Valider
+    </button>
+  </div>
+</div>
+<app-footer class="footer"></app-footer>
