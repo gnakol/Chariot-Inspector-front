@@ -33,6 +33,8 @@ import { SuiviComponent } from './components/suivi-dashboard/suivi/suivi.compone
 import { SuiviMModule } from './components/suivi-dashboard/modul/suivi-m/suivi-m.module';
 import { HeaderComponent } from './components/suivi-dashboard/header/header.component';
 import { FooterComponent } from './components/suivi-dashboard/footer/footer.component';
+import { UserMModule } from './components/user-package/modul/user-m/user-m.module';
+import { GetAccountByIdComponent } from './components/user-package/web-services/get-account-by-id/get-account-by-id.component';
 
 
 @NgModule({
@@ -44,7 +46,6 @@ import { FooterComponent } from './components/suivi-dashboard/footer/footer.comp
     UpdateBatteryComponent,
     UpdateUserComponent,
     AllUserComponent,
-    AddUserComponent,
     RemoveUserComponent,
     AllIssueComponent,
     AddIssueComponent,
@@ -62,7 +63,8 @@ import { FooterComponent } from './components/suivi-dashboard/footer/footer.comp
     LoginMModule,
     DashboardMModule,
     CartMModule,
-    SuiviMModule
+    SuiviMModule, 
+    UserMModule
   ],
   providers: [
     provideAnimationsAsync()

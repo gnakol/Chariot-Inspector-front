@@ -16,7 +16,7 @@ export class SuiviComponent {
   }
 
   navigateTo(page: string) {
-    this.router.navigate([`/${page}`]);
+    this.router.navigateByUrl("/add-info-user");
   }
 
   checkFormCompletion() {

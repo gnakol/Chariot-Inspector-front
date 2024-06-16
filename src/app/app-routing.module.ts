@@ -7,6 +7,8 @@ import { CartComponent } from './components/cart-package/cart-dashboard/cart.com
 import { AllCartComponent } from './components/cart-package/web-services/all-cart/all-cart.component';
 import { AddCartComponent } from './components/cart-package/web-services/add-cart/add-cart.component';
 import { SuiviComponent } from './components/suivi-dashboard/suivi/suivi.component';
+import { AddUserComponent } from './components/user-package/web-services/add-user/add-user.component';
+import { GetAccountByIdComponent } from './components/user-package/web-services/get-account-by-id/get-account-by-id.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -20,7 +22,9 @@ const routes: Routes = [
   { path: 'all-cart', component: AllCartComponent },
   { path: 'add-new-cart', component: AddCartComponent },
   { path: '*', redirectTo: 'home' },
-  { path: 'suivi', component : SuiviComponent}
+  { path: 'suivi', component : SuiviComponent},
+  { path: 'add-info-user', component : AddUserComponent},
+  { path: 'get-account-by-id', component : GetAccountByIdComponent}
 ];
 
 @NgModule({

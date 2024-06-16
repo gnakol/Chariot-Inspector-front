@@ -31,7 +31,7 @@ export class CartComponent {
 
   searchCart(){
 
-    
+    this.route.navigateByUrl("/get-account-by-id");
   }
 
 }
