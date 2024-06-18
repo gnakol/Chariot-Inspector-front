@@ -1,27 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ResumeService } from '../../view-web-service/service/resume.service';
 
 @Component({
   selector: 'app-suivi',
   templateUrl: './suivi.component.html',
-  styleUrl: './suivi.component.scss'
+  styleUrls: ['./suivi.component.scss']
 })
-export class SuiviComponent {
+export class SuiviComponent implements OnInit {
 
   isFormComplete = false;
 
-  constructor(private router : Router)
-  {
+  constructor(private router: Router, private resumeService: ResumeService) { }
 
+  ngOnInit(): void {
+    this.checkFormCompletion();
   }
 
   navigateTo(page: string) {
-    this.router.navigateByUrl("/add-info-user");
+    this.router.navigateByUrl(page);
   }
 
   checkFormCompletion() {
-    // Implémentez la logique pour vérifier si les 4 premières sections sont complètes
-    // et mettez à jour isFormComplete en conséquence
+    const accountData = this.resumeService.getAccountData();
+    const cartData = this.resumeService.getCartData();
+
+    this.isFormComplete = !!accountData && !!cartData;
   }
 
+  validate() {
+    this.router.navigate(['/resume']);
+  }
 }

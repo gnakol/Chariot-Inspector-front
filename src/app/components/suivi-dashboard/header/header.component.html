@@ -1,8 +1,8 @@
 <mat-toolbar>
     <img src="images/logo.png" alt="Logo de l'entreprise" class="logo">
     <span class="example-spacer"></span>
-    <button mat-button routerLink="/home">Accueil</button>
-    <button mat-button routerLink="/dashboard">Dashboard</button>
-    <button mat-button routerLink="/logout">Déconnexion</button>
+    <button (click)="home()" mat-button routerLink="/home">Accueil</button>
+    <button (click)="dashboard()" mat-button routerLink="/dashboard">Dashboard</button>
+    <button (click)="login()" mat-button routerLink="/logout">Déconnexion</button>
   </mat-toolbar>
   

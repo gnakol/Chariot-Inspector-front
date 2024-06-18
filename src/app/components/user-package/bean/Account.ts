@@ -15,4 +15,6 @@ export interface Account{
       taurusNumber : number;
       
       pickUpDateTime : Date;
+
+      function : string;
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CartService } from '../../service/cart.service';
 import { Cart } from '../../bean/cart';
+import { ResumeService } from '../../../view-web-service/service/resume.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-cart',
@@ -12,7 +14,7 @@ export class AddCartComponent implements OnInit{
 
   cartForm! : FormGroup;
 
-  constructor(private fb: FormBuilder, private cartService: CartService) {
+  constructor(private fb: FormBuilder, private cartService: CartService, private resumeService : ResumeService, private router : Router) {
     this.cartForm = this.fb.group({
       cartNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       conditionChassis: ['', Validators.required],
@@ -39,7 +41,11 @@ export class AddCartComponent implements OnInit{
       this.cartService.addNewCart(newCart).subscribe(
         (data) => {
           console.log('Chariot ajouté avec succès', data);
+          this.resumeService.setCartData(data);
+
           // Logique de redirection ou de notification
+
+          this.router.navigate(['/suivi']);
         },
         (error) => {
           console.log('Erreur lors de l\'ajout du chariot', error);

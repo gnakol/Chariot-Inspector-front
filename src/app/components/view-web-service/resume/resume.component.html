@@ -1,0 +1,29 @@
+<div class="resume-container">
+  <h1 class="title">Résumé des Informations</h1>
+  <div *ngIf="accountData">
+    <h2>Informations Utilisateur</h2>
+    <p><strong>Nom:</strong> {{ accountData.name }}</p>
+    <p><strong>Prénom:</strong> {{ accountData.firstName }}</p>
+    <p><strong>Service:</strong> {{ accountData.service }}</p>
+    <p><strong>Date et heure de prise en charge:</strong> {{ accountData.pickUpDateTime }}</p>
+    <p><strong>Numéro de Taurus:</strong> {{ accountData.taurusNumber }}</p>
+    <p><strong>Fonction:</strong> {{ accountData.function }}</p>
+  </div>
+  <div *ngIf="cartData">
+    <h2>Informations du Chariot</h2>
+    <p><strong>Numéro du Chariot:</strong> {{ cartData.cartNumber }}</p>
+    <p><strong>État du châssis / carter:</strong> {{ cartData.conditionChassis }}</p>
+    <p><strong>Roues non déchirées et absence de plat:</strong> {{ cartData.wheelsTornPlat }}</p>
+    <p><strong>Câbles et prises batterie:</strong> {{ cartData.batteryCablesSockets }}</p>
+    <p><strong>État des fourches:</strong> {{ cartData.conditionForks }}</p>
+    <p><strong>Plateforme propre et anti-dérapante:</strong> {{ cartData.cleanNonSlipPlatform }}</p>
+    <p><strong>Pare-brise:</strong> {{ cartData.windshield }}</p>
+    <p><strong>Bloc gaz + sangle:</strong> {{ cartData.gasBlockStrap }}</p>
+    <p><strong>Commandes de marche avant/arrière:</strong> {{ cartData.forwardReverseControl }}</p>
+    <p><strong>Klaxon:</strong> {{ cartData.honk }}</p>
+    <p><strong>Système d'élévation fonctionnel:</strong> {{ cartData.functionalElevationSystem }}</p>
+    <p><strong>Arrêt d'urgence:</strong> {{ cartData.emergencyStop }}</p>
+    <p><strong>Absence de fuite:</strong> {{ cartData.noLeak }}</p>
+    <p><strong>Bouton anti écrasement:</strong> {{ cartData.antiCrushButton }}</p>
+  </div>
+</div>

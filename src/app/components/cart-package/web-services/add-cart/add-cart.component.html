@@ -1,113 +1,112 @@
 <div class="add-cart-container">
-    <h1 class="title">Ajouter un nouveau chariot</h1>
-    <form [formGroup]="cartForm" (ngSubmit)="onSubmit()">
+  <h1 class="title">Etat de propreté du chariot</h1>
+  <form [formGroup]="cartForm" (ngSubmit)="onSubmit()">
       <mat-card>
-        <mat-card-header>
-          <mat-card-title>Informations sur le chariot</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="form-fields">
-            <div class="form-group">
-              <label>Numéro du chariot</label>
-              <input matInput type="number" formControlName="cartNumber" placeholder="Entrez le numéro du chariot">
-            </div>
-            <div class="form-group">
-              <label>État du châssis / carter</label>
-              <mat-select formControlName="conditionChassis" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Roues non déchirées et absence de plat</label>
-              <mat-select formControlName="wheelsTornPlat" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Câbles et prises batterie</label>
-              <mat-select formControlName="batteryCablesSockets" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>État des fourches</label>
-              <mat-select formControlName="conditionForks" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Plateforme propre et anti-dérapante</label>
-              <mat-select formControlName="cleanNonSlipPlatform" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Pare-brise (pour chariot frontal)</label>
-              <mat-select formControlName="windshield" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Bloc gaz + sangle (pour chariot frontal)</label>
-              <mat-select formControlName="gasBlockStrap" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Commandes de marche avant/arrière</label>
-              <mat-select formControlName="forwardReverseControl" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Klaxon</label>
-              <mat-select formControlName="honk" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Système d'élévation fonctionnel</label>
-              <mat-select formControlName="functionalElevationSystem" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Arrêt d'urgence</label>
-              <mat-select formControlName="emergencyStop" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Absence de fuite</label>
-              <mat-select formControlName="noLeak" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-            <div class="form-group">
-              <label>Bouton anti écrasement</label>
-              <mat-select formControlName="antiCrushButton" placeholder="Sélectionnez l'état">
-                <mat-option value="BON">BON</mat-option>
-                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
-              </mat-select>
-            </div>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-raised-button color="primary" type="submit" [disabled]="!cartForm.valid">Ajouter</button>
-        </mat-card-actions>
+          <mat-card-header>
+              <mat-card-title>Informations sur le chariot</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <div class="form-fields">
+                  <div class="form-group">
+                      <label class="form-label">Numéro du chariot</label>
+                      <input matInput type="number" formControlName="cartNumber" placeholder="Entrez le numéro du chariot">
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">État du châssis / carter</label>
+                      <mat-select formControlName="conditionChassis" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Roues non déchirées et absence de plat</label>
+                      <mat-select formControlName="wheelsTornPlat" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Câbles et prises batterie</label>
+                      <mat-select formControlName="batteryCablesSockets" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">État des fourches</label>
+                      <mat-select formControlName="conditionForks" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Plateforme propre et anti-dérapante</label>
+                      <mat-select formControlName="cleanNonSlipPlatform" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Pare-brise (pour chariot frontal)</label>
+                      <mat-select formControlName="windshield" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Bloc gaz + sangle (pour chariot frontal)</label>
+                      <mat-select formControlName="gasBlockStrap" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Commandes de marche avant/arrière</label>
+                      <mat-select formControlName="forwardReverseControl" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Klaxon</label>
+                      <mat-select formControlName="honk" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Système d'élévation fonctionnel</label>
+                      <mat-select formControlName="functionalElevationSystem" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Arrêt d'urgence</label>
+                      <mat-select formControlName="emergencyStop" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Absence de fuite</label>
+                      <mat-select formControlName="noLeak" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+                  <div class="form-group">
+                      <label class="form-label">Bouton anti écrasement</label>
+                      <mat-select formControlName="antiCrushButton" placeholder="Sélectionnez l'état">
+                          <mat-option value="BON">BON</mat-option>
+                          <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                      </mat-select>
+                  </div>
+              </div>
+          </mat-card-content>
+          <mat-card-actions>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!cartForm.valid">Ajouter</button>
+          </mat-card-actions>
       </mat-card>
-    </form>
-  </div>
-  
+  </form>
+</div>

@@ -9,6 +9,7 @@ import { AddCartComponent } from './components/cart-package/web-services/add-car
 import { SuiviComponent } from './components/suivi-dashboard/suivi/suivi.component';
 import { AddUserComponent } from './components/user-package/web-services/add-user/add-user.component';
 import { GetAccountByIdComponent } from './components/user-package/web-services/get-account-by-id/get-account-by-id.component';
+import { ResumeComponent } from './components/view-web-service/resume/resume.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: '*', redirectTo: 'home' },
   { path: 'suivi', component : SuiviComponent},
   { path: 'add-info-user', component : AddUserComponent},
-  { path: 'get-account-by-id', component : GetAccountByIdComponent}
+  { path: 'get-account-by-id', component : GetAccountByIdComponent},
+  { path: 'resume', component : ResumeComponent}
 ];
 
 @NgModule({

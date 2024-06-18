@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { SuiviComponent } from '../../suivi/suivi.component';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
+import { ResumeComponent } from '../../../view-web-service/resume/resume.component';
 
 
 
@@ -21,7 +22,8 @@ import { FooterComponent } from '../../footer/footer.component';
   declarations: [
     SuiviComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ResumeComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { FooterComponent } from '../../footer/footer.component';
   exports : [
     SuiviComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ResumeComponent
   ]
 })
 export class SuiviMModule { }

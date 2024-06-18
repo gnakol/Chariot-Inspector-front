@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
 import { AuthService } from '../../../../authenticate/core/auth.service';
+import { Router } from '@angular/router';
+import { ResumeService } from '../../../view-web-service/service/resume.service';
 
 @Component({
   selector: 'app-add-user',
@@ -11,9 +13,14 @@ import { AuthService } from '../../../../authenticate/core/auth.service';
 export class AddUserComponent implements OnInit {
 
   accountForm!: FormGroup;
+
   user: any;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private authService: AuthService) { }
+  constructor(private fb: FormBuilder, 
+    private userService: UserService, 
+    private authService: AuthService, 
+    private router : Router,
+    private resumeService : ResumeService) { }
 
   ngOnInit(): void {
     this.accountForm = this.fb.group({
@@ -59,7 +66,13 @@ export class AddUserComponent implements OnInit {
 
   onSubmit() {
     if (this.accountForm.valid) {
-      // Traitement de soumission du formulaire
+      // Soumettre les données
+      // Par exemple, sauvegarder dans la base de données
+      console.log('Form Data:', this.accountForm.value);
+
+      this.resumeService.setAccountData(this.accountForm.value);
+      // Naviguer vers la page de résumé
+      this.router.navigate(['/suivi']);
     }
   }
 }

@@ -35,6 +35,7 @@ import { HeaderComponent } from './components/suivi-dashboard/header/header.comp
 import { FooterComponent } from './components/suivi-dashboard/footer/footer.component';
 import { UserMModule } from './components/user-package/modul/user-m/user-m.module';
 import { GetAccountByIdComponent } from './components/user-package/web-services/get-account-by-id/get-account-by-id.component';
+import { ResumeComponent } from './components/view-web-service/resume/resume.component';
 
 
 @NgModule({
