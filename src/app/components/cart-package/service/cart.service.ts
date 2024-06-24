@@ -23,6 +23,8 @@ export class CartService {
 
   private baseUrl = 'http://localhost:9001/chariot-inspector/cart';
 
+  private baseUrlPickup = 'http://localhost:9001/chariot-inspector/pickup';
+
   constructor(private http : HttpClient, private authService : AuthService) { }
 
   public allCart() : Observable<CartResponse>
@@ -57,4 +59,6 @@ export class CartService {
 
     return this.http.post<Cart>(`${this.baseUrl}/add-new-cart`, cart, { headers });
   }
+
+  
 }

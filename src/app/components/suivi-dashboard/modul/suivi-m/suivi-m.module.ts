@@ -15,6 +15,9 @@ import { SuiviComponent } from '../../suivi/suivi.component';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterComponent } from '../../footer/footer.component';
 import { ResumeComponent } from '../../../view-web-service/resume/resume.component';
+import { BatteryMModule } from '../../../battery-package/modul/battery-m/battery-m.module';
+import { AddBatteryComponent } from '../../../battery-package/web-services/add-battery/add-battery.component';
+import { AddUsageComponent } from '../../../taurus-package/web-services/taurus-usage/add-usage/add-usage.component';
 
 
 
@@ -23,7 +26,9 @@ import { ResumeComponent } from '../../../view-web-service/resume/resume.compone
     SuiviComponent,
     HeaderComponent,
     FooterComponent,
-    ResumeComponent
+    ResumeComponent,
+    AddBatteryComponent,
+    AddUsageComponent
   ],
   imports: [
     CommonModule,
@@ -32,13 +37,19 @@ import { ResumeComponent } from '../../../view-web-service/resume/resume.compone
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatSelectModule,
+    MatCardModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   exports : [
     SuiviComponent,
     HeaderComponent,
     FooterComponent,
-    ResumeComponent
+    ResumeComponent,
+    AddBatteryComponent,
+    AddUsageComponent
   ]
 })
 export class SuiviMModule { }

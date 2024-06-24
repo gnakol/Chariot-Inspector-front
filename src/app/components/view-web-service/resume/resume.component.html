@@ -1,14 +1,19 @@
 <div class="resume-container">
   <h1 class="title">Résumé des Informations</h1>
+
   <div *ngIf="accountData">
     <h2>Informations Utilisateur</h2>
     <p><strong>Nom:</strong> {{ accountData.name }}</p>
     <p><strong>Prénom:</strong> {{ accountData.firstName }}</p>
     <p><strong>Service:</strong> {{ accountData.service }}</p>
-    <p><strong>Date et heure de prise en charge:</strong> {{ accountData.pickUpDateTime }}</p>
-    <p><strong>Numéro de Taurus:</strong> {{ accountData.taurusNumber }}</p>
-    <p><strong>Fonction:</strong> {{ accountData.function }}</p>
   </div>
+
+  <div *ngIf="taurusData && taurusUsageData">
+    <h2>Informations du Taurus</h2>
+    <p><strong>Numéro de Taurus:</strong> {{ taurusData.taurusNumber }}</p>
+    <p *ngIf="taurusUsageData.usageDate"><strong>Date d'utilisation:</strong> {{ taurusUsageData.usageDate }}</p>
+  </div>
+
   <div *ngIf="cartData">
     <h2>Informations du Chariot</h2>
     <p><strong>Numéro du Chariot:</strong> {{ cartData.cartNumber }}</p>
@@ -25,5 +30,12 @@
     <p><strong>Arrêt d'urgence:</strong> {{ cartData.emergencyStop }}</p>
     <p><strong>Absence de fuite:</strong> {{ cartData.noLeak }}</p>
     <p><strong>Bouton anti écrasement:</strong> {{ cartData.antiCrushButton }}</p>
+  </div>
+
+  <div *ngIf="batteryData">
+    <h2>Informations de la Batterie</h2>
+    <p><strong>Numéro de batterie:</strong> {{ batteryData.batteryNumber }}</p>
+    <p><strong>Niveau de charge:</strong> {{ batteryData.chargeLevel }}</p>
+    <p><strong>État de la batterie:</strong> {{ batteryData.state }}</p>
   </div>
 </div>

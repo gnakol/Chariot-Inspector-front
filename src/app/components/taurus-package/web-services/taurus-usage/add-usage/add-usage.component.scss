@@ -1,0 +1,109 @@
+/* Container général pour le formulaire d'utilisation du Taurus */
+.usage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Pleine hauteur de la fenêtre */
+    background: linear-gradient(135deg, #0A2E36 0%, #026773 100%); /* Dégradé de fond */
+    color: white; /* Couleur du texte en blanc pour contraster */
+    padding: 20px; /* Padding autour du container */
+  }
+  
+  /* Titre du formulaire */
+  .title {
+    font-size: 36px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+    color: #FFD700; /* Or pour un effet élégant */
+    margin-bottom: 10px; /* Espace sous le titre */
+    text-align: center; /* Centre le texte */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Légère ombre pour la profondeur */
+  }
+  
+  /* Sous-titre du formulaire */
+  .subtitle {
+    font-size: 28px; /* Taille de la police */
+    font-weight: 300; /* Texte léger */
+    color: #FFD700; /* Or pour un effet élégant */
+    margin-bottom: 20px; /* Espace sous le sous-titre */
+    text-align: center; /* Centre le texte */
+  }
+  
+  /* Formulaire */
+  form {
+    width: 100%;
+    max-width: 600px; /* Largeur maximale du formulaire */
+    margin: 20px; /* Espace autour du formulaire */
+  }
+  
+  /* Carte pour le formulaire */
+  mat-card {
+    background: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
+    border-radius: 20px; /* Bordures plus arrondies */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre douce pour la profondeur */
+    padding: 20px; /* Ajout de padding pour l'intérieur de la carte */
+  }
+  
+  /* Champs du formulaire */
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 24px; /* Espace en dessous de chaque champ */
+  }
+  
+  .form-label {
+    color: #4CAF50; /* Vert vif pour les libellés */
+    font-weight: bold; /* Texte en gras pour les libellés */
+    margin-bottom: 8px; /* Espace en dessous des libellés */
+    display: block; /* Affichage en bloc pour les libellés */
+  }
+  
+  .mat-form-field {
+    width: 100%; /* Largeur complète pour étendre à la carte */
+    margin-bottom: 16px; /* Espace en dessous de chaque champ */
+  }
+  
+  /* Input styles */
+  input[matInput], mat-select {
+    border: 1px solid #ccc; /* Bordure grise légère */
+    border-radius: 5px; /* Bordures arrondies */
+    padding: 10px; /* Padding interne */
+    font-size: 16px; /* Taille de la police */
+    background: white; /* Fond blanc pour les inputs */
+    color: black; /* Texte noir pour les inputs */
+  }
+  
+  /* Bouton de soumission */
+  mat-card-actions {
+    display: flex;
+    justify-content: center; /* Centrer le bouton */
+  }
+  
+  button {
+    margin-top: 24px; /* Espace au-dessus du bouton */
+    padding: 10px 20px; /* Padding interne pour le bouton */
+    border-radius: 30px; /* Bouton arrondi */
+    width: auto; /* Largeur automatique */
+    color: white; /* Texte blanc pour le contraste */
+    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%); /* Dégradé de fond pour le bouton */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Petite ombre pour un effet de relief */
+    font-size: 16px; /* Taille de la police */
+    font-weight: bold; /* Texte en gras */
+    transition: all 0.3s ease; /* Transition douce pour les interactions */
+  }
+  
+  /* Animation légère pour le bouton au survol */
+  button:hover {
+    transform: scale(1.05); /* Légère augmentation de taille */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Ombre plus prononcée */
+  }
+  
+  /* Animation du bouton lorsqu'il est cliqué */
+  button:active {
+    transform: scale(0.95); /* Légère réduction de taille */
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2); /* Ombre moins prononcée */
+  }
+  

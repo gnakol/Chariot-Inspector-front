@@ -10,6 +10,8 @@ import { SuiviComponent } from './components/suivi-dashboard/suivi/suivi.compone
 import { AddUserComponent } from './components/user-package/web-services/add-user/add-user.component';
 import { GetAccountByIdComponent } from './components/user-package/web-services/get-account-by-id/get-account-by-id.component';
 import { ResumeComponent } from './components/view-web-service/resume/resume.component';
+import { AddBatteryComponent } from './components/battery-package/web-services/add-battery/add-battery.component';
+import { AddUsageComponent } from './components/taurus-package/web-services/taurus-usage/add-usage/add-usage.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -26,7 +28,9 @@ const routes: Routes = [
   { path: 'suivi', component : SuiviComponent},
   { path: 'add-info-user', component : AddUserComponent},
   { path: 'get-account-by-id', component : GetAccountByIdComponent},
-  { path: 'resume', component : ResumeComponent}
+  { path: 'resume', component : ResumeComponent},
+  { path: 'add-new-battery', component : AddBatteryComponent},
+  { path: 'add-taurus-usage', component : AddUsageComponent}
 ];
 
 @NgModule({

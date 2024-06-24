@@ -36,13 +36,16 @@ import { FooterComponent } from './components/suivi-dashboard/footer/footer.comp
 import { UserMModule } from './components/user-package/modul/user-m/user-m.module';
 import { GetAccountByIdComponent } from './components/user-package/web-services/get-account-by-id/get-account-by-id.component';
 import { ResumeComponent } from './components/view-web-service/resume/resume.component';
+import { AllUsageComponent } from './components/taurus-package/web-services/taurus-usage/all-usage/all-usage.component';
+import { AddTaurusComponent } from './components/taurus-package/web-services/taurus/add-taurus/add-taurus.component';
+import { AddPickupComponent } from './components/pickup-package/web-services/add-pickup/add-pickup.component';
+import { AllPickupComponent } from './components/pickup-package/web-services/all-pickup/all-pickup.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AllBatteryComponent,
-    AddBatteryComponent,
     RemoveBatteryComponent,
     UpdateBatteryComponent,
     UpdateUserComponent,
@@ -55,7 +58,11 @@ import { ResumeComponent } from './components/view-web-service/resume/resume.com
     RemoveActionCarriedOutComponent,
     UpdateActionCarriedOutComponent,
     AddActionCarriedOutComponent,
-    AllActionCarriedOutComponent
+    AllActionCarriedOutComponent,
+    AllUsageComponent,
+    AddTaurusComponent,
+    AddPickupComponent,
+    AllPickupComponent
   ],
   imports: [
     BrowserModule,
