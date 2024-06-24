@@ -12,5 +12,5 @@ export interface Battery {
 
   state: string;
   
-  cart: Cart | null; // Utilisez cart pour représenter la relation avec le chariot
+  idCart: number;
 }

@@ -23,8 +23,6 @@ export class CartService {
 
   private baseUrl = 'http://localhost:9001/chariot-inspector/cart';
 
-  private baseUrlPickup = 'http://localhost:9001/chariot-inspector/pickup';
-
   constructor(private http : HttpClient, private authService : AuthService) { }
 
   public allCart() : Observable<CartResponse>
@@ -60,5 +58,33 @@ export class CartService {
     return this.http.post<Cart>(`${this.baseUrl}/add-new-cart`, cart, { headers });
   }
 
-  
+  public getIdCartByNum(cartNumber : string) : Observable<any>
+  {
+    const token = this.authService.getToken();
+
+    if(!token)
+      {
+        throw new Error('No token found');
+      }
+
+      const headers = { Authorization: `Bearer ${token}` };
+
+      return this.http.get<any>(`${this.baseUrl}/get-id-cart-by-number?cartNumber=${cartNumber}`, {headers});
+  }
+
+  public getCartById(idCart : number) : Observable<any>
+  {
+    const token = this.authService.getToken();
+
+    if(!token)
+      {
+        throw new Error('Token not found');
+      }
+
+      const headers = { Authorization: `Bearer ${token}` };
+
+      return this.http.get<any>(`${this.baseUrl}/get-cart-by-id/${idCart}`, {headers});
+  }
+
+
 }

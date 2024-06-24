@@ -30,6 +30,9 @@
     <p><strong>Arrêt d'urgence:</strong> {{ cartData.emergencyStop }}</p>
     <p><strong>Absence de fuite:</strong> {{ cartData.noLeak }}</p>
     <p><strong>Bouton anti écrasement:</strong> {{ cartData.antiCrushButton }}</p>
+    <p><strong>Date et heure de prise en charge:</strong> {{pickupData?.pickupDateTime}} </p>
+    <p><strong>Date et heure de retour: </strong> {{pickupData?.returnDateTime}} </p>
+
   </div>
 
   <div *ngIf="batteryData">

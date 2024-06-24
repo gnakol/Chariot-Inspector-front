@@ -7,6 +7,8 @@ import { TaurusUsage } from '../../taurus-package/bean/taurusUsage';
 import { TaurusService } from '../../taurus-package/service/taurus.service';
 import { Taurus } from '../../taurus-package/bean/taurus';
 import { UserService } from '../../user-package/service/user.service';
+import { Pickup } from '../../pickup-package/bean/pickup';
+import { PickupService } from '../../pickup-package/service/pickup.service';
 
 @Component({
   selector: 'app-resume',
@@ -19,14 +21,19 @@ export class ResumeComponent implements OnInit {
   batteryData: Battery | null = null;
   taurusUsageData: TaurusUsage | null = null;
   taurusData: Taurus | null = null;
+  pickupData : Pickup | null = null;
 
-  constructor(private resumeService: ResumeService, private taurusService: TaurusService, private userService : UserService) {}
+  constructor(private resumeService: ResumeService, 
+    private taurusService: TaurusService, 
+    private userService : UserService,
+    private pickupService : PickupService) {}
 
   ngOnInit(): void {
     this.accountData = this.resumeService.getAccountData();
     this.cartData = this.resumeService.getCartData();
     this.batteryData = this.resumeService.getBatteryData();
     this.taurusUsageData = this.resumeService.getTaurusUsageData();
+    this.pickupData = this.resumeService.getPickupData();
 
     if (this.taurusUsageData) {
       this.taurusService.getTaurusById(this.taurusUsageData.taurusId).subscribe(

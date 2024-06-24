@@ -4,6 +4,8 @@ import { BatteryService } from '../../service/battery.service';
 import { Battery } from '../../bean/battery';
 import { ResumeService } from '../../../view-web-service/service/resume.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../../cart-package/service/cart.service';
+import { Cart } from '../../../cart-package/bean/cart';
 
 @Component({
   selector: 'app-add-battery',
@@ -15,34 +17,43 @@ export class AddBatteryComponent implements OnInit {
   batteryForm!: FormGroup;
   cartAvailable: boolean = false;
   cartNumber: number | null = null;
+  cartData : Cart | null = null;
 
-  constructor(private fb: FormBuilder, private batteryService: BatteryService, private resumeService: ResumeService, private router: Router) {
-    this.batteryForm = this.fb.group({
-      batteryNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      chargeLevel: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      state: ['', Validators.required],
-      cartNumber: [''] // Ajoutez ce contrôle de formulaire
-    });
-  }
+  constructor(private fb: FormBuilder, 
+    private batteryService: BatteryService, 
+    private resumeService: ResumeService, 
+    private router: Router,
+    private cartService : CartService) 
+    {}
 
   ngOnInit(): void {
-    const cartData = this.resumeService.getCartData();
-    if (cartData) {
-      this.cartAvailable = true;
-      this.cartNumber = cartData.cartNumber;
-      this.batteryForm.patchValue({ cartNumber: this.cartNumber });
-    }
+
+    this.batteryForm = this.fb.group({
+      batteryNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+      chargeLevel: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+      state: ['', Validators.required],
+      idCart: ['']
+    });
+
+    this.loadCardData();
+
+    
+  }
+
+  loadCardData() : void
+  {
+    this.cartData = this.resumeService.getCartData();
+
+    if(this.cartData)
+      {
+        this.batteryForm.patchValue({idCart : this.cartData.idCart});
+      }
   }
 
   onSubmit(): void {
+
     if (this.batteryForm.valid) {
-      const newBattery: Battery = {
-        ...this.batteryForm.value,
-        cart: this.cartAvailable && this.cartNumber !== null ? { idCart: this.cartNumber } : null
-      };
-
-      console.log('Battery to be sent:', newBattery); // Ajoutez ceci pour vérifier les données
-
+      const newBattery: Battery = this.batteryForm.value;
       this.batteryService.addNewBattery(newBattery).subscribe(
         (data) => {
           console.log('Batterie ajoutée avec succès', data);
@@ -50,7 +61,7 @@ export class AddBatteryComponent implements OnInit {
           this.router.navigate(['/suivi']);
         },
         (error) => {
-          console.log('Erreur lors de l\'ajout de la batterie', error);
+          console.error('Erreur lors de l\'ajout de la batterie', error);
         }
       );
     }

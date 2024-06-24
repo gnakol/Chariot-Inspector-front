@@ -27,5 +27,33 @@ export class BatteryService {
   
     return this.http.post<Battery>(`${this.baseUrl}/add-new-battery`, battery, { headers });
   }
+
+  public getIdBatteryByNumber(batteryNumber : number) : Observable<any>
+  {
+    const token = this.authService.getToken();
+
+    if(!token)
+      {
+        throw new Error('Token was not found');
+      }
+
+      const headers = { Authorizaton : `Bearer ${token}` };
+
+      return this.http.get<any>(`${this.baseUrl}/get-id-battery-by-number/${batteryNumber}`, {headers});
+  }
+
+  public getBatteryById(idBattery : number) : Observable<Battery>
+  {
+    const token = this.authService.getToken();
+
+    if(!token)
+      {
+        throw new Error('Token was not found');
+      }
+
+      const headers = { Authorization : `Bearer ${token}` };
+
+      return this.http.get<Battery>(`${this.baseUrl}/get-battery-by-id/${idBattery}`, { headers });
+  }
   
 }

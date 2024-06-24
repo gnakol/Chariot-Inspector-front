@@ -18,6 +18,7 @@ import { ResumeComponent } from '../../../view-web-service/resume/resume.compone
 import { BatteryMModule } from '../../../battery-package/modul/battery-m/battery-m.module';
 import { AddBatteryComponent } from '../../../battery-package/web-services/add-battery/add-battery.component';
 import { AddUsageComponent } from '../../../taurus-package/web-services/taurus-usage/add-usage/add-usage.component';
+import { AddPickupComponent } from '../../../pickup-package/web-services/add-pickup/add-pickup.component';
 
 
 
@@ -28,7 +29,8 @@ import { AddUsageComponent } from '../../../taurus-package/web-services/taurus-u
     FooterComponent,
     ResumeComponent,
     AddBatteryComponent,
-    AddUsageComponent
+    AddUsageComponent,
+    AddPickupComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { AddUsageComponent } from '../../../taurus-package/web-services/taurus-u
     FooterComponent,
     ResumeComponent,
     AddBatteryComponent,
-    AddUsageComponent
+    AddUsageComponent,
+    AddPickupComponent
   ]
 })
 export class SuiviMModule { }

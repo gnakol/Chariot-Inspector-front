@@ -3,6 +3,7 @@ import { Account } from '../../user-package/bean/account';
 import { Cart } from '../../cart-package/bean/cart';
 import { Battery } from '../../battery-package/bean/battery';
 import { TaurusUsage } from '../../taurus-package/bean/taurusUsage';
+import { Pickup } from '../../pickup-package/bean/pickup';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,8 @@ export class ResumeService {
   private batteryData: Battery | null = null;
 
   private taurusUsageData : TaurusUsage | null = null;
+
+  private pickupData : Pickup | null = null;
 
   constructor() { }
 
@@ -53,10 +56,21 @@ export class ResumeService {
     return this.taurusUsageData;
   }
 
+  setPickupData(pickup : Pickup) : void
+  {
+    this.pickupData = pickup;
+  }
+
+  getPickupData() : Pickup | null
+  {
+    return this.pickupData;
+  }
+
   clearData(): void {
     this.accountData = null;
     this.cartData = null;
     this.batteryData = null;
+    this.pickupData = null;
   }
 
   

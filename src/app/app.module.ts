@@ -61,7 +61,6 @@ import { AllPickupComponent } from './components/pickup-package/web-services/all
     AllActionCarriedOutComponent,
     AllUsageComponent,
     AddTaurusComponent,
-    AddPickupComponent,
     AllPickupComponent
   ],
   imports: [
