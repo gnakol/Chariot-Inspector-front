@@ -1,44 +1,63 @@
 <div class="resume-container">
-  <h1 class="title">Résumé des Informations</h1>
+  <h1 class="main-title">Scapartois Smile Reception</h1>
 
-  <div *ngIf="accountData">
-    <h2>Informations Utilisateur</h2>
-    <p><strong>Nom:</strong> {{ accountData.name }}</p>
-    <p><strong>Prénom:</strong> {{ accountData.firstName }}</p>
-    <p><strong>Service:</strong> {{ accountData.service }}</p>
-  </div>
+  <div class="resume-content">
+    <div class="card-wrapper" *ngIf="accountData">
+      <div class="resume-card user-info">
+        <h2>Informations Utilisateur</h2>
+        <p><strong>Nom:</strong> {{ accountData.name }}</p>
+        <p><strong>Prénom:</strong> {{ accountData.firstName }}</p>
+        <p><strong>Service:</strong> {{ accountData.service }}</p>
+      </div>
+    </div>
 
-  <div *ngIf="taurusData && taurusUsageData">
-    <h2>Informations du Taurus</h2>
-    <p><strong>Numéro de Taurus:</strong> {{ taurusData.taurusNumber }}</p>
-    <p *ngIf="taurusUsageData.usageDate"><strong>Date d'utilisation:</strong> {{ taurusUsageData.usageDate }}</p>
-  </div>
+    <div class="card-wrapper" *ngIf="taurusData && taurusUsageData">
+      <div class="resume-card taurus-info">
+        <h2>Informations du Taurus</h2>
+        <p><strong>Numéro de Taurus:</strong> {{ taurusData.taurusNumber }}</p>
+        <p *ngIf="taurusUsageData.usageDate"><strong>Date d'utilisation:</strong> {{ taurusUsageData.usageDate }}</p>
+      </div>
+    </div>
 
-  <div *ngIf="cartData">
-    <h2>Informations du Chariot</h2>
-    <p><strong>Numéro du Chariot:</strong> {{ cartData.cartNumber }}</p>
-    <p><strong>État du châssis / carter:</strong> {{ cartData.conditionChassis }}</p>
-    <p><strong>Roues non déchirées et absence de plat:</strong> {{ cartData.wheelsTornPlat }}</p>
-    <p><strong>Câbles et prises batterie:</strong> {{ cartData.batteryCablesSockets }}</p>
-    <p><strong>État des fourches:</strong> {{ cartData.conditionForks }}</p>
-    <p><strong>Plateforme propre et anti-dérapante:</strong> {{ cartData.cleanNonSlipPlatform }}</p>
-    <p><strong>Pare-brise:</strong> {{ cartData.windshield }}</p>
-    <p><strong>Bloc gaz + sangle:</strong> {{ cartData.gasBlockStrap }}</p>
-    <p><strong>Commandes de marche avant/arrière:</strong> {{ cartData.forwardReverseControl }}</p>
-    <p><strong>Klaxon:</strong> {{ cartData.honk }}</p>
-    <p><strong>Système d'élévation fonctionnel:</strong> {{ cartData.functionalElevationSystem }}</p>
-    <p><strong>Arrêt d'urgence:</strong> {{ cartData.emergencyStop }}</p>
-    <p><strong>Absence de fuite:</strong> {{ cartData.noLeak }}</p>
-    <p><strong>Bouton anti écrasement:</strong> {{ cartData.antiCrushButton }}</p>
-    <p><strong>Date et heure de prise en charge:</strong> {{pickupData?.pickupDateTime}} </p>
-    <p><strong>Date et heure de retour: </strong> {{pickupData?.returnDateTime}} </p>
+    <div class="card-wrapper" *ngIf="cartData">
+      <div class="resume-card cart-info">
+        <h2>Informations du Chariot</h2>
+        <p><strong>Numéro du Chariot:</strong> {{ cartData.cartNumber }}</p>
+        <p><strong>État du châssis / carter:</strong> {{ cartData.conditionChassis }}</p>
+        <p><strong>Roues non déchirées et absence de plat:</strong> {{ cartData.wheelsTornPlat }}</p>
+        <p><strong>Câbles et prises batterie:</strong> {{ cartData.batteryCablesSockets }}</p>
+        <p><strong>État des fourches:</strong> {{ cartData.conditionForks }}</p>
+        <p><strong>Plateforme propre et anti-dérapante:</strong> {{ cartData.cleanNonSlipPlatform }}</p>
+        <p><strong>Pare-brise:</strong> {{ cartData.windshield }}</p>
+        <p><strong>Bloc gaz + sangle:</strong> {{ cartData.gasBlockStrap }}</p>
+        <p><strong>Commandes de marche avant/arrière:</strong> {{ cartData.forwardReverseControl }}</p>
+        <p><strong>Klaxon:</strong> {{ cartData.honk }}</p>
+        <p><strong>Système d'élévation fonctionnel:</strong> {{ cartData.functionalElevationSystem }}</p>
+        <p><strong>Arrêt d'urgence:</strong> {{ cartData.emergencyStop }}</p>
+        <p><strong>Absence de fuite:</strong> {{ cartData.noLeak }}</p>
+        <p><strong>Bouton anti écrasement:</strong> {{ cartData.antiCrushButton }}</p>
+        <p><strong>Date et heure de prise en charge:</strong> {{pickupData?.pickupDateTime}} </p>
+        <p><strong>Date et heure de retour: </strong> {{pickupData?.returnDateTime}} </p>
+      </div>
+    </div>
 
-  </div>
+    <div class="card-wrapper" *ngIf="batteryData">
+      <div class="resume-card battery-info">
+        <h2>Informations de la Batterie</h2>
+        <p><strong>Numéro de batterie:</strong> {{ batteryData.batteryNumber }}</p>
+        <p><strong>Niveau de charge:</strong> {{ batteryData.chargeLevel }}</p>
+        <p><strong>État de la batterie:</strong> {{ batteryData.state }}</p>
+      </div>
+    </div>
 
-  <div *ngIf="batteryData">
-    <h2>Informations de la Batterie</h2>
-    <p><strong>Numéro de batterie:</strong> {{ batteryData.batteryNumber }}</p>
-    <p><strong>Niveau de charge:</strong> {{ batteryData.chargeLevel }}</p>
-    <p><strong>État de la batterie:</strong> {{ batteryData.state }}</p>
+    <div class="card-wrapper issue-wrapper" *ngIf="issueData.length > 0">
+      <div class="resume-card issue-container">
+        <h2>Problèmes Signalés</h2>
+        <div *ngFor="let issue of issueData">
+          <p><strong>Description:</strong> {{ issue.description }}</p>
+          <p><strong>Date de Création:</strong> {{ issue.createdAt | date:'short' }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

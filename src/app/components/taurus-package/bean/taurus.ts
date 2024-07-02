@@ -6,3 +6,11 @@ export interface Taurus{
 
       taurusNumber : number;
 }
+
+export interface TaurusResponse {
+      content: Taurus[];
+      pageable: any;
+      totalElements: number;
+      totalPages: number;
+      last: boolean;
+    }

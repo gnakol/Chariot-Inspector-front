@@ -4,6 +4,7 @@ import { Cart } from '../../cart-package/bean/cart';
 import { Battery } from '../../battery-package/bean/battery';
 import { TaurusUsage } from '../../taurus-package/bean/taurusUsage';
 import { Pickup } from '../../pickup-package/bean/pickup';
+import { Issue } from '../../issue-package/bean/issue';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,8 @@ export class ResumeService {
   private taurusUsageData : TaurusUsage | null = null;
 
   private pickupData : Pickup | null = null;
+
+  private issueData : Issue[] = [];
 
   constructor() { }
 
@@ -64,6 +67,19 @@ export class ResumeService {
   getPickupData() : Pickup | null
   {
     return this.pickupData;
+  }
+
+  setIssueData(data: Issue | Issue[]): void {
+    if (Array.isArray(data)) {
+      this.issueData = data;
+    } else {
+      this.issueData.push(data);
+    }
+  }
+  
+
+  getIssueData(): Issue[] {
+    return this.issueData;
   }
 
   clearData(): void {

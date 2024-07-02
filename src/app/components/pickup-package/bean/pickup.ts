@@ -10,3 +10,11 @@ export interface Pickup{
     
     returnDateTime : Date;
 }
+
+interface PickupResponse {
+    content: Pickup[];
+    pageable: any;
+    totalElements: number;
+    totalPages: number;
+    last: boolean;
+  }

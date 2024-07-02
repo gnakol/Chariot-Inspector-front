@@ -1,1 +1,26 @@
-<p>add-issue works!</p>
+<div class="add-issue-container">
+    <h1 class="title">Déclaration de Problème</h1>
+    <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Informations sur le Problème</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-fields">
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <textarea matInput formControlName="description" placeholder="Décrivez le problème"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date de Création</label>
+              <input matInput type="datetime-local" formControlName="createdAt">
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!issueForm.valid">Soumettre</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  

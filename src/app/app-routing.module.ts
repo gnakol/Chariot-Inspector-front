@@ -12,6 +12,8 @@ import { GetAccountByIdComponent } from './components/user-package/web-services/
 import { ResumeComponent } from './components/view-web-service/resume/resume.component';
 import { AddBatteryComponent } from './components/battery-package/web-services/add-battery/add-battery.component';
 import { AddUsageComponent } from './components/taurus-package/web-services/taurus-usage/add-usage/add-usage.component';
+import { AddIssueComponent } from './components/issue-package/web-services/add-issue/add-issue.component';
+import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -30,7 +32,9 @@ const routes: Routes = [
   { path: 'get-account-by-id', component : GetAccountByIdComponent},
   { path: 'resume', component : ResumeComponent},
   { path: 'add-new-battery', component : AddBatteryComponent},
-  { path: 'add-taurus-usage', component : AddUsageComponent}
+  { path: 'add-taurus-usage', component : AddUsageComponent},
+  { path: 'add-new-issue', component : AddIssueComponent},
+  { path: 'all-taurus-by-account', component : HistoricalComponent}
 ];
 
 @NgModule({

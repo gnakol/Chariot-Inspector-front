@@ -40,6 +40,7 @@ import { AllUsageComponent } from './components/taurus-package/web-services/taur
 import { AddTaurusComponent } from './components/taurus-package/web-services/taurus/add-taurus/add-taurus.component';
 import { AddPickupComponent } from './components/pickup-package/web-services/add-pickup/add-pickup.component';
 import { AllPickupComponent } from './components/pickup-package/web-services/all-pickup/all-pickup.component';
+import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
 
 
 @NgModule({
@@ -52,7 +53,6 @@ import { AllPickupComponent } from './components/pickup-package/web-services/all
     AllUserComponent,
     RemoveUserComponent,
     AllIssueComponent,
-    AddIssueComponent,
     UpdateIssueComponent,
     RemoveIssueComponent,
     RemoveActionCarriedOutComponent,

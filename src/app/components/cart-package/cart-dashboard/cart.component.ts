@@ -23,6 +23,8 @@ export class CartComponent {
 
   updateCart(){
 
+    this.route.navigateByUrl("/all-taurus-by-account");
+
   }
 
   deleteCart(){

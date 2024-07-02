@@ -1,5 +1,3 @@
-import { Cart } from "../../cart-package/bean/cart";
-
 export interface Battery {
 
   idBattery: number;
