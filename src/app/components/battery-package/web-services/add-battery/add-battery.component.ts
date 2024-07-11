@@ -58,7 +58,7 @@ export class AddBatteryComponent implements OnInit {
         (data) => {
           console.log('Batterie ajoutée avec succès', data);
           this.resumeService.setBatteryData(data);
-          this.router.navigate(['/suivi']);
+          this.router.navigate(['/dashboard/suivi']);
         },
         (error) => {
           console.error('Erreur lors de l\'ajout de la batterie', error);

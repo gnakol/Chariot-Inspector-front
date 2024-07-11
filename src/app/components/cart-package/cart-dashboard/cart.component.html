@@ -6,7 +6,7 @@
     Scapartois Smile Reception
   </div>
   <div class="action-buttons">
-    <button mat-raised-button color="primary" (click)="createCart()" routerLink="suivi">
+    <button mat-raised-button color="primary" (click)="createCart()" routerLink="dashboard/suivi">
       <mat-icon>add</mat-icon>
       Créer un nouveau suivi
     </button>
@@ -25,6 +25,10 @@
     <button mat-raised-button color="accent" (click)="allCart()" routerLink="all-cart">
       <mat-icon>list</mat-icon>
       Liste des chariots
+    </button>
+    <button mat-raised-button color="accent" (click)="allCart()" routerLink="all-cart">
+      <mat-icon>list</mat-icon>
+      Mes fiches chariots
     </button>
   </div>
   <div class="child-content">

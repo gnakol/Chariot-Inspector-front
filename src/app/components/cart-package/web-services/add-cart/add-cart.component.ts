@@ -89,14 +89,15 @@ export class AddCartComponent implements OnInit {
             accountId: this.user.idAccount,
             cartId: data.idCart,
             pickupDateTime: this.cartForm.value.pickupDateTime,
-            returnDateTime: this.cartForm.value.returnDateTime
+            returnDateTime: this.cartForm.value.returnDateTime,
+            workSessionId : localStorage.getItem('workSessionId') || ''
           };
 
           this.pickupService.addNewPickup(newPickup).subscribe(
             (pickupData) => {
               console.log('Pickup ajouté avec succès', pickupData);
               this.resumeService.setPickupData(pickupData);
-              this.router.navigate(['/suivi']);
+              this.router.navigate(['/dashboard/suivi']);
             },
             (error) => {
               console.error('Erreur lors de l\'ajout du pickup', error);

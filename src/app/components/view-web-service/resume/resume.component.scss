@@ -1,105 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e0f7e9; /* Vert subtile */
+  margin: 0;
+  padding: 0;
+}
+
 .resume-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0A2E36 0%, #026773 100%);
+  padding: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+header, footer {
+  background-color: #2e7d32; /* Vert professionnel */
   color: white;
   padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+header h1, footer p {
+  margin: 0;
 }
 
 .main-title {
-  width: 100%;
-  text-align: center;
-  color: #FFD700;
+  color: #1b5e20;
   margin-bottom: 20px;
-  font-size: 48px;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  font-family: 'Arial', sans-serif;
-  animation: fadeIn 2s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  font-size: 2.5em;
+  animation: slideInFromLeft 0.5s ease-in-out;
 }
 
 .resume-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   width: 100%;
-  position: relative;
+  max-width: 1200px;
 }
 
 .card-wrapper {
-  position: relative;
-  width: calc(50% - 20px);
-  min-width: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .resume-card {
-  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #000;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 350px;
+  transition: transform 0.3s ease;
+}
 
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+.resume-card:hover {
+  transform: translateY(-10px);
+}
+
+h2 {
+  color: #1b5e20;
+  margin-top: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-.user-info {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-}
-
-.taurus-info {
-  background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 100%);
-}
-
-.cart-info {
-  background: linear-gradient(135deg, #2196F3 0%, #03A9F4 100%);
-}
-
-.battery-info {
-  background: linear-gradient(135deg, #FF5722 0%, #FF7043 100%);
-}
-
-.issue-container {
-  background: linear-gradient(135deg, #FF3D00 0%, #DD2C00 100%);
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: white;
-}
-
-.issue-wrapper {
-  width: calc(100% - 20px);
-}
-
-.issue-container h2 {
-  color: #FF6347;
-}
-
-.issue-container p {
-  margin: 5px 0;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #FFDAB9;
-}
-
-@media (max-width: 768px) {
-  .card-wrapper {
-    width: calc(100% - 20px);
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }

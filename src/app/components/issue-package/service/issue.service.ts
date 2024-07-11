@@ -31,6 +31,13 @@ export class IssueService {
   {
     const token = this.authService.getToken();
 
+    const workSessionId = localStorage.getItem('workSessionId');
+
+    if(workSessionId)
+    {
+      issue.workSessionId = workSessionId;
+    }
+
     if(!token)
       {
         throw new Error('No token found');
@@ -42,5 +49,15 @@ export class IssueService {
       });
 
       return this.http.post<Issue>(`${this.baseUrlIssue}/add-new-issue`, issue, {headers});
+  }
+
+  getIdIssueByWorkSessionId(workSessionId: string): Observable<number> {
+    const token = this.authService.getToken();
+    if (!token) {
+      throw new Error('Token was not found');
+    }
+
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.get<number>(`${this.baseUrlIssue}/get-id-issue-by-work-session-id/${workSessionId}`, { headers });
   }
 }

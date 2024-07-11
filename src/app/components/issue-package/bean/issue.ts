@@ -7,4 +7,6 @@ export interface Issue{
     createdAt : Date;
 
     accountId : number;
+
+    workSessionId? : string;
 }

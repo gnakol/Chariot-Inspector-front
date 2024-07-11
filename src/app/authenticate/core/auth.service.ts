@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Account } from '../../components/user-package/bean/account';
+import { Observable, of } from 'rxjs';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { UserService } from '../../components/user-package/service/user.service'; // Import du UserService
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,22 @@ import { Account } from '../../components/user-package/bean/account';
 export class AuthService {
 
   private readonly apiUrl = 'http://localhost:9001/chariot-inspector/connexion';
+  private readonly workSessionUrl = 'http://localhost:9001/chariot-inspector/work-session/start-session';
+  private readonly disconnectUrl = 'http://localhost:9001/chariot-inspector/disconnect';
+  private baseUrlValideToken = 'http://localhost:9001/chariot-inspector/token';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient, 
+    private userService: UserService,
+    private router : Router
+  ) { }
 
   login(username: string, password: string): Observable<string> {
     const body = { username, password };
     return this.http.post<{ bearer: string }>(this.apiUrl, body)
       .pipe(
         map(response => {
-          console.log('API Response:', response); // Log de la réponse complète
+          console.log('API Response:', response);
           if (response && response.bearer) {
             localStorage.setItem('jwtToken', response.bearer);
             return response.bearer;
@@ -29,6 +37,66 @@ export class AuthService {
       );
   }
 
+  logout(): void {
+    const token = this.getToken();
+    const workSessionId = localStorage.getItem('workSessionId');
+
+    if (!token) {
+      console.error('No token found');
+      return;
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    this.http.post<{ message: string }>(this.disconnectUrl, {}, { headers }).pipe(
+      catchError(error => {
+        console.error('Error during disconnect:', error);
+        return of(null); // Return a default value to complete the observable
+      })
+    ).subscribe(response => {
+      if (response !== null) {
+        console.log('Disconnected successfully');
+        localStorage.removeItem('jwtToken');
+        if (workSessionId) {
+          localStorage.removeItem('workSessionId');
+        }
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
+  getEmailFromToken(token: string): string {
+    const parsedToken = this.parseJwt(token);
+    console.log('Parsed Token:', parsedToken);
+    if (parsedToken && parsedToken.sub) {
+      return parsedToken.sub;
+    } else {
+      throw new Error('Email not found in token');
+    }
+  }
+
+  startWorkSession(accountId: number): Observable<string> {
+    const token = this.getToken();
+    const body = { accountId };
+    if (!token) {
+      throw new Error('No token found');
+    }
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<{ workSessionId: string }>(this.workSessionUrl, body, { headers })
+      .pipe(map(response => {
+        console.log('API Work Session Response:', response);
+        return response.workSessionId;
+      }));
+  }
+
   getToken(): string | null {
     return localStorage.getItem('jwtToken');
   }
@@ -37,10 +105,10 @@ export class AuthService {
     try {
       const base64Url = token.split('.')[1];
       const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
         return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(''));
-      console.log('Parsed JWT Payload:', JSON.parse(jsonPayload)); // Log the payload
+      console.log('Parsed JWT Payload:', JSON.parse(jsonPayload));
       return JSON.parse(jsonPayload);
     } catch (e) {
       console.error('Error parsing JWT:', e);
@@ -48,13 +116,27 @@ export class AuthService {
     }
   }
 
-  getUserIdFromToken(token: string): string {
+  getUserIdFromToken(): Observable<number> {
+    const token = this.getToken();
+    if (!token) {
+      throw new Error('Token not found');
+    }
     const parsedToken = this.parseJwt(token);
-    console.log('Parsed Token:', parsedToken);
     if (parsedToken && parsedToken.sub) {
-      return parsedToken.sub;
+      const email = parsedToken.sub;
+      return this.userService.getUserIdByEmail(email).pipe(
+        map(response => response.userId) // Assurez-vous que la réponse contient le userId
+      );
     } else {
       throw new Error('User ID not found in token');
     }
+  }
+
+  validateTokenWithServer(token: string): Observable<{ isValid: boolean }> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post<{ isValid: boolean }>(`${this.baseUrlValideToken}/validate-token`, { token }, { headers });
   }
 }

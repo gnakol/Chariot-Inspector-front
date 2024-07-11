@@ -11,12 +11,6 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getCurrentUser(userId: string): Observable<any> {
-    const token = localStorage.getItem('jwtToken');
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.get<any>(`${this.baseUrl}/get-account-by-id/${userId}`, { headers });
-  }
-
   getAccountById(userId: number): Observable<any> {
     const token = localStorage.getItem('jwtToken');
     const headers = { Authorization: `Bearer ${token}` };

@@ -5,7 +5,7 @@
 
   <div class="table-wrapper">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      
+
       <!-- Prénom Column -->
       <ng-container matColumnDef="firstName">
         <th mat-header-cell *matHeaderCellDef> Prénom </th>
@@ -27,7 +27,13 @@
       <!-- Problème Column -->
       <ng-container matColumnDef="issue">
         <th mat-header-cell *matHeaderCellDef> Problème </th>
-        <td mat-cell *matCellDef="let element"> {{element.issue || 'RAS'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.issueDescription || 'RAS'}} </td>
+      </ng-container>
+
+      <!-- Date d'utilisation Column -->
+      <ng-container matColumnDef="usageDate">
+        <th mat-header-cell *matHeaderCellDef> Date d'utilisation </th>
+        <td mat-cell *matCellDef="let element"> {{element.usageDate}} </td>
       </ng-container>
 
       <!-- Détail Column -->

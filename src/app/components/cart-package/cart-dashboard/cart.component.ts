@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../authenticate/core/auth.service';
+import { UserService } from '../../user-package/service/user.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +10,11 @@ import { Router } from '@angular/router';
 })
 export class CartComponent {
 
-  constructor(private route : Router){}
+  constructor(
+    private route : Router,
+    private authService : AuthService,
+    private accountService : UserService
+  ){}
 
   allCart()
   {
@@ -17,7 +23,26 @@ export class CartComponent {
 
   createCart(){
 
-    this.route.navigateByUrl("/suivi");
+    const token = this.authService.getToken();
+    
+    if(token)
+    {
+      const email = this.authService.getEmailFromToken(token);
+      
+      this.accountService.getUserIdByEmail(email).subscribe(userId => {
+        this.authService.startWorkSession(userId).subscribe(workSessionId => {
+          localStorage.setItem('workSessionId', workSessionId);
+          console.log('Work Session ID stored in localStorage:', workSessionId);
+          this.route.navigateByUrl("/dashboard/suivi");
+        }, error => {
+          console.error('Failed to start work session:', error);
+        });
+      }, error => {
+        console.error('Failed to get user ID:', error);
+      });
+    } else {
+      console.error('No token found in local storage');
+    }
 
   }
 

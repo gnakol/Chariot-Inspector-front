@@ -67,11 +67,14 @@ export class AddIssueComponent implements OnInit {
   onSubmit() {
     if (this.issueForm.valid) {
       const newIssue = this.issueForm.value;
+
+      newIssue.workSessionId = localStorage.getItem('workSessionId') || '';
+      
       this.issueService.addNewIssue(newIssue).subscribe(
         (data) => {
           console.log('Problème ajouté avec succès', data);
           this.resumeService.setIssueData(data); // Ajoute le nouvel issue à la liste existante
-          this.router.navigate(['/suivi']); // Rediriger vers la page de suivi
+          this.router.navigate(['/dashboard/suivi']); // Rediriger vers la page de suivi
         },
         (error) => {
           console.error('Erreur lors de l\'ajout du problème', error);

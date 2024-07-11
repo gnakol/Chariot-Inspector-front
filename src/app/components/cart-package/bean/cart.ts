@@ -1,7 +1,6 @@
 export interface Cart{
       idCart : number;
-      refCart : string;
-      cartNumber : number;
+      cartNumber : string;
       conditionChassis : string;
       wheelsTornPlat : string;
       batteryCablesSockets : string;

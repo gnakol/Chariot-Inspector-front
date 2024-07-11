@@ -41,6 +41,7 @@ import { AddTaurusComponent } from './components/taurus-package/web-services/tau
 import { AddPickupComponent } from './components/pickup-package/web-services/add-pickup/add-pickup.component';
 import { AllPickupComponent } from './components/pickup-package/web-services/all-pickup/all-pickup.component';
 import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
+import { AllSessionComponent } from './components/work-session-package/web-service/all-session/all-session.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { HistoricalComponent } from './components/view-web-service/chronology/hi
     AllActionCarriedOutComponent,
     AllUsageComponent,
     AddTaurusComponent,
-    AllPickupComponent
+    AllPickupComponent,
+    AllSessionComponent
   ],
   imports: [
     BrowserModule,

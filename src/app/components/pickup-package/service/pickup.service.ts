@@ -17,6 +17,13 @@ export class PickupService {
   {
     const token = this.authService.getToken();
 
+    const workSessionId = localStorage.getItem('workSessionId');
+
+    if(workSessionId)
+    {
+      pickup.workSessionId = workSessionId;
+    }
+
     if(!token)
       {
         throw new Error('Not token found');

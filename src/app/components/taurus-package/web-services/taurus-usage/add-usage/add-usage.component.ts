@@ -75,30 +75,31 @@ export class AddUsageComponent implements OnInit {
   onSubmit() {
     if (this.usageForm.valid) {
       const taurusNumber = this.usageForm.value.taurusNumber;
-      console.log('Selected Taurus Number:', taurusNumber); // Log le numéro de Taurus sélectionné
+      console.log('Selected Taurus Number:', taurusNumber);
 
       this.taurusService.getIdTaurusByNum(taurusNumber).subscribe(
         (taurusId: number) => {
-          console.log('Fetched Taurus ID:', taurusId); // Log l'ID de Taurus récupéré
+          console.log('Fetched Taurus ID:', taurusId);
 
           this.taurusService.getTaurusById(taurusId).subscribe(
             (taurusData: Taurus) => {
               this.taurus = taurusData;
-              console.log('Fetched Taurus Data:', this.taurus); // Log les données du Taurus récupérées
+              console.log('Fetched Taurus Data:', this.taurus);
 
               const taurusUsage: TaurusUsage = {
                 accountId: this.user!.idAccount,
                 taurusId: this.taurus!.idTaurus,
-                usageDate: this.usageForm.value.usageDate
+                usageDate: this.usageForm.value.usageDate,
+                workSessionId: localStorage.getItem('workSessionId') || ''
               };
 
-              console.log('Taurus Usage Data to be sent:', taurusUsage); // Log les données de TaurusUsage
+              console.log('Taurus Usage Data to be sent:', taurusUsage);
 
               this.taurusService.addNewTaurusUsage(taurusUsage).subscribe(
                 (data: TaurusUsage) => {
                   console.log('Taurus usage added successfully', data);
                   this.resumeService.setTaurusUsageData(data);
-                  this.router.navigate(['/suivi']);
+                  this.router.navigate(['/dashboard/suivi']);
                 },
                 (error: any) => {
                   console.error('Error saving taurus usage:', error);

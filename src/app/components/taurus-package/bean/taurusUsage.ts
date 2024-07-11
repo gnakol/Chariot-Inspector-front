@@ -6,6 +6,8 @@ export interface TaurusUsage {
 
     taurusId: number;
     
-    usageDate: string;
+    usageDate: Date;
+
+    workSessionId? : string;
   }
   

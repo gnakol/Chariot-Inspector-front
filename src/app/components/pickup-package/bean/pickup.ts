@@ -9,6 +9,8 @@ export interface Pickup{
     pickupDateTime : Date;
     
     returnDateTime : Date;
+
+    workSessionId? : string;
 }
 
 interface PickupResponse {

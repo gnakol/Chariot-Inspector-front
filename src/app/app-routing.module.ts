@@ -14,27 +14,29 @@ import { AddBatteryComponent } from './components/battery-package/web-services/a
 import { AddUsageComponent } from './components/taurus-package/web-services/taurus-usage/add-usage/add-usage.component';
 import { AddIssueComponent } from './components/issue-package/web-services/add-issue/add-issue.component';
 import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
+import { AuthGuard } from './authenticate/protect-route/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
-    path: 'dashboard', component: DashboardComponent, children: [
-      { path: 'cart', component: CartComponent }
+    path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], children: [
+      { path: 'cart', component: CartComponent },
+      { path: 'suivi', component : SuiviComponent},
+      { path: 'add-taurus-usage', component : AddUsageComponent},
+      { path: 'add-new-cart', component: AddCartComponent },
+      { path: 'add-new-battery', component : AddBatteryComponent},
+      { path: 'add-new-issue', component : AddIssueComponent}
+
     ]
   },
-  { path: 'all-cart', component: AllCartComponent },
-  { path: 'add-new-cart', component: AddCartComponent },
+  { path: 'all-cart', component: AllCartComponent, canActivate : [AuthGuard] },
   { path: '*', redirectTo: 'home' },
-  { path: 'suivi', component : SuiviComponent},
-  { path: 'add-info-user', component : AddUserComponent},
-  { path: 'get-account-by-id', component : GetAccountByIdComponent},
-  { path: 'resume', component : ResumeComponent},
-  { path: 'add-new-battery', component : AddBatteryComponent},
-  { path: 'add-taurus-usage', component : AddUsageComponent},
-  { path: 'add-new-issue', component : AddIssueComponent},
-  { path: 'all-taurus-by-account', component : HistoricalComponent}
+  { path: 'add-info-user', component : AddUserComponent, canActivate : [AuthGuard]},
+  { path: 'get-account-by-id', component : GetAccountByIdComponent, canActivate : [AuthGuard]},
+  { path: 'resume', component : ResumeComponent, canActivate : [AuthGuard]},
+  { path: 'all-taurus-by-account', component : HistoricalComponent, canActivate : [AuthGuard]}
 ];
 
 @NgModule({

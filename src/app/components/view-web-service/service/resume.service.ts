@@ -87,6 +87,7 @@ export class ResumeService {
     this.cartData = null;
     this.batteryData = null;
     this.pickupData = null;
+    this.issueData = [];
   }
 
   
