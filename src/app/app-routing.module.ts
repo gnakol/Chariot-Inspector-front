@@ -15,6 +15,8 @@ import { AddUsageComponent } from './components/taurus-package/web-services/taur
 import { AddIssueComponent } from './components/issue-package/web-services/add-issue/add-issue.component';
 import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
 import { AuthGuard } from './authenticate/protect-route/auth.guard';
+import { TemplateComponent } from './components/admin-package/component/template/template.component';
+import { UserHomeComponent } from './components/user-package/user-home/user-home.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -27,7 +29,9 @@ const routes: Routes = [
       { path: 'add-taurus-usage', component : AddUsageComponent},
       { path: 'add-new-cart', component: AddCartComponent },
       { path: 'add-new-battery', component : AddBatteryComponent},
-      { path: 'add-new-issue', component : AddIssueComponent}
+      { path: 'add-new-issue', component : AddIssueComponent},
+      { path: 'admin-template', component : TemplateComponent},
+      { path: 'user-home', component : UserHomeComponent}
 
     ]
   },

@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <span>Admin Dashboard</span>
+</mat-toolbar>
+
+<div class="admin-dashboard">
+  <mat-card class="admin-card" (click)="navigateTo('dashboard/user-home')">
+    <mat-icon class="admin-icon">people</mat-icon>
+    <mat-card-title>Utilisateurs</mat-card-title>
+    <mat-card-content>Gérer les utilisateurs</mat-card-content>
+  </mat-card>
+  <mat-card class="admin-card" (click)="navigateTo('/admin/cart')">
+    <mat-icon class="admin-icon">local_shipping</mat-icon>
+    <mat-card-title>Chariots</mat-card-title>
+    <mat-card-content>Gérer les chariots</mat-card-content>
+  </mat-card>
+  <mat-card class="admin-card" (click)="navigateTo('/admin/taurus')">
+    <mat-icon class="admin-icon">build</mat-icon>
+    <mat-card-title>Taurus</mat-card-title>
+    <mat-card-content>Gérer les Taurus</mat-card-content>
+  </mat-card>
+  <mat-card class="admin-card" (click)="navigateTo('/admin/battery')">
+    <mat-icon class="admin-icon">battery_charging_full</mat-icon>
+    <mat-card-title>Batteries</mat-card-title>
+    <mat-card-content>Gérer les batteries</mat-card-content>
+  </mat-card>
+  <mat-card class="admin-card" (click)="navigateTo('/admin/service')">
+    <mat-icon class="admin-icon">build_circle</mat-icon>
+    <mat-card-title>Services</mat-card-title>
+    <mat-card-content>Gérer les services</mat-card-content>
+  </mat-card>
+</div>

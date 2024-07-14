@@ -41,6 +41,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatFormField, MatInputModule} from '@angular/material/input';
 import { FormsModule  } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TemplateComponent } from '../../../admin-package/component/template/template.component';
+import { UserHomeComponent } from '../../../user-package/user-home/user-home.component';
 // ***********************************************
 
 
@@ -62,7 +64,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     AddUsageComponent,
     AddPickupComponent, 
     AddIssueComponent,
-    HistoricalComponent
+    HistoricalComponent,
+    TemplateComponent,
+    UserHomeComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +95,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     AddUsageComponent,
     AddPickupComponent, 
     AddIssueComponent,
-    HistoricalComponent
+    HistoricalComponent,
+    TemplateComponent,
+    UserHomeComponent
   ]
 })
 export class SuiviMModule { }

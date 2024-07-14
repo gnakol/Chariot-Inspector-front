@@ -22,4 +22,11 @@ export class UserService {
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.get<any>(`${this.baseUrl}/get-user-id-by-email?email=${email}`, { headers });
   }
+
+  addAccount(accountData: any): Observable<any> {
+    const token = localStorage.getItem('jwtToken');
+    const headers = { Authorization: `Bearer ${token}` };
+    return this.http.post<any>(`${this.baseUrl}/add-new-account`, accountData, { headers });
+  }
+
 }

@@ -1,3 +1,5 @@
+import { Role } from "../../role-package/bean/role";
+
 export interface Account{
 
       idAccount : number;
@@ -19,4 +21,23 @@ export interface Account{
       pickUpDateTime : Date;
 
       function : string;
+}
+
+export interface AccountDTO{
+
+      idAccount : number;
+
+      name : string;
+
+      firstName : string;
+
+      email : string;
+
+      password : string;
+
+      service : string;
+
+      civility : string;
+
+      roleDTO : Role[];
 }

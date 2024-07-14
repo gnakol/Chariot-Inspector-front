@@ -1,0 +1,110 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: #f4f4f9;
+  }
+  
+  .toolbar {
+    background-color: #3f51b5;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .user-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px;
+    gap: 20px;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 150px;
+    font-size: 14px;
+    text-transform: none;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+    .icon {
+      margin-bottom: 10px;
+      font-size: 36px;
+    }
+  
+    span {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  
+    &.create {
+      background-color: #4caf50;
+      color: white;
+    }
+  
+    &.update {
+      background-color: #ff9800;
+      color: white;
+    }
+  
+    &.delete {
+      background-color: #f44336;
+      color: white;
+    }
+  
+    &.search {
+      background-color: #2196f3;
+      color: white;
+    }
+  
+    &.list {
+      background-color: #9c27b0;
+      color: white;
+    }
+  
+    &.create:hover {
+      background-color: #45a049;
+    }
+  
+    &.update:hover {
+      background-color: #e68a00;
+    }
+  
+    &.delete:hover {
+      background-color: #e53935;
+    }
+  
+    &.search:hover {
+      background-color: #1e88e5;
+    }
+  
+    &.list:hover {
+      background-color: #8e24aa;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary" class="toolbar">
+    <span>Gestion des Utilisateurs</span>
+</mat-toolbar>
+
+<div class="user-actions">
+    <button class="action-button create" (click)="openCreateUserDialog()">
+        <span class="icon">+</span>
+        <span>Créer Utilisateur</span>
+    </button>
+    <button class="action-button update" (click)="openUpdateUserDialog()">
+        <span class="icon">✎</span>
+        <span>Mettre à jour Utilisateur</span>
+    </button>
+    <button class="action-button delete" (click)="openDeleteUserDialog()">
+        <span class="icon">🗑</span>
+        <span>Supprimer Utilisateur</span>
+    </button>
+    <button class="action-button search" (click)="openSearchUserDialog()">
+        <span class="icon">🔍</span>
+        <span>Rechercher Utilisateur</span>
+    </button>
+    <button class="action-button list" (click)="openViewUsersList()">
+        <span class="icon">📋</span>
+        <span>Liste des Utilisateurs</span>
+    </button>
+</div>

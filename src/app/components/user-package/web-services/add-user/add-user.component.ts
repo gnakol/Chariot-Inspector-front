@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
-import { AuthService } from '../../../../authenticate/core/auth.service';
 import { Router } from '@angular/router';
-import { ResumeService } from '../../../view-web-service/service/resume.service';
 
 @Component({
   selector: 'app-add-user',
@@ -13,66 +11,47 @@ import { ResumeService } from '../../../view-web-service/service/resume.service'
 export class AddUserComponent implements OnInit {
 
   accountForm!: FormGroup;
+  roles = [
+    { idRole: 1, roleName: 'RECEPTIONNAIRE' },
+    { idRole: 2, roleName: 'CHEF_EQUIPE' },
+    { idRole: 3, roleName: 'AUDITEUR' },
+    { idRole: 4, roleName: 'ADMIN' },
+    { idRole: 5, roleName: 'INJECTEUR' },
+    { idRole: 6, roleName: 'AGENT_MAITRISE' }
+  ];
 
-  user: any;
-
-  constructor(private fb: FormBuilder, 
+  constructor(
+    private fb: FormBuilder, 
     private userService: UserService, 
-    private authService: AuthService, 
-    private router : Router,
-    private resumeService : ResumeService) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.accountForm = this.fb.group({
       name: ['', Validators.required],
       firstName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
       service: ['', Validators.required],
-      pickUpDateTime: ['', Validators.required],
-      taurusNumber: ['', Validators.required],
-      function: ['', Validators.required]
+      civility: ['', Validators.required],
+      roleDTOS: [[], Validators.required]
     });
-
-    this.loadUserData();
-  }
-
-  loadUserData() {
-    const token = this.authService.getToken();
-    if (token) {
-      const payload = this.authService.parseJwt(token);
-      const email = payload.sub;
-      this.userService.getUserIdByEmail(email).subscribe(
-        userIdResponse => {
-          const userId = userIdResponse;
-          this.userService.getAccountById(userId).subscribe(
-            data => {
-              this.user = data;
-              this.accountForm.patchValue({
-                name: this.user.name,
-                firstName: this.user.firstName,
-                service: this.user.service
-              });
-            },
-            error => {
-              console.error('Error loading user data:', error);
-            }
-          );
-        },
-        error => {
-          console.error('Error fetching user ID by email:', error);
-        }
-      );
-    }
   }
 
   onSubmit() {
     if (this.accountForm.valid) {
-      // Soumettre les données
-      // Par exemple, sauvegarder dans la base de données
-      console.log('Form Data:', this.accountForm.value);
+      const formValue = this.accountForm.value;
+      formValue.roleDTOS = formValue.roleDTOS.map((role: any) => ({ idRole: role.idRole }));
 
-      this.resumeService.setAccountData(this.accountForm.value);
-      // Naviguer vers la page de résumé
-      this.router.navigate(['/suivi']);
+      this.userService.addAccount(formValue).subscribe(
+        response => {
+          console.log('User created successfully:', response);
+          this.router.navigate(['/dashboard/user-home']);
+        },
+        error => {
+          console.error('Error creating user:', error);
+        }
+      );
     }
   }
 }
