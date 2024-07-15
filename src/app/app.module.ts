@@ -42,6 +42,7 @@ import { AddPickupComponent } from './components/pickup-package/web-services/add
 import { AllPickupComponent } from './components/pickup-package/web-services/all-pickup/all-pickup.component';
 import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
 import { AllSessionComponent } from './components/work-session-package/web-service/all-session/all-session.component';
+import { ConfirmationDialogComponent } from './components/other-package/composant/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({

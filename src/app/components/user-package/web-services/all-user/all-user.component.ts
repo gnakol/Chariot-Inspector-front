@@ -3,6 +3,8 @@ import { UserService } from '../../service/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountResponse } from '../../bean/page';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from '../../../other-package/composant/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-all-user',
@@ -13,7 +15,7 @@ export class AllUserComponent implements OnInit {
   displayedColumns: string[] = ['name', 'firstName', 'email', 'service', 'roles', 'civility', 'edit', 'delete', 'view'];
   dataSource = new MatTableDataSource<any>();
 
-  constructor(private userService: UserService, public dialog: MatDialog) {}
+  constructor(private userService: UserService, public dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -33,17 +35,31 @@ export class AllUserComponent implements OnInit {
   }
 
   editUser(user: any) {
-    // Open a dialog or navigate to the edit page
-    console.log('Edit user:', user);
+    this.router.navigate(['/dashboard/update-user', user.idAccount]);
   }
 
   deleteUser(user: any) {
-    // Implement delete functionality
-    console.log('Delete user:', user);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: { message: `Êtes-vous sûr de vouloir supprimer l'utilisateur ${user.name} ${user.firstName} ?` }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.userService.deleteAccount(user.idAccount).subscribe(
+          () => {
+            console.log('User deleted successfully');
+            this.loadUsers(); // Recharger la liste des utilisateurs après suppression
+          },
+          error => {
+            console.error('Error deleting user:', error);
+          }
+        );
+      }
+    });
   }
 
   viewUserDetails(user: any) {
-    // Open a dialog or navigate to the details page
     console.log('View user details:', user);
   }
 }

@@ -47,6 +47,7 @@ import { TemplateComponent } from '../../../admin-package/component/template/tem
 import { UserHomeComponent } from '../../../user-package/user-home/user-home.component';
 import { AllUserComponent } from '../../../user-package/web-services/all-user/all-user.component';
 import { UpdateUserComponent } from '../../../user-package/web-services/update-user/update-user.component';
+import { ConfirmationDialogComponent } from '../../../other-package/composant/confirmation-dialog/confirmation-dialog.component';
 // ***********************************************
 
 
@@ -72,7 +73,8 @@ import { UpdateUserComponent } from '../../../user-package/web-services/update-u
     TemplateComponent,
     UserHomeComponent,
     AllUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
@@ -106,7 +108,8 @@ import { UpdateUserComponent } from '../../../user-package/web-services/update-u
     TemplateComponent,
     UserHomeComponent,
     AllUserComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ConfirmationDialogComponent
   ]
 })
 export class SuiviMModule { }
