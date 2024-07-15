@@ -34,8 +34,8 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Rôle</label>
-                        <mat-select formControlName="roleDTOS" multiple>
-                            <mat-option *ngFor="let role of roles" [value]="role">
+                        <mat-select formControlName="roleIds" multiple (selectionChange)="onRoleSelectionChange($event)">
+                            <mat-option *ngFor="let role of roles" [value]="role.idRole">
                                 {{ role.roleName }}
                             </mat-option>
                         </mat-select>

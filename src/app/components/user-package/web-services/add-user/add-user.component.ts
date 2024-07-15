@@ -34,16 +34,33 @@ export class AddUserComponent implements OnInit {
       password: ['', Validators.required],
       service: ['', Validators.required],
       civility: ['', Validators.required],
-      roleDTOS: [[], Validators.required]
+      roleIds: [[], Validators.required]
     });
+  }
+
+  onRoleSelectionChange(event: any) {
+    console.log('Selected Role IDs:', event.value);
   }
 
   onSubmit() {
     if (this.accountForm.valid) {
       const formValue = this.accountForm.value;
-      formValue.roleDTOS = formValue.roleDTOS.map((role: any) => ({ idRole: role.idRole }));
 
-      this.userService.addAccount(formValue).subscribe(
+      // Créer l'objet Account avec les rôles inclus
+      const account = {
+        name: formValue.name,
+        firstName: formValue.firstName,
+        email: formValue.email,
+        password: formValue.password,
+        service: formValue.service,
+        civility: formValue.civility,
+        roleDTOS: formValue.roleIds.map((idRole: number) => ({ idRole }))
+      };
+
+      // Afficher roleDTOS dans la console
+      console.log('roleDTOS:', account.roleDTOS);
+
+      this.userService.addAccount(account).subscribe(
         response => {
           console.log('User created successfully:', response);
           this.router.navigate(['/dashboard/user-home']);

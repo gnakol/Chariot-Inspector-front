@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { UserService } from '../../components/user-package/service/user.service'; // Import du UserService
+import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -16,9 +15,8 @@ export class AuthService {
   private baseUrlValideToken = 'http://localhost:9001/chariot-inspector/token';
 
   constructor(
-    private http: HttpClient, 
-    private userService: UserService,
-    private router : Router
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   login(username: string, password: string): Observable<string> {
@@ -29,6 +27,7 @@ export class AuthService {
           console.log('API Response:', response);
           if (response && response.bearer) {
             localStorage.setItem('jwtToken', response.bearer);
+            this.router.navigate(['/dashboard']);  // Redirige vers le tableau de bord après la connexion
             return response.bearer;
           } else {
             throw new Error('Invalid response from server');
@@ -124,9 +123,14 @@ export class AuthService {
     const parsedToken = this.parseJwt(token);
     if (parsedToken && parsedToken.sub) {
       const email = parsedToken.sub;
-      return this.userService.getUserIdByEmail(email).pipe(
-        map(response => response.userId) // Assurez-vous que la réponse contient le userId
-      );
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      });
+      return this.http.get<any>(`http://localhost:9001/chariot-inspector/account/get-user-id-by-email?email=${email}`, { headers })
+        .pipe(
+          map(response => response.userId)
+        );
     } else {
       throw new Error('User ID not found in token');
     }

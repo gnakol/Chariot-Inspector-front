@@ -50,8 +50,6 @@ import { AllSessionComponent } from './components/work-session-package/web-servi
     AllBatteryComponent,
     RemoveBatteryComponent,
     UpdateBatteryComponent,
-    UpdateUserComponent,
-    AllUserComponent,
     RemoveUserComponent,
     AllIssueComponent,
     UpdateIssueComponent,

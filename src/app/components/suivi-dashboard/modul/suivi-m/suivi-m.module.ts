@@ -28,6 +28,8 @@ import { AddPickupComponent } from '../../../pickup-package/web-services/add-pic
 import { AddIssueComponent } from '../../../issue-package/web-services/add-issue/add-issue.component';
 import { HistoricalComponent } from '../../../view-web-service/chronology/historical/historical.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 
@@ -43,6 +45,8 @@ import { FormsModule  } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TemplateComponent } from '../../../admin-package/component/template/template.component';
 import { UserHomeComponent } from '../../../user-package/user-home/user-home.component';
+import { AllUserComponent } from '../../../user-package/web-services/all-user/all-user.component';
+import { UpdateUserComponent } from '../../../user-package/web-services/update-user/update-user.component';
 // ***********************************************
 
 
@@ -66,7 +70,9 @@ import { UserHomeComponent } from '../../../user-package/user-home/user-home.com
     AddIssueComponent,
     HistoricalComponent,
     TemplateComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    AllUserComponent,
+    UpdateUserComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +89,8 @@ import { UserHomeComponent } from '../../../user-package/user-home/user-home.com
     MatTreeModule,
     MatTableModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
     
   ],
   exports : [
@@ -97,7 +104,9 @@ import { UserHomeComponent } from '../../../user-package/user-home/user-home.com
     AddIssueComponent,
     HistoricalComponent,
     TemplateComponent,
-    UserHomeComponent
+    UserHomeComponent,
+    AllUserComponent,
+    UpdateUserComponent
   ]
 })
 export class SuiviMModule { }

@@ -1,9 +1,9 @@
-import { Account } from "./account";
+import { Account, AccountDTO } from "./account";
 
 export interface AccountResponse {
-    content: Account[];
-    pageable: any;
-    totalElements: number;
-    totalPages: number;
-    last: boolean;
-  }
+  content: AccountDTO[];
+  pageable: any;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
+}

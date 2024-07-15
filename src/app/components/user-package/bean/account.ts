@@ -23,21 +23,13 @@ export interface Account{
       function : string;
 }
 
-export interface AccountDTO{
-
-      idAccount : number;
-
-      name : string;
-
-      firstName : string;
-
-      email : string;
-
-      password : string;
-
-      service : string;
-
-      civility : string;
-
-      roleDTO : Role[];
-}
+export interface AccountDTO {
+      idAccount: number;
+      name: string;
+      firstName: string;
+      email: string;
+      password: string;
+      service: string;
+      civility: string;
+      roleDTOS: Role[];
+    }

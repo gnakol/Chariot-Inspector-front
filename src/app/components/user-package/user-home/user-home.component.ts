@@ -30,6 +30,7 @@ export class UserHomeComponent {
 
   openViewUsersList(): void {
     // Implémentez l'ouverture de la liste des utilisateurs
+    this.router.navigateByUrl('/dashboard/all-users');
   }
 
 }

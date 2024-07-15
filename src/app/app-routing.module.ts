@@ -17,6 +17,8 @@ import { HistoricalComponent } from './components/view-web-service/chronology/hi
 import { AuthGuard } from './authenticate/protect-route/auth.guard';
 import { TemplateComponent } from './components/admin-package/component/template/template.component';
 import { UserHomeComponent } from './components/user-package/user-home/user-home.component';
+import { AllUserComponent } from './components/user-package/web-services/all-user/all-user.component';
+import { UpdateUserComponent } from './components/user-package/web-services/update-user/update-user.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -31,7 +33,9 @@ const routes: Routes = [
       { path: 'add-new-battery', component : AddBatteryComponent},
       { path: 'add-new-issue', component : AddIssueComponent},
       { path: 'admin-template', component : TemplateComponent},
-      { path: 'user-home', component : UserHomeComponent}
+      { path: 'user-home', component : UserHomeComponent},
+      { path: 'all-users', component: AllUserComponent},
+      { path: 'update-user/:id', component: UpdateUserComponent }
 
     ]
   },

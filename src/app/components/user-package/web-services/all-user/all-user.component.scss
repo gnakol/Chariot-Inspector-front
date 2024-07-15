@@ -1,0 +1,44 @@
+.user-container {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #006064;
+}
+
+.mat-elevation-z8 {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+th.mat-header-cell, td.mat-cell {
+  text-align: center;
+  padding: 16px;
+  font-size: 14px;
+}
+
+button.mat-icon-button.edit-icon {
+  color: #1976d2; /* Bleu */
+}
+
+button.mat-icon-button.delete-icon {
+  color: #d32f2f; /* Rouge */
+}
+
+button.mat-icon-button.view-icon {
+  color: #388e3c; /* Vert */
+}
+
+/* Optional: Additional hover effects for buttons */
+button.mat-icon-button:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+}
