@@ -12,6 +12,10 @@ import { UserService } from '../../user-package/service/user.service';
 import { Pickup } from '../../pickup-package/bean/pickup';
 import { PickupService } from '../../pickup-package/service/pickup.service';
 import { Issue } from '../../issue-package/bean/issue';
+import { AccountTeamDTO } from '../../account-team-package/bean/account-team';
+import { TeamService } from '../../team-package/service/team.service';
+import { ShiftService } from '../../shift-package/service/shift.service';
+import { forkJoin } from 'rxjs';
 
 /** Interface for the tree node */
 interface CartNode {
@@ -39,6 +43,9 @@ export class ResumeComponent implements OnInit {
   taurusData: Taurus | null = null;
   pickupData: Pickup | null = null;
   issueData: Issue[] = [];
+  accountTeamData : AccountTeamDTO | null = null;
+  teamName : string | null = null;
+  shiftName : string | null = null;
 
   private transformer = (node: CartNode, level: number) => {
     return {
@@ -65,7 +72,10 @@ export class ResumeComponent implements OnInit {
   constructor(private resumeService: ResumeService, 
     private taurusService: TaurusService, 
     private userService: UserService,
-    private pickupService: PickupService) {}
+    private pickupService: PickupService,
+    private teamService : TeamService,
+    private shiftService : ShiftService
+) {}
 
   ngOnInit(): void {
     this.accountData = this.resumeService.getAccountData();
@@ -74,6 +84,7 @@ export class ResumeComponent implements OnInit {
     this.taurusUsageData = this.resumeService.getTaurusUsageData();
     this.pickupData = this.resumeService.getPickupData();
     this.issueData = this.resumeService.getIssueData() || [];
+    this.accountTeamData = this.resumeService.getAccountTeamData();
 
     if (this.taurusUsageData) {
       this.taurusService.getTaurusById(this.taurusUsageData.taurusId).subscribe(
@@ -92,7 +103,27 @@ export class ResumeComponent implements OnInit {
         error => {
           console.error('Error fetching data : ', error);
         }
-      )
+      );
+
+      if(this.accountTeamData)
+      {
+        console.log("AccountTeamData exists:", this.accountTeamData); // Log to check if accountTeamData exists
+        forkJoin({
+          team : this.teamService.getTeamById(this.accountTeamData.teamId),
+          shift : this.shiftService.getShiftById(this.accountTeamData.shiftId)
+        }).subscribe(
+          ({ team, shift }) => {
+            this.teamName = team.name;
+            this.shiftName = shift.name;
+            //console.log("Team name:", this.teamName); // Log to check if team name is set
+            console.log("Shift name:", this.shiftName); // Log to check if shift name is set
+
+          },
+          error => {
+            console.error('Error fetching team or shift data:', error);
+          }
+        );
+      }
     }
 
     this.initializeTreeData();

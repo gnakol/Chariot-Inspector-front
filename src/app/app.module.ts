@@ -43,6 +43,13 @@ import { AllPickupComponent } from './components/pickup-package/web-services/all
 import { HistoricalComponent } from './components/view-web-service/chronology/historical/historical.component';
 import { AllSessionComponent } from './components/work-session-package/web-service/all-session/all-session.component';
 import { ConfirmationDialogComponent } from './components/other-package/composant/confirmation-dialog/confirmation-dialog.component';
+import { AddAccountTeamComponent } from './components/account-team-package/web-service/add-account-team/add-account-team.component';
+import { AllAccountTeamComponent } from './components/account-team-package/web-service/all-account-team/all-account-team.component';
+import { DeleteAccountTeamComponent } from './components/account-team-package/web-service/delete-account-team/delete-account-team.component';
+import { AddTeamComponent } from './components/team-package/web-service/add-team/add-team.component';
+import { AllTeamComponent } from './components/team-package/web-service/all-team/all-team.component';
+import { AllShiftComponent } from './components/shift-package/web-service/all-shift/all-shift.component';
+import { AddShiftComponent } from './components/shift-package/web-service/add-shift/add-shift.component';
 
 
 @NgModule({
@@ -62,7 +69,14 @@ import { ConfirmationDialogComponent } from './components/other-package/composan
     AllUsageComponent,
     AddTaurusComponent,
     AllPickupComponent,
-    AllSessionComponent
+    AllSessionComponent,
+    AddAccountTeamComponent,
+    AllAccountTeamComponent,
+    DeleteAccountTeamComponent,
+    AddTeamComponent,
+    AllTeamComponent,
+    AllShiftComponent,
+    AddShiftComponent
   ],
   imports: [
     BrowserModule,

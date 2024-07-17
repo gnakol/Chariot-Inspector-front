@@ -13,6 +13,7 @@ export class HistoricalService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   public getHistory(idAccount: number, page: number, size: number): Observable<Page<HistoryEntryDTO>> {
+    
     const token = this.authService.getToken();
 
     if (!token) {

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../../../cart-package/service/cart.service';
 import { IssueService } from '../../../issue-package/service/issue.service';
 import { TaurusService } from '../../../taurus-package/service/taurus.service';
+import { AccountTeamService } from '../../../account-team-package/service/account-team.service';
 
 @Component({
   selector: 'app-historical',
@@ -32,7 +33,8 @@ export class HistoricalComponent implements OnInit {
     private router : Router,
     private cartService : CartService,
     private issueService : IssueService, 
-    private taurusService : TaurusService
+    private taurusService : TaurusService,
+    private accountTeamService : AccountTeamService
   ) { }
 
   ngOnInit(): void {
@@ -68,58 +70,67 @@ export class HistoricalComponent implements OnInit {
   }
 
   viewDetail(element: HistoryEntryDTO): void {
-
     this.resumeService.clearData();
     this.resumeService.setAccountData(this.accountData);
-
+  
     // Retrieve Taurus ID by Taurus Number
     if (element.taurusNumber) {
       this.taurusService.getIdTaurusByNum(element.taurusNumber).subscribe(taurusIdResponse => {
         const taurusId = taurusIdResponse;
-
+  
         // Retrieve Taurus Usage by Taurus ID
         this.taurusService.getTaurusUsageByTaurusId(taurusId).subscribe(taurusUsageData => {
           const workSessionId = taurusUsageData.workSessionId;
-
+  
           this.resumeService.setTaurusUsageData({
             taurusId: taurusId,
             accountId: this.accountData.idAccount,
             usageDate: new Date(element.usageDate),
             workSessionId: workSessionId
           });
-
-          // Retrieve Cart Data by Cart Number
-          if (element.cartNumber) {
-            this.cartService.getIdCartByNum(element.cartNumber).subscribe(cartIdResponse => {
-              const idCart = cartIdResponse;
-              this.cartService.getCartById(idCart).subscribe(cartData => {
-                this.resumeService.setCartData(cartData);
-
-                // Set Battery Data if available
-                if (element.batteryDTOS && element.batteryDTOS.length > 0) {
-                  this.resumeService.setBatteryData(element.batteryDTOS[0]);
-                }
-
-                // Retrieve and set Issue Data by Work Session ID
-                if (workSessionId) {
-                  this.issueService.getIdIssueByWorkSessionId(workSessionId).subscribe(idIssueResponse => {
-                    const idIssue = idIssueResponse;
-                    this.issueService.getIssueById(idIssue).subscribe(issueData => {
-                      this.resumeService.setIssueData(issueData);
-
-                      // Navigate to resume page
+  
+          // Ensure workSessionId is defined before making the API call
+          if (workSessionId) {
+            // Retrieve AccountTeam by Work Session ID
+            this.accountTeamService.getAccountTeamByWorkSessionId(workSessionId).subscribe(accountTeamData => {
+              this.resumeService.setAccountTeamData(accountTeamData);
+  
+              // Retrieve Cart Data by Cart Number
+              if (element.cartNumber) {
+                this.cartService.getIdCartByNum(element.cartNumber).subscribe(cartIdResponse => {
+                  const idCart = cartIdResponse;
+                  this.cartService.getCartById(idCart).subscribe(cartData => {
+                    this.resumeService.setCartData(cartData);
+  
+                    // Set Battery Data if available
+                    if (element.batteryDTOS && element.batteryDTOS.length > 0) {
+                      this.resumeService.setBatteryData(element.batteryDTOS[0]);
+                    }
+  
+                    // Retrieve and set Issue Data by Work Session ID
+                    if (workSessionId) {
+                      this.issueService.getIdIssueByWorkSessionId(workSessionId).subscribe(idIssueResponse => {
+                        const idIssue = idIssueResponse;
+                        this.issueService.getIssueById(idIssue).subscribe(issueData => {
+                          this.resumeService.setIssueData(issueData);
+  
+                          // Navigate to resume page
+                          this.router.navigate(['/resume']);
+                        });
+                      });
+                    } else {
+                      // Navigate to resume page if workSessionId is not available
                       this.router.navigate(['/resume']);
-                    });
+                    }
                   });
-                } else {
-                  // Navigate to resume page if workSessionId is not available
-                  this.router.navigate(['/resume']);
-                }
-              });
+                });
+              } else {
+                // Navigate to resume page if no cart number is provided
+                this.router.navigate(['/resume']);
+              }
             });
           } else {
-            // Navigate to resume page if no cart number is provided
-            this.router.navigate(['/resume']);
+            console.error('Work Session ID is undefined');
           }
         });
       });

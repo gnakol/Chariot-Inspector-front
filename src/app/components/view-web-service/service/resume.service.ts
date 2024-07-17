@@ -5,6 +5,7 @@ import { Battery } from '../../battery-package/bean/battery';
 import { TaurusUsage } from '../../taurus-package/bean/taurusUsage';
 import { Pickup } from '../../pickup-package/bean/pickup';
 import { Issue } from '../../issue-package/bean/issue';
+import { AccountTeamDTO } from '../../account-team-package/bean/account-team';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,20 @@ export class ResumeService {
 
   private issueData : Issue[] = [];
 
+  private accountTeamData : AccountTeamDTO | null = null;
+
+
   constructor() { }
+
+  setAccountTeamData(accountTeam : AccountTeamDTO) : void
+  {
+    this.accountTeamData = accountTeam;
+  }
+
+  getAccountTeamData() : AccountTeamDTO | null
+  {
+    return this.accountTeamData;
+  }
 
   setAccountData(account: Account): void {
     this.accountData = account;
@@ -88,6 +102,7 @@ export class ResumeService {
     this.batteryData = null;
     this.pickupData = null;
     this.issueData = [];
+    this.accountTeamData = null;
   }
 
   

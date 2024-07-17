@@ -15,6 +15,10 @@ export interface HistoryEntryDTO {
     batteryDTOS: Battery[];
 
     usageDate: Date;
+
+    teamName : string;
+
+    shiftName : string;
   }
   
   export interface Page<T> {

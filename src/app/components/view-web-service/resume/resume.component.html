@@ -61,6 +61,14 @@
         </div>
       </div>
     </div>
+
+    <div class="card-wrapper" *ngIf="teamName !== null || shiftName !== null">
+      <div class="resume-card team-shift-info">
+        <h2>Info sur l'Équipe</h2>
+        <p *ngIf="teamName"><strong>L'équipe de :</strong> {{ teamName }}</p>
+        <p *ngIf="shiftName"><strong>Horaire du :</strong> {{ shiftName }}</p>
+      </div>
+    </div>
   </div>
 </div>
 
