@@ -24,6 +24,13 @@ export class TeamService {
     return this.http.post<TeamDTO>(`${this.baseUrl}/add-new-team`, team);
   }
 
+  getIdTeamByName(name : string) : Observable<any>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<any>(`${this.baseUrl}/get-id-team-by-name?name=${name}`, {headers});
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {

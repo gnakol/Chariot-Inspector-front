@@ -7,6 +7,9 @@ import { ResumeService } from '../../../../view-web-service/service/resume.servi
 import { TaurusService } from '../../../service/taurus.service';
 import { TaurusUsage } from '../../../bean/taurusUsage';
 import { UserService } from '../../../../user-package/service/user.service';
+import { AccountTeamService } from '../../../../account-team-package/service/account-team.service';
+import { TeamService } from '../../../../team-package/service/team.service';
+import { AccountTeamDTO } from '../../../../account-team-package/bean/account-team';
 import { Taurus } from '../../../bean/taurus';
 
 @Component({
@@ -20,14 +23,17 @@ export class AddUsageComponent implements OnInit {
   user: Account | undefined;
   taurus: Taurus | undefined;
   taurusNumbers = [101, 102, 103, 104, 105, 106];
+  teamNames = ['BENOIS', 'THOMAZO', 'NIGHT']; // Ajouté pour la liste déroulante des noms d'équipe
 
   constructor(
-    private fb: FormBuilder, 
-    private authService: AuthService, 
-    private router: Router, 
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
     private resumeService: ResumeService,
-    private taurusService: TaurusService, 
-    private userService: UserService
+    private taurusService: TaurusService,
+    private userService: UserService,
+    private accountTeamService: AccountTeamService,
+    private teamService: TeamService
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +42,8 @@ export class AddUsageComponent implements OnInit {
       firstName: ['', Validators.required],
       service: ['', Validators.required],
       usageDate: [new Date().toISOString().split('T')[0], Validators.required],
-      taurusNumber: [null, Validators.required]
+      taurusNumber: [null, Validators.required],
+      teamName: [null, Validators.required] // Ajouté pour la sélection de l'équipe
     });
 
     this.loadUserData();
@@ -99,7 +106,35 @@ export class AddUsageComponent implements OnInit {
                 (data: TaurusUsage) => {
                   console.log('Taurus usage added successfully', data);
                   this.resumeService.setTaurusUsageData(data);
-                  this.router.navigate(['/dashboard/suivi']);
+
+                  // Ajouter AccountTeamDTO
+                  const teamName = this.usageForm.value.teamName;
+                  this.teamService.getIdTeamByName(teamName).subscribe(
+                    (teamId: number) => {
+                      const accountTeam: AccountTeamDTO = {
+                        accountId: this.user!.idAccount,
+                        teamId: teamId,
+                        startDate: this.usageForm.value.usageDate,
+                        endDate: '', // Placeholder, will be calculated
+                        shiftId: 0, // Placeholder, will be determined automatically
+                        workSessionId: '' // Placeholder, will be generated automatically
+                      };
+
+                      this.accountTeamService.addNewAccountTeam(accountTeam).subscribe(
+                        (accountTeamData: AccountTeamDTO) => {
+                          console.log('Account team added successfully', accountTeamData);
+                          this.resumeService.setAccountTeamData(accountTeamData);
+                          this.router.navigate(['/dashboard/suivi']);
+                        },
+                        (error: any) => {
+                          console.error('Error adding account team:', error);
+                        }
+                      );
+                    },
+                    (error: any) => {
+                      console.error('Error fetching team ID:', error);
+                    }
+                  );
                 },
                 (error: any) => {
                   console.error('Error saving taurus usage:', error);

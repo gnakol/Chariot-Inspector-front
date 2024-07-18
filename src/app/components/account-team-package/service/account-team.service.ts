@@ -20,7 +20,10 @@ export class AccountTeamService {
   }
 
   addNewAccountTeam(accountTeam: AccountTeamDTO): Observable<AccountTeamDTO> {
-    return this.http.post<AccountTeamDTO>(`${this.baseUrl}/add-new-account-team`, accountTeam);
+    
+    const headers = this.getHeaders();
+
+    return this.http.post<AccountTeamDTO>(`${this.baseUrl}/add-new-account-team`, accountTeam, {headers});
   }
 
   getAccountTeamByWorkSessionId(workSessionId: string): Observable<AccountTeamDTO> {
