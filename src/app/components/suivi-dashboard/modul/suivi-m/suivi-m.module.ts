@@ -27,6 +27,7 @@ import { AddUsageComponent } from '../../../taurus-package/web-services/taurus-u
 import { AddPickupComponent } from '../../../pickup-package/web-services/add-pickup/add-pickup.component';
 import { AddIssueComponent } from '../../../issue-package/web-services/add-issue/add-issue.component';
 import { HistoricalComponent } from '../../../view-web-service/chronology/historical/historical.component';
+import { RouterModule } from '@angular/router'; 
 
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -48,6 +49,9 @@ import { UserHomeComponent } from '../../../user-package/user-home/user-home.com
 import { AllUserComponent } from '../../../user-package/web-services/all-user/all-user.component';
 import { UpdateUserComponent } from '../../../user-package/web-services/update-user/update-user.component';
 import { ConfirmationDialogComponent } from '../../../other-package/composant/confirmation-dialog/confirmation-dialog.component';
+import { TemplateProblemComponent } from '../../../problem-package/template-problem/template-problem.component';
+import { HomeLeaderComponent } from '../../../problem-package/leader/home-leader/home-leader.component';
+import { AllProblemActionComponent } from '../../../problem-package/leader/web-service/all-problem-action/all-problem-action.component';
 // ***********************************************
 
 
@@ -74,7 +78,10 @@ import { ConfirmationDialogComponent } from '../../../other-package/composant/co
     UserHomeComponent,
     AllUserComponent,
     UpdateUserComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    TemplateProblemComponent,
+    HomeLeaderComponent,
+    AllProblemActionComponent
   ],
   imports: [
     CommonModule,
@@ -92,7 +99,8 @@ import { ConfirmationDialogComponent } from '../../../other-package/composant/co
     MatTableModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule
     
   ],
   exports : [
@@ -109,7 +117,10 @@ import { ConfirmationDialogComponent } from '../../../other-package/composant/co
     UserHomeComponent,
     AllUserComponent,
     UpdateUserComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    TemplateProblemComponent,
+    HomeLeaderComponent,
+    AllProblemActionComponent
   ]
 })
 export class SuiviMModule { }

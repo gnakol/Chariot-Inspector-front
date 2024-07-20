@@ -19,6 +19,9 @@ import { TemplateComponent } from './components/admin-package/component/template
 import { UserHomeComponent } from './components/user-package/user-home/user-home.component';
 import { AllUserComponent } from './components/user-package/web-services/all-user/all-user.component';
 import { UpdateUserComponent } from './components/user-package/web-services/update-user/update-user.component';
+import { TemplateProblemComponent } from './components/problem-package/template-problem/template-problem.component';
+import { HomeLeaderComponent } from './components/problem-package/leader/home-leader/home-leader.component';
+import { AllProblemActionComponent } from './components/problem-package/leader/web-service/all-problem-action/all-problem-action.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -35,7 +38,10 @@ const routes: Routes = [
       { path: 'admin-template', component : TemplateComponent},
       { path: 'user-home', component : UserHomeComponent},
       { path: 'all-users', component: AllUserComponent},
-      { path: 'update-user/:id', component: UpdateUserComponent }
+      { path: 'update-user/:id', component: UpdateUserComponent },
+      { path: 'problem-template', component: TemplateProblemComponent},
+      { path: 'leader-home', component: HomeLeaderComponent},
+      { path: 'all-issue-action', component: AllProblemActionComponent}
 
     ]
   },

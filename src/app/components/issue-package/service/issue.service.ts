@@ -60,4 +60,15 @@ export class IssueService {
     const headers = { Authorization: `Bearer ${token}` };
     return this.http.get<number>(`${this.baseUrlIssue}/get-id-issue-by-work-session-id/${workSessionId}`, { headers });
   }
+
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      throw new Error('No token found');
+    }
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
 }

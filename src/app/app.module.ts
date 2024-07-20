@@ -50,6 +50,9 @@ import { AddTeamComponent } from './components/team-package/web-service/add-team
 import { AllTeamComponent } from './components/team-package/web-service/all-team/all-team.component';
 import { AllShiftComponent } from './components/shift-package/web-service/all-shift/all-shift.component';
 import { AddShiftComponent } from './components/shift-package/web-service/add-shift/add-shift.component';
+import { TemplateProblemComponent } from './components/problem-package/template-problem/template-problem.component';
+import { HomeLeaderComponent } from './components/problem-package/leader/home-leader/home-leader.component';
+import { AllProblemActionComponent } from './components/problem-package/leader/web-service/all-problem-action/all-problem-action.component';
 
 
 @NgModule({

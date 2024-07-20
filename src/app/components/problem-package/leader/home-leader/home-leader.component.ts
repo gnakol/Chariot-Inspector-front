@@ -1,0 +1,41 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-home-leader',
+  templateUrl: './home-leader.component.html',
+  styleUrl: './home-leader.component.scss'
+})
+export class HomeLeaderComponent {
+
+  constructor(
+    private route : Router
+  ){}
+
+  allCart()
+  {
+    this.route.navigateByUrl("/all-cart");
+  }
+
+  createCart(){
+
+    this.route.navigateByUrl("/dashboard/suivi");
+
+  }
+
+  updateCart(){
+
+    this.route.navigateByUrl("/all-taurus-by-account");
+
+  }
+
+  deleteCart(){
+
+  }
+
+  searchCart(){
+
+    this.route.navigateByUrl("/get-account-by-id");
+  }
+
+}

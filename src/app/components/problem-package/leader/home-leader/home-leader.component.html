@@ -1,0 +1,34 @@
+<div class="carts-dashboard">
+    <mat-toolbar color="primary">
+      <span class="toolbar-title">Suivi des Chariots</span>
+    </mat-toolbar>
+    <div class="scapartois-reception">
+      Scapartois Smile Reception
+    </div>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="createCart()" routerLink="dashboard/suivi">
+        <mat-icon>add</mat-icon>
+        Realiser une action sur des problèmes
+      </button>
+      <button mat-raised-button color="accent" (click)="updateCart()" routerLink="all-taurus-by-account">
+        <mat-icon>edit</mat-icon>
+        Modifier mes actions
+      </button>
+      <button mat-raised-button color="warn" (click)="deleteCart()">
+        <mat-icon>delete</mat-icon>
+        Supprimer une action
+      </button>
+      <button mat-raised-button color="accent" (click)="searchCart()">
+        <mat-icon>search</mat-icon>
+        Rechercher une action
+      </button>
+      <button mat-raised-button color="accent" (click)="allCart()" routerLink="all-cart">
+        <mat-icon>list</mat-icon>
+        Historique de mes action
+      </button>
+    </div>
+    <div class="child-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
