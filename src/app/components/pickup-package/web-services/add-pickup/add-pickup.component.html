@@ -1,1 +1,152 @@
-<p>add-pickup works!</p>
+<div class="add-cart-container">
+  <h1 class="title">Etat de propreté du chariot</h1>
+  <form [formGroup]="pickupForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Informations sur le chariot</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-fields">
+          <div class="form-group">
+            <label class="form-label">Numéro du chariot</label>
+            <mat-form-field>
+              <mat-select formControlName="cartId">
+                <mat-option *ngFor="let cart of carts" [value]="cart.idCart">
+                  {{ cart.cartNumber }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">État du châssis / carter</label>
+            <mat-form-field>
+              <mat-select formControlName="conditionChassis">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Roues non déchirées et absence de plat</label>
+            <mat-form-field>
+              <mat-select formControlName="wheelsTornPlat">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Câbles et prises batterie</label>
+            <mat-form-field>
+              <mat-select formControlName="batteryCablesSockets">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">État des fourches</label>
+            <mat-form-field>
+              <mat-select formControlName="conditionForks">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Plateforme propre et anti-dérapante</label>
+            <mat-form-field>
+              <mat-select formControlName="cleanNonSlipPlatform">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pare-brise</label>
+            <mat-form-field>
+              <mat-select formControlName="windshield">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bloc gaz + sangle</label>
+            <mat-form-field>
+              <mat-select formControlName="gasBlockStrap">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Commandes de marche avant/arrière</label>
+            <mat-form-field>
+              <mat-select formControlName="forwardReverseControl">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Klaxon</label>
+            <mat-form-field>
+              <mat-select formControlName="honk">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Système d'élévation fonctionnel</label>
+            <mat-form-field>
+              <mat-select formControlName="functionalElevationSystem">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Arrêt d'urgence</label>
+            <mat-form-field>
+              <mat-select formControlName="emergencyStop">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Absence de fuite</label>
+            <mat-form-field>
+              <mat-select formControlName="noLeak">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bouton anti écrasement</label>
+            <mat-form-field>
+              <mat-select formControlName="antiCrushButton">
+                <mat-option value="BON">BON</mat-option>
+                <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date et heure de prise en charge</label>
+            <input matInput type="datetime-local" formControlName="pickupDateTime">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date et heure de retour</label>
+            <input matInput type="datetime-local" formControlName="returnDateTime">
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!pickupForm.valid">Ajouter</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

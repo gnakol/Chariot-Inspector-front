@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../../authenticate/core/auth.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Issue } from '../bean/issue';
 import { Observable } from 'rxjs';
+import { IssueResponse } from '../bean/page';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,8 @@ export class IssueService {
     return this.http.get<number>(`${this.baseUrlIssue}/get-id-issue-by-work-session-id/${workSessionId}`, { headers });
   }
 
+
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {
@@ -70,5 +73,17 @@ export class IssueService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
+  }
+
+  getAllIssuesWithoutAction(teamId: number, startDate: string, endDate: string, page: number, size: number): Observable<IssueResponse> {
+    const headers = this.getHeaders();
+    let params = new HttpParams()
+      .set('teamId', teamId)
+      .set('startDate', startDate)
+      .set('endDate', endDate)
+      .set('page', page)
+      .set('size', size);
+
+    return this.http.get<IssueResponse>(`${this.baseUrlIssue}/all-issue-with-not-action-carried-out`, { headers, params });
   }
 }

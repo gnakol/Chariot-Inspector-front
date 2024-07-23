@@ -17,9 +17,9 @@ export class HomeLeaderComponent {
     this.route.navigateByUrl("/all-cart");
   }
 
-  createCart(){
+  createActionCarridOut(){
 
-    this.route.navigateByUrl("/dashboard/suivi");
+    this.route.navigateByUrl("/dashboard/issue-search");
 
   }
 

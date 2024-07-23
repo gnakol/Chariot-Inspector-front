@@ -14,7 +14,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {MatTreeModule} from '@angular/material/tree'; 
 import { ShareModule } from '../../../../global/share/share.module';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatFormFieldControl, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select'; 
 import { SuiviComponent } from '../../suivi/suivi.component';
@@ -52,6 +52,13 @@ import { ConfirmationDialogComponent } from '../../../other-package/composant/co
 import { TemplateProblemComponent } from '../../../problem-package/template-problem/template-problem.component';
 import { HomeLeaderComponent } from '../../../problem-package/leader/home-leader/home-leader.component';
 import { AllProblemActionComponent } from '../../../problem-package/leader/web-service/all-problem-action/all-problem-action.component';
+import { IssueSearchComponent } from '../../../issue-package/web-services/issue-search/issue-search.component';
+import { AddBatteryUsageComponent } from '../../../battery-usage-package/web-service/add-battery-usage/add-battery-usage.component';
+import { CartTemplateComponent } from '../../../cart-package/cart-template/cart-template.component';
+import { TaurusTemplateComponent } from '../../../taurus-package/taurus-template/taurus-template.component';
+import { BatteryTemplateComponent } from '../../../battery-package/battery-template/battery-template.component';
+import { AllTaurusComponent } from '../../../taurus-package/web-services/all-taurus/all-taurus.component';
+import { AllBatteryComponent } from '../../../battery-package/web-services/all-battery/all-battery.component';
 // ***********************************************
 
 
@@ -81,7 +88,14 @@ import { AllProblemActionComponent } from '../../../problem-package/leader/web-s
     ConfirmationDialogComponent,
     TemplateProblemComponent,
     HomeLeaderComponent,
-    AllProblemActionComponent
+    AllProblemActionComponent,
+    IssueSearchComponent,
+    AddBatteryUsageComponent,
+    CartTemplateComponent,
+    TaurusTemplateComponent,
+    BatteryTemplateComponent,
+    AllTaurusComponent,
+    AllBatteryComponent
   ],
   imports: [
     CommonModule,
@@ -100,7 +114,9 @@ import { AllProblemActionComponent } from '../../../problem-package/leader/web-s
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatDialogModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    MatInputModule
     
   ],
   exports : [
@@ -120,7 +136,14 @@ import { AllProblemActionComponent } from '../../../problem-package/leader/web-s
     ConfirmationDialogComponent,
     TemplateProblemComponent,
     HomeLeaderComponent,
-    AllProblemActionComponent
+    AllProblemActionComponent,
+    IssueSearchComponent,
+    AddBatteryUsageComponent,
+    CartTemplateComponent,
+    TaurusTemplateComponent,
+    BatteryTemplateComponent,
+    AllTaurusComponent,
+    AllBatteryComponent
   ]
 })
 export class SuiviMModule { }

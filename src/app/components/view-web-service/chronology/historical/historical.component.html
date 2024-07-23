@@ -33,7 +33,15 @@
       <!-- Date d'utilisation Column -->
       <ng-container matColumnDef="usageDate">
         <th mat-header-cell *matHeaderCellDef> Date d'utilisation </th>
-        <td mat-cell *matCellDef="let element"> {{element.usageDate}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.usageDate | date:'short'}} </td>
+      </ng-container>
+
+      <!-- Batteries Column -->
+      <ng-container matColumnDef="batteries">
+        <th mat-header-cell *matHeaderCellDef> Batteries Utilisées </th>
+        <td mat-cell *matCellDef="let element"> 
+          <span *ngFor="let battery of element.batteryDTOS">{{battery.batteryNumber}} </span>
+        </td>
       </ng-container>
 
       <!-- Détail Column -->

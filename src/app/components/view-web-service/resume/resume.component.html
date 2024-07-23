@@ -21,34 +21,37 @@
       </div>
     </div>
 
-    <div class="card-wrapper" *ngIf="cartData">
+    <div class="card-wrapper" *ngIf="pickupData">
       <div class="resume-card cart-info">
         <h2>Informations du Chariot</h2>
-        <p><strong>Numéro du Chariot:</strong> {{ cartData.cartNumber }}</p>
-        <p><strong>État du châssis / carter:</strong> {{ cartData.conditionChassis }}</p>
-        <p><strong>Roues non déchirées et absence de plat:</strong> {{ cartData.wheelsTornPlat }}</p>
-        <p><strong>Câbles et prises batterie:</strong> {{ cartData.batteryCablesSockets }}</p>
-        <p><strong>État des fourches:</strong> {{ cartData.conditionForks }}</p>
-        <p><strong>Plateforme propre et anti-dérapante:</strong> {{ cartData.cleanNonSlipPlatform }}</p>
-        <p><strong>Pare-brise:</strong> {{ cartData.windshield }}</p>
-        <p><strong>Bloc gaz + sangle:</strong> {{ cartData.gasBlockStrap }}</p>
-        <p><strong>Commandes de marche avant/arrière:</strong> {{ cartData.forwardReverseControl }}</p>
-        <p><strong>Klaxon:</strong> {{ cartData.honk }}</p>
-        <p><strong>Système d'élévation fonctionnel:</strong> {{ cartData.functionalElevationSystem }}</p>
-        <p><strong>Arrêt d'urgence:</strong> {{ cartData.emergencyStop }}</p>
-        <p><strong>Absence de fuite:</strong> {{ cartData.noLeak }}</p>
-        <p><strong>Bouton anti écrasement:</strong> {{ cartData.antiCrushButton }}</p>
-        <p><strong>Date et heure de prise en charge:</strong> {{pickupData?.pickupDateTime}} </p>
-        <p><strong>Date et heure de retour: </strong> {{pickupData?.returnDateTime}} </p>
+        <p><strong>Numéro du Chariot:</strong> {{ cartNumber }}</p>
+        <p><strong>État du châssis / carter:</strong> {{ pickupData.conditionChassis }}</p>
+        <p><strong>Roues non déchirées et absence de plat:</strong> {{ pickupData.wheelsTornPlat }}</p>
+        <p><strong>Câbles et prises batterie:</strong> {{ pickupData.batteryCablesSockets }}</p>
+        <p><strong>État des fourches:</strong> {{ pickupData.conditionForks }}</p>
+        <p><strong>Plateforme propre et anti-dérapante:</strong> {{ pickupData.cleanNonSlipPlatform }}</p>
+        <p><strong>Pare-brise:</strong> {{ pickupData.windshield }}</p>
+        <p><strong>Bloc gaz + sangle:</strong> {{ pickupData.gasBlockStrap }}</p>
+        <p><strong>Commandes de marche avant/arrière:</strong> {{ pickupData.forwardReverseControl }}</p>
+        <p><strong>Klaxon:</strong> {{ pickupData.honk }}</p>
+        <p><strong>Système d'élévation fonctionnel:</strong> {{ pickupData.functionalElevationSystem }}</p>
+        <p><strong>Arrêt d'urgence:</strong> {{ pickupData.emergencyStop }}</p>
+        <p><strong>Absence de fuite:</strong> {{ pickupData.noLeak }}</p>
+        <p><strong>Bouton anti écrasement:</strong> {{ pickupData.antiCrushButton }}</p>
+        <p><strong>Date et heure de prise en charge:</strong> {{ pickupData.pickupDateTime }} </p>
+        <p><strong>Date et heure de retour:</strong> {{ pickupData.returnDateTime }} </p>
       </div>
     </div>
 
-    <div class="card-wrapper" *ngIf="batteryData">
+    <div class="card-wrapper" *ngIf="batteryUsageData.length > 0">
       <div class="resume-card battery-info">
         <h2>Informations de la Batterie</h2>
-        <p><strong>Numéro de batterie:</strong> {{ batteryData.batteryNumber }}</p>
-        <p><strong>Niveau de charge:</strong> {{ batteryData.chargeLevel }}</p>
-        <p><strong>État de la batterie:</strong> {{ batteryData.state }}</p>
+        <div *ngFor="let batteryUsage of batteryUsageData">
+          <p><strong>Numéro de batterie:</strong> {{ batteryNumber.get(batteryUsage.batteryId) }}</p>
+          <p><strong>Niveau de charge:</strong> {{ batteryUsage.chargeLevel }}</p>
+          <p><strong>État de la batterie:</strong> {{ batteryUsage.state }}</p>
+          <p><strong>Date de changement:</strong> {{ batteryUsage.changeTime }}</p>
+        </div>
       </div>
     </div>
 
@@ -61,14 +64,13 @@
         </div>
       </div>
     </div>
-
-    <div class="card-wrapper" *ngIf="teamName !== null || shiftName !== null">
+    <div class="card-wrapper" *ngIf="teamName || shiftName">
       <div class="resume-card team-shift-info">
         <h2>Info sur l'Équipe</h2>
         <p *ngIf="teamName"><strong>L'équipe de :</strong> {{ teamName }}</p>
         <p *ngIf="shiftName"><strong>Horaire du :</strong> {{ shiftName }}</p>
       </div>
-    </div>
+    </div>    
   </div>
 </div>
 

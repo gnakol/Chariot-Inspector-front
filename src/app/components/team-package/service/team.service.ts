@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TeamDTO } from '../bean/team'; // Assurez-vous que Team est correctement défini dans bean/team.ts
+import { TeamResponse } from '../bean/page';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,15 @@ export class TeamService {
     return this.http.get<TeamDTO>(`${this.baseUrl}/get-team-by-id/${idTeam}`, { headers });
   }
 
-  getAllTeams(): Observable<TeamDTO[]> {
-    return this.http.get<TeamDTO[]>(`${this.baseUrl}/all-team`);
+  allTeam(page: number, size: number): Observable<TeamResponse> {
+    
+    const headers = this.getHeaders();
+
+    let params = new HttpParams()
+      .set('page', page)
+      .set('size', size);
+
+    return this.http.get<TeamResponse>(`${this.baseUrl}/all-team`, { headers, params });
   }
 
   addNewTeam(team: TeamDTO): Observable<TeamDTO> {

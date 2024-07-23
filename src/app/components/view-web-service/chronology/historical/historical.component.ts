@@ -4,13 +4,13 @@ import { AuthService } from '../../../../authenticate/core/auth.service';
 import { UserService } from '../../../user-package/service/user.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { HistoryEntryDTO } from '../bean/page';
 import { ResumeService } from '../../service/resume.service';
 import { Router } from '@angular/router';
-import { CartService } from '../../../cart-package/service/cart.service';
-import { IssueService } from '../../../issue-package/service/issue.service';
-import { TaurusService } from '../../../taurus-package/service/taurus.service';
+import { PickupService } from '../../../pickup-package/service/pickup.service';
 import { AccountTeamService } from '../../../account-team-package/service/account-team.service';
+import { Issue } from '../../../issue-package/bean/issue';
+import { HistoryEntryDTO } from '../bean/page';
+import { BatteryUsageService } from '../../../battery-usage-package/service/battery-usage.service';
 
 @Component({
   selector: 'app-historical',
@@ -19,7 +19,7 @@ import { AccountTeamService } from '../../../account-team-package/service/accoun
 })
 export class HistoricalComponent implements OnInit {
 
-  displayedColumns: string[] = ['firstName', 'cartNumber', 'taurusNumber', 'issue', 'usageDate', 'detail'];
+  displayedColumns: string[] = ['firstName', 'cartNumber', 'taurusNumber', 'issue', 'usageDate', 'batteries', 'detail'];
   dataSource = new MatTableDataSource<HistoryEntryDTO>([]);
   accountData: any = null;
 
@@ -29,12 +29,11 @@ export class HistoricalComponent implements OnInit {
     private historicalService: HistoricalService,
     private authService: AuthService,
     private accountService: UserService,
-    private resumeService : ResumeService,
-    private router : Router,
-    private cartService : CartService,
-    private issueService : IssueService, 
-    private taurusService : TaurusService,
-    private accountTeamService : AccountTeamService
+    private resumeService: ResumeService,
+    private router: Router,
+    private pickupService: PickupService,
+    private batteryUsageService: BatteryUsageService,
+    private accountTeamService: AccountTeamService
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +63,7 @@ export class HistoricalComponent implements OnInit {
 
   loadAllData(idAccount: number): void {
     this.historicalService.getHistory(idAccount, 0, 1000).subscribe(historyResponse => {
-      console.log('History data:', historyResponse); // Ajoutez ceci pour vérifier les données
+      console.log('History data:', historyResponse);
       this.dataSource.data = historyResponse.content;
     });
   }
@@ -73,70 +72,40 @@ export class HistoricalComponent implements OnInit {
     this.resumeService.clearData();
     this.resumeService.setAccountData(this.accountData);
   
-    // Retrieve Taurus ID by Taurus Number
-    if (element.taurusNumber) {
-      this.taurusService.getIdTaurusByNum(element.taurusNumber).subscribe(taurusIdResponse => {
-        const taurusId = taurusIdResponse;
+    if (element.cartNumber) {
+      this.pickupService.getIdPickupByCartNumber(element.cartNumber).subscribe(pickupIds => {
+        if (pickupIds && pickupIds.length > 0) {
+          const idPickup = pickupIds[0];
+          this.pickupService.getPickupById(idPickup).subscribe(pickupData => {
+            this.resumeService.setPickupData(pickupData);
   
-        // Retrieve Taurus Usage by Taurus ID
-        this.taurusService.getTaurusUsageByTaurusId(taurusId).subscribe(taurusUsageData => {
-          const workSessionId = taurusUsageData.workSessionId;
-  
-          this.resumeService.setTaurusUsageData({
-            taurusId: taurusId,
-            accountId: this.accountData.idAccount,
-            usageDate: new Date(element.usageDate),
-            workSessionId: workSessionId
-          });
-  
-          // Ensure workSessionId is defined before making the API call
-          if (workSessionId) {
-            // Retrieve AccountTeam by Work Session ID
-            this.accountTeamService.getAccountTeamByWorkSessionId(workSessionId).subscribe(accountTeamData => {
-              this.resumeService.setAccountTeamData(accountTeamData);
-  
-              // Retrieve Cart Data by Cart Number
-              if (element.cartNumber) {
-                this.cartService.getIdCartByNum(element.cartNumber).subscribe(cartIdResponse => {
-                  const idCart = cartIdResponse;
-                  this.cartService.getCartById(idCart).subscribe(cartData => {
-                    this.resumeService.setCartData(cartData);
-  
-                    // Set Battery Data if available
-                    if (element.batteryDTOS && element.batteryDTOS.length > 0) {
-                      this.resumeService.setBatteryData(element.batteryDTOS[0]);
-                    }
-  
-                    // Retrieve and set Issue Data by Work Session ID
-                    if (workSessionId) {
-                      this.issueService.getIdIssueByWorkSessionId(workSessionId).subscribe(idIssueResponse => {
-                        const idIssue = idIssueResponse;
-                        this.issueService.getIssueById(idIssue).subscribe(issueData => {
-                          this.resumeService.setIssueData(issueData);
-  
-                          // Navigate to resume page
-                          this.router.navigate(['/resume']);
-                        });
-                      });
-                    } else {
-                      // Navigate to resume page if workSessionId is not available
-                      this.router.navigate(['/resume']);
-                    }
-                  });
-                });
+            this.batteryUsageService.getBatteryUsageByCartId(pickupData.cartId).subscribe(batteryUsageData => {
+              if (Array.isArray(batteryUsageData)) {
+                this.resumeService.setBatteryUsageData(batteryUsageData);
               } else {
-                // Navigate to resume page if no cart number is provided
-                this.router.navigate(['/resume']);
+                console.error('batteryUsageData is not an array:', batteryUsageData);
               }
+  
+              if (element.issueDescription) {
+                const issueData: Issue = {
+                  idIssue: 0, 
+                  accountId: this.accountData.idAccount,
+                  description: element.issueDescription,
+                  createdAt: element.usageDate
+                };
+                this.resumeService.setIssueData([issueData]);
+              }
+  
+              this.router.navigate(['/resume']);
             });
-          } else {
-            console.error('Work Session ID is undefined');
-          }
-        });
+          });
+        } else {
+          console.error('No pickup IDs found for cart number:', element.cartNumber);
+        }
       });
     } else {
-      // Navigate to resume page if no taurus number is provided
       this.router.navigate(['/resume']);
     }
   }
+  
 }

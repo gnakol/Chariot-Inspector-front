@@ -1,0 +1,47 @@
+<div class="add-battery-usage-container">
+    <h1 class="title">Ajouter un Usage de Batterie</h1>
+    <form [formGroup]="batteryUsageForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Informations sur l'usage de la batterie</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-fields">
+            <div class="form-group">
+              <label class="form-label">Numéro de batterie</label>
+              <mat-form-field>
+                <mat-label>Numéro de batterie</mat-label>
+                <mat-select formControlName="batteryId">
+                  <mat-option *ngFor="let battery of batteries" [value]="battery.idBattery">
+                    {{ battery.batteryNumber }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Niveau de charge</label>
+              <input matInput type="number" formControlName="chargeLevel" placeholder="Entrez le niveau de charge">
+            </div>
+            <div class="form-group">
+              <label class="form-label">État de la batterie</label>
+              <mat-form-field>
+                <mat-label>État de la batterie</mat-label>
+                <mat-select formControlName="state">
+                  <mat-option value="BON">BON</mat-option>
+                  <mat-option value="MAUVAIS">MAUVAIS</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date et heure de changement</label>
+              <input matInput type="datetime-local" formControlName="changeTime">
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!batteryUsageForm.valid">Ajouter</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  

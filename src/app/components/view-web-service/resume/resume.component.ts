@@ -3,8 +3,6 @@ import { FlatTreeControl } from '@angular/cdk/tree';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ResumeService } from '../service/resume.service';
 import { Account } from '../../user-package/bean/account';
-import { Cart } from '../../cart-package/bean/cart';
-import { Battery } from '../../battery-package/bean/battery';
 import { TaurusUsage } from '../../taurus-package/bean/taurusUsage';
 import { TaurusService } from '../../taurus-package/service/taurus.service';
 import { Taurus } from '../../taurus-package/bean/taurus';
@@ -16,14 +14,15 @@ import { AccountTeamDTO } from '../../account-team-package/bean/account-team';
 import { TeamService } from '../../team-package/service/team.service';
 import { ShiftService } from '../../shift-package/service/shift.service';
 import { forkJoin } from 'rxjs';
+import { BatteryUsage } from '../../battery-usage-package/bean/battery-usage';
+import { CartService } from '../../cart-package/service/cart.service';
+import { BatteryService } from '../../battery-package/service/battery.service';
 
-/** Interface for the tree node */
 interface CartNode {
   item: string;
   children?: CartNode[];
 }
 
-/** Flat node with expandable and level information */
 interface CartFlatNode {
   expandable: boolean;
   item: string;
@@ -36,16 +35,18 @@ interface CartFlatNode {
   styleUrls: ['./resume.component.scss']
 })
 export class ResumeComponent implements OnInit {
+
   accountData: Account | null = null;
-  cartData: Cart | null = null;
-  batteryData: Battery | null = null;
+  batteryUsageData: BatteryUsage[] = [];
   taurusUsageData: TaurusUsage | null = null;
   taurusData: Taurus | null = null;
   pickupData: Pickup | null = null;
   issueData: Issue[] = [];
-  accountTeamData : AccountTeamDTO | null = null;
-  teamName : string | null = null;
-  shiftName : string | null = null;
+  accountTeamData: AccountTeamDTO | null = null;
+  teamName: string | null = null;
+  shiftName: string | null = null;
+  cartNumber : string | null = null;
+  batteryNumber : Map<number, number> = new Map();
 
   private transformer = (node: CartNode, level: number) => {
     return {
@@ -69,23 +70,38 @@ export class ResumeComponent implements OnInit {
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
-  constructor(private resumeService: ResumeService, 
-    private taurusService: TaurusService, 
+  constructor(
+    private resumeService: ResumeService,
+    private taurusService: TaurusService,
     private userService: UserService,
     private pickupService: PickupService,
-    private teamService : TeamService,
-    private shiftService : ShiftService
-) {}
+    private teamService: TeamService,
+    private shiftService: ShiftService,
+    private cartService : CartService,
+    private batteryService : BatteryService
+  ) {}
 
   ngOnInit(): void {
     this.accountData = this.resumeService.getAccountData();
-    this.cartData = this.resumeService.getCartData();
-    this.batteryData = this.resumeService.getBatteryData();
+    this.batteryUsageData = this.resumeService.getBatteryUsageData() || [];
     this.taurusUsageData = this.resumeService.getTaurusUsageData();
     this.pickupData = this.resumeService.getPickupData();
     this.issueData = this.resumeService.getIssueData() || [];
     this.accountTeamData = this.resumeService.getAccountTeamData();
 
+    if(this.pickupData)
+    {
+      this.cartService.getCartById(this.pickupData.cartId).subscribe(cart => {
+        this.cartNumber = cart.cartNumber;
+      })
+    }
+
+    this.batteryUsageData.forEach(batteryUsage => {
+      this.batteryService.getBatteryById(batteryUsage.batteryId).subscribe(battery => {
+        this.batteryNumber.set(batteryUsage.batteryId, battery.batteryNumber);
+      });
+    });
+  
     if (this.taurusUsageData) {
       this.taurusService.getTaurusById(this.taurusUsageData.taurusId).subscribe(
         (taurusData) => {
@@ -95,7 +111,7 @@ export class ResumeComponent implements OnInit {
           console.error('Error fetching taurus data:', error);
         }
       );
-
+  
       this.userService.getAccountById(this.taurusUsageData.accountId).subscribe(
         (accountData) => {
           this.accountData = accountData;
@@ -104,20 +120,17 @@ export class ResumeComponent implements OnInit {
           console.error('Error fetching data : ', error);
         }
       );
-
-      if(this.accountTeamData)
-      {
-        console.log("AccountTeamData exists:", this.accountTeamData); // Log to check if accountTeamData exists
+  
+      if (this.accountTeamData) {
         forkJoin({
-          team : this.teamService.getTeamById(this.accountTeamData.teamId),
-          shift : this.shiftService.getShiftById(this.accountTeamData.shiftId)
+          team: this.teamService.getTeamById(this.accountTeamData.teamId),
+          shift: this.shiftService.getShiftById(this.accountTeamData.shiftId)
         }).subscribe(
           ({ team, shift }) => {
+            console.log('Team:', team);
+            console.log('Shift:', shift);
             this.teamName = team.name;
             this.shiftName = shift.name;
-            //console.log("Team name:", this.teamName); // Log to check if team name is set
-            console.log("Shift name:", this.shiftName); // Log to check if shift name is set
-
           },
           error => {
             console.error('Error fetching team or shift data:', error);
@@ -125,36 +138,35 @@ export class ResumeComponent implements OnInit {
         );
       }
     }
-
-    this.initializeTreeData();
   }
+  
 
-  hasChild = (_: number, node: CartFlatNode) => node.expandable;
+  // hasChild = (_: number, node: CartFlatNode) => node.expandable;
 
-  private initializeTreeData() {
-    const cartTreeData: CartNode[] = [
-      {
-        item: 'Numéro du Chariot: ' + this.cartData?.cartNumber,
-        children: [
-          { item: 'État du châssis / carter: ' + this.cartData?.conditionChassis },
-          { item: 'Roues non déchirées et absence de plat: ' + this.cartData?.wheelsTornPlat },
-          { item: 'Câbles et prises batterie: ' + this.cartData?.batteryCablesSockets },
-          { item: 'État des fourches: ' + this.cartData?.conditionForks },
-          { item: 'Plateforme propre et anti-dérapante: ' + this.cartData?.cleanNonSlipPlatform },
-          { item: 'Pare-brise: ' + this.cartData?.windshield },
-          { item: 'Bloc gaz + sangle: ' + this.cartData?.gasBlockStrap },
-          { item: 'Commandes de marche avant/arrière: ' + this.cartData?.forwardReverseControl },
-          { item: 'Klaxon: ' + this.cartData?.honk },
-          { item: 'Système d\'élévation fonctionnel: ' + this.cartData?.functionalElevationSystem },
-          { item: 'Arrêt d\'urgence: ' + this.cartData?.emergencyStop },
-          { item: 'Absence de fuite: ' + this.cartData?.noLeak },
-          { item: 'Bouton anti écrasement: ' + this.cartData?.antiCrushButton },
-          { item: 'Date et heure de prise en charge: ' + this.pickupData?.pickupDateTime },
-          { item: 'Date et heure de retour: ' + this.pickupData?.returnDateTime }
-        ]
-      }
-    ];
+  // private initializeTreeData() {
+  //   const cartTreeData: CartNode[] = [
+  //     {
+  //       item: 'Numéro du Chariot: ' + this.pickupData?.cartId,
+  //       children: [
+  //         { item: 'État du châssis / carter: ' + this.pickupData?.conditionChassis },
+  //         { item: 'Roues non déchirées et absence de plat: ' + this.pickupData?.wheelsTornPlat },
+  //         { item: 'Câbles et prises batterie: ' + this.pickupData?.batteryCablesSockets },
+  //         { item: 'État des fourches: ' + this.pickupData?.conditionForks },
+  //         { item: 'Plateforme propre et anti-dérapante: ' + this.pickupData?.cleanNonSlipPlatform },
+  //         { item: 'Pare-brise: ' + this.pickupData?.windshield },
+  //         { item: 'Bloc gaz + sangle: ' + this.pickupData?.gasBlockStrap },
+  //         { item: 'Commandes de marche avant/arrière: ' + this.pickupData?.forwardReverseControl },
+  //         { item: 'Klaxon: ' + this.pickupData?.honk },
+  //         { item: 'Système d\'élévation fonctionnel: ' + this.pickupData?.functionalElevationSystem },
+  //         { item: 'Arrêt d\'urgence: ' + this.pickupData?.emergencyStop },
+  //         { item: 'Absence de fuite: ' + this.pickupData?.noLeak },
+  //         { item: 'Bouton anti écrasement: ' + this.pickupData?.antiCrushButton },
+  //         { item: 'Date et heure de prise en charge: ' + this.pickupData?.pickupDateTime },
+  //         { item: 'Date et heure de retour: ' + this.pickupData?.returnDateTime }
+  //       ]
+  //     }
+  //   ];
 
-    this.dataSource.data = cartTreeData;
-  }
+  //   this.dataSource.data = cartTreeData;
+  // }
 }

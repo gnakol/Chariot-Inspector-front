@@ -22,6 +22,15 @@ import { UpdateUserComponent } from './components/user-package/web-services/upda
 import { TemplateProblemComponent } from './components/problem-package/template-problem/template-problem.component';
 import { HomeLeaderComponent } from './components/problem-package/leader/home-leader/home-leader.component';
 import { AllProblemActionComponent } from './components/problem-package/leader/web-service/all-problem-action/all-problem-action.component';
+import { IssueSearchComponent } from './components/issue-package/web-services/issue-search/issue-search.component';
+import { AddPickupComponent } from './components/pickup-package/web-services/add-pickup/add-pickup.component';
+import { AddBatteryUsageComponent } from './components/battery-usage-package/web-service/add-battery-usage/add-battery-usage.component';
+import { CartTemplateComponent } from './components/cart-package/cart-template/cart-template.component';
+import { BatteryTemplateComponent } from './components/battery-package/battery-template/battery-template.component';
+import { TaurusTemplateComponent } from './components/taurus-package/taurus-template/taurus-template.component';
+import { AddTaurusComponent } from './components/taurus-package/web-services/taurus/add-taurus/add-taurus.component';
+import { AllBatteryComponent } from './components/battery-package/web-services/all-battery/all-battery.component';
+import { AllTaurusComponent } from './components/taurus-package/web-services/all-taurus/all-taurus.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -32,16 +41,26 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'suivi', component : SuiviComponent},
       { path: 'add-taurus-usage', component : AddUsageComponent},
-      { path: 'add-new-cart', component: AddCartComponent },
-      { path: 'add-new-battery', component : AddBatteryComponent},
+      { path: 'add-new-pickup', component: AddPickupComponent },
+      { path: 'add-new-battery-usage', component : AddBatteryUsageComponent},
       { path: 'add-new-issue', component : AddIssueComponent},
+      { path: 'add-cart', component : AddCartComponent},
+      { path: 'add-battery', component : AddBatteryComponent},
+      { path: 'add-taurus', component : AddTaurusComponent},
       { path: 'admin-template', component : TemplateComponent},
       { path: 'user-home', component : UserHomeComponent},
       { path: 'all-users', component: AllUserComponent},
       { path: 'update-user/:id', component: UpdateUserComponent },
       { path: 'problem-template', component: TemplateProblemComponent},
       { path: 'leader-home', component: HomeLeaderComponent},
-      { path: 'all-issue-action', component: AllProblemActionComponent}
+      { path: 'all-issue-action', component: AllProblemActionComponent},
+      { path: 'all-cart', component : AllCartComponent},
+      { path: 'all-battery', component : AllBatteryComponent},
+      { path: 'all-taurus', component : AllTaurusComponent},
+      { path: 'issue-search', component: IssueSearchComponent},
+      { path: 'cart-template', component: CartTemplateComponent},
+      { path: 'battery-template', component : BatteryTemplateComponent},
+      { path: 'taurus-template', component : TaurusTemplateComponent}
 
     ]
   },

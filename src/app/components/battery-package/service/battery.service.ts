@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Battery } from '../bean/battery';
 import { AuthService } from '../../../authenticate/core/auth.service';
+import { BatteryResponse } from '../bean/page';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,24 @@ export class BatteryService {
       const headers = { Authorization : `Bearer ${token}` };
 
       return this.http.get<Battery>(`${this.baseUrl}/get-battery-by-id/${idBattery}`, { headers });
+  }
+
+  public allBattery() : Observable<BatteryResponse>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<BatteryResponse>(`${this.baseUrl}/all-battery`, {headers});
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      throw new Error('No token found');
+    }
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
   }
   
 }

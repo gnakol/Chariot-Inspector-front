@@ -1,7 +1,7 @@
-import { AccountTeam } from "./account-team";
+import { AccountDTO } from "../../user-package/bean/account";
 
 export interface AccountTeamResponse {
-    content: AccountTeam[];
+    content: AccountDTO[];
     pageable: any;
     totalElements: number;
     totalPages: number;

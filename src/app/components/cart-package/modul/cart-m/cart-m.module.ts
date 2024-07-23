@@ -16,6 +16,7 @@ import { CartRoutingModule } from '../../cart-routing.module';
 import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select'; 
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -39,7 +40,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatLabel,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
     CartComponent,

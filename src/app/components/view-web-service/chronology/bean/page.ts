@@ -20,16 +20,11 @@ export interface HistoryEntryDTO {
 
     shiftName : string;
   }
-  
-  export interface Page<T> {
 
-    content: T[];
-
-    pageable: any;
-
-    totalElements: number;
-
-    totalPages: number;
-
-    last: boolean;
-  }
+  export interface HistoryResponse {
+      content: HistoryEntryDTO[];
+      pageable: any;
+      totalElements: number;
+      totalPages: number;
+      last: boolean;
+    }

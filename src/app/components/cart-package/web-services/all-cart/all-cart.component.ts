@@ -17,7 +17,7 @@ export class AllCartComponent implements OnInit {
   pageSize: number = 5;
   totalPages: number = 0;
 
-  constructor(private cartService: CartService, private router : Router) {}
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.cartService.allCart().subscribe(data => {
@@ -33,7 +33,7 @@ export class AllCartComponent implements OnInit {
 
   applyFilter(event: Event): void {
     const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    this.filteredData = this.dataSource.data.filter(cart => cart.cartNumber.toString().includes(filterValue));
+    this.filteredData = this.dataSource.data.filter(cart => cart.cartNumber.toString().toLowerCase().includes(filterValue));
     this.totalPages = Math.ceil(this.filteredData.length / this.pageSize);
     this.currentPage = 0;
     this.updatePagedData();
@@ -60,14 +60,10 @@ export class AllCartComponent implements OnInit {
   }
 
   viewDetails(cart: Cart): void {
-    // Logique pour afficher les détails d'un chariot.
     console.log('Voir les détails du chariot:', cart);
-    // Exemple de redirection vers une page de détails :
-    // this.router.navigate(['/cart-details', cart.idCart]);
   }
 
-  home()
-  {
+  home() {
     this.router.navigateByUrl("/home");
   }
 }

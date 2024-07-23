@@ -28,9 +28,9 @@ export class SuiviComponent implements OnInit {
 
   checkFormCompletion() {
     const accountData = this.resumeService.getAccountData();
-    const cartData = this.resumeService.getCartData();
+    const pickupData = this.resumeService.getPickupData();
 
-    this.isFormComplete = !!accountData && !!cartData;
+    this.isFormComplete = !!accountData && !!pickupData;
   }
 
   validate() {

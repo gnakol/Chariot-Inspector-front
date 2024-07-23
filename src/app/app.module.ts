@@ -53,12 +53,17 @@ import { AddShiftComponent } from './components/shift-package/web-service/add-sh
 import { TemplateProblemComponent } from './components/problem-package/template-problem/template-problem.component';
 import { HomeLeaderComponent } from './components/problem-package/leader/home-leader/home-leader.component';
 import { AllProblemActionComponent } from './components/problem-package/leader/web-service/all-problem-action/all-problem-action.component';
+import { IssueSearchComponent } from './components/issue-package/web-services/issue-search/issue-search.component';
+import { AddBatteryUsageComponent } from './components/battery-usage-package/web-service/add-battery-usage/add-battery-usage.component';
+import { CartTemplateComponent } from './components/cart-package/cart-template/cart-template.component';
+import { TaurusTemplateComponent } from './components/taurus-package/taurus-template/taurus-template.component';
+import { BatteryTemplateComponent } from './components/battery-package/battery-template/battery-template.component';
+import { AllTaurusComponent } from './components/taurus-package/web-services/all-taurus/all-taurus.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AllBatteryComponent,
     RemoveBatteryComponent,
     UpdateBatteryComponent,
     RemoveUserComponent,

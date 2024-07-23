@@ -5,10 +5,4 @@ export interface Battery {
   refBattery: string;
 
   batteryNumber: number;
-
-  chargeLevel: number;
-
-  state: string;
-  
-  idCart: number;
 }

@@ -44,6 +44,7 @@ export class CartService {
   }
 
   public addNewCart(cart: Cart): Observable<Cart> {
+
     const token = this.authService.getToken();
 
     if (!token) {
@@ -84,6 +85,17 @@ export class CartService {
       const headers = { Authorization: `Bearer ${token}` };
 
       return this.http.get<any>(`${this.baseUrl}/get-cart-by-id/${idCart}`, {headers});
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      throw new Error('No token found');
+    }
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
   }
 
 

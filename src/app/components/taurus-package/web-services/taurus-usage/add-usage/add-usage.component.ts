@@ -23,7 +23,7 @@ export class AddUsageComponent implements OnInit {
   user: Account | undefined;
   taurus: Taurus | undefined;
   taurusNumbers = [101, 102, 103, 104, 105, 106];
-  teamNames = ['BENOIS', 'THOMAZO', 'NIGHT']; // Ajouté pour la liste déroulante des noms d'équipe
+  teamNames = ['BENOIS', 'THOMAZO', 'NIGHT'];
 
   constructor(
     private fb: FormBuilder,
@@ -41,9 +41,9 @@ export class AddUsageComponent implements OnInit {
       name: ['', Validators.required],
       firstName: ['', Validators.required],
       service: ['', Validators.required],
-      usageDate: [new Date().toISOString().split('T')[0], Validators.required],
+      usageDate: [new Date().toISOString().slice(0, 16), Validators.required],
       taurusNumber: [null, Validators.required],
-      teamName: [null, Validators.required] // Ajouté pour la sélection de l'équipe
+      teamName: [null, Validators.required]
     });
 
     this.loadUserData();
@@ -96,7 +96,7 @@ export class AddUsageComponent implements OnInit {
               const taurusUsage: TaurusUsage = {
                 accountId: this.user!.idAccount,
                 taurusId: this.taurus!.idTaurus,
-                usageDate: this.usageForm.value.usageDate,
+                usageDate: new Date(this.usageForm.value.usageDate).toISOString(),
                 workSessionId: localStorage.getItem('workSessionId') || ''
               };
 
@@ -107,14 +107,13 @@ export class AddUsageComponent implements OnInit {
                   console.log('Taurus usage added successfully', data);
                   this.resumeService.setTaurusUsageData(data);
 
-                  // Ajouter AccountTeamDTO
                   const teamName = this.usageForm.value.teamName;
                   this.teamService.getIdTeamByName(teamName).subscribe(
                     (teamId: number) => {
                       const accountTeam: AccountTeamDTO = {
                         accountId: this.user!.idAccount,
                         teamId: teamId,
-                        startDate: this.usageForm.value.usageDate,
+                        startDate: taurusUsage.usageDate,
                         endDate: '', // Placeholder, will be calculated
                         shiftId: 0, // Placeholder, will be determined automatically
                         workSessionId: '' // Placeholder, will be generated automatically

@@ -1,0 +1,18 @@
+<div class="search-container">
+    <h2>Recherche de Problèmes</h2>
+    <form (ngSubmit)="search()">
+      <label for="team">Équipe:</label>
+      <select id="team" [(ngModel)]="selectedTeamId" name="team" required>
+        <option *ngFor="let team of teams" [value]="team.idTeam">{{team.name}}</option>
+      </select>
+      
+      <label for="startDate">Date de début:</label>
+      <input type="date" id="startDate" [(ngModel)]="startDate" name="startDate" required>
+      
+      <label for="endDate">Date de fin:</label>
+      <input type="date" id="endDate" [(ngModel)]="endDate" name="endDate" required>
+      
+      <button type="submit">Rechercher</button>
+    </form>
+  </div>
+  
