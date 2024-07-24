@@ -127,8 +127,6 @@ export class ResumeComponent implements OnInit {
           shift: this.shiftService.getShiftById(this.accountTeamData.shiftId)
         }).subscribe(
           ({ team, shift }) => {
-            console.log('Team:', team);
-            console.log('Shift:', shift);
             this.teamName = team.name;
             this.shiftName = shift.name;
           },

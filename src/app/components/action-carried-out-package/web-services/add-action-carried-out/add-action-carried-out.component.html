@@ -1,1 +1,17 @@
-<p>add-action-carried-out works!</p>
+<app-header></app-header>
+
+<div class="historical-container">
+  <h1 class="main-title">Ajouter une Action</h1>
+
+  <div class="form-wrapper">
+    <form (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="actionCarriedOut.description" name="description"></textarea>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Ajouter</button>
+    </form>
+  </div>
+</div>
+
+<app-footer class="footer"></app-footer>

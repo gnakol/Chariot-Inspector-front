@@ -72,8 +72,6 @@ import { AllTaurusComponent } from './components/taurus-package/web-services/all
     RemoveIssueComponent,
     RemoveActionCarriedOutComponent,
     UpdateActionCarriedOutComponent,
-    AddActionCarriedOutComponent,
-    AllActionCarriedOutComponent,
     AllUsageComponent,
     AddTaurusComponent,
     AllPickupComponent,

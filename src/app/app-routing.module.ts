@@ -31,6 +31,8 @@ import { TaurusTemplateComponent } from './components/taurus-package/taurus-temp
 import { AddTaurusComponent } from './components/taurus-package/web-services/taurus/add-taurus/add-taurus.component';
 import { AllBatteryComponent } from './components/battery-package/web-services/all-battery/all-battery.component';
 import { AllTaurusComponent } from './components/taurus-package/web-services/all-taurus/all-taurus.component';
+import { AddActionCarriedOutComponent } from './components/action-carried-out-package/web-services/add-action-carried-out/add-action-carried-out.component';
+import { AllActionCarriedOutComponent } from './components/action-carried-out-package/web-services/all-action-carried-out/all-action-carried-out.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -47,6 +49,7 @@ const routes: Routes = [
       { path: 'add-cart', component : AddCartComponent},
       { path: 'add-battery', component : AddBatteryComponent},
       { path: 'add-taurus', component : AddTaurusComponent},
+      { path: 'add-new-action-carried-out', component : AddActionCarriedOutComponent},
       { path: 'admin-template', component : TemplateComponent},
       { path: 'user-home', component : UserHomeComponent},
       { path: 'all-users', component: AllUserComponent},
@@ -57,6 +60,7 @@ const routes: Routes = [
       { path: 'all-cart', component : AllCartComponent},
       { path: 'all-battery', component : AllBatteryComponent},
       { path: 'all-taurus', component : AllTaurusComponent},
+      { path: 'all-action-carried-out', component : AllActionCarriedOutComponent},
       { path: 'issue-search', component: IssueSearchComponent},
       { path: 'cart-template', component: CartTemplateComponent},
       { path: 'battery-template', component : BatteryTemplateComponent},

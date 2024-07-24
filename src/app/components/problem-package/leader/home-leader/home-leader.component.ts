@@ -14,7 +14,7 @@ export class HomeLeaderComponent {
 
   allCart()
   {
-    this.route.navigateByUrl("/all-cart");
+    this.route.navigateByUrl("/dashboard/all-action-carried-out");
   }
 
   createActionCarridOut(){

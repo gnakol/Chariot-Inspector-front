@@ -101,4 +101,22 @@ export class TaurusService {
 
     return this.http.get<TaurusUsage>(`${this.baseUrl}/get-taurus-usage-by-taurus-id/${taurusId}`, { headers });
   }
+
+  takeTaurusUsageByWorkSessionId(workSessionId : string) : Observable<TaurusUsage>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<TaurusUsage>(`${this.baseUrl}/take-taurus-usage-by-work-session-id?workSessionId=${workSessionId}`, {headers});
+  }
+
+  private getHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      throw new Error('No token found');
+    }
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    });
+  }
 }

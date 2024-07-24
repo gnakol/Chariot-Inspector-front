@@ -16,20 +16,28 @@ export interface Account{
 
       civility : string;
 
-      taurusNumber : number;
+      //taurusNumber : number;
       
-      pickUpDateTime : Date;
+      //pickUpDateTime : Date;
 
-      function : string;
+      //function : string;
 }
 
 export interface AccountDTO {
+
       idAccount: number;
+
       name: string;
+
       firstName: string;
+
       email: string;
+
       password: string;
+
       service: string;
+
       civility: string;
+
       roleDTOS: Role[];
     }

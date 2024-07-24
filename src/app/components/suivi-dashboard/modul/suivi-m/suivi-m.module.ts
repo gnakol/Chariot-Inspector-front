@@ -59,6 +59,8 @@ import { TaurusTemplateComponent } from '../../../taurus-package/taurus-template
 import { BatteryTemplateComponent } from '../../../battery-package/battery-template/battery-template.component';
 import { AllTaurusComponent } from '../../../taurus-package/web-services/all-taurus/all-taurus.component';
 import { AllBatteryComponent } from '../../../battery-package/web-services/all-battery/all-battery.component';
+import { AddActionCarriedOutComponent } from '../../../action-carried-out-package/web-services/add-action-carried-out/add-action-carried-out.component';
+import { AllActionCarriedOutComponent } from '../../../action-carried-out-package/web-services/all-action-carried-out/all-action-carried-out.component';
 // ***********************************************
 
 
@@ -95,7 +97,9 @@ import { AllBatteryComponent } from '../../../battery-package/web-services/all-b
     TaurusTemplateComponent,
     BatteryTemplateComponent,
     AllTaurusComponent,
-    AllBatteryComponent
+    AllBatteryComponent,
+    AddActionCarriedOutComponent,
+    AllActionCarriedOutComponent
   ],
   imports: [
     CommonModule,
@@ -143,7 +147,9 @@ import { AllBatteryComponent } from '../../../battery-package/web-services/all-b
     TaurusTemplateComponent,
     BatteryTemplateComponent,
     AllTaurusComponent,
-    AllBatteryComponent
+    AllBatteryComponent,
+    AddActionCarriedOutComponent,
+    AllActionCarriedOutComponent
   ]
 })
 export class SuiviMModule { }

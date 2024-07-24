@@ -7,5 +7,3 @@ export interface CartResponse {
     totalPages: number;
     last: boolean;
   }
-
-  

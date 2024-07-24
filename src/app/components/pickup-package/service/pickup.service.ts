@@ -59,6 +59,13 @@ export class PickupService {
     return this.http.get<Pickup>(`${this.baseUrlPickup}/get-pickup-by-id/${idPickup}`, {headers});
   }
 
+  takePickupByWorkSessionId(workSessionId : string) : Observable<Pickup>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<Pickup>(`${this.baseUrlPickup}/take-pickup-by-work-session-id?workSessionId=${workSessionId}`, {headers});
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {
