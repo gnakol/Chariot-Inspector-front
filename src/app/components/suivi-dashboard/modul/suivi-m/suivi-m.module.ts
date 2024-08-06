@@ -61,6 +61,12 @@ import { AllTaurusComponent } from '../../../taurus-package/web-services/all-tau
 import { AllBatteryComponent } from '../../../battery-package/web-services/all-battery/all-battery.component';
 import { AddActionCarriedOutComponent } from '../../../action-carried-out-package/web-services/add-action-carried-out/add-action-carried-out.component';
 import { AllActionCarriedOutComponent } from '../../../action-carried-out-package/web-services/all-action-carried-out/all-action-carried-out.component';
+import { AddWareHouseComponent } from '../../../ware-house-package/web-services/add-ware-house/add-ware-house.component';
+import { AllWareHouseComponent } from '../../../ware-house-package/web-services/all-ware-house/all-ware-house.component';
+import { WareHouseTemplateComponent } from '../../../ware-house-package/ware-house-template/ware-house-template.component';
+import { AddServiceBeanComponent } from '../../../service-bean-package/web-services/add-service-bean/add-service-bean.component';
+import { AllServiceBeanComponent } from '../../../service-bean-package/web-services/all-service-bean/all-service-bean.component';
+import { ServiceBeanTemplateComponent } from '../../../service-bean-package/service-bean-template/service-bean-template.component';
 // ***********************************************
 
 
@@ -99,7 +105,13 @@ import { AllActionCarriedOutComponent } from '../../../action-carried-out-packag
     AllTaurusComponent,
     AllBatteryComponent,
     AddActionCarriedOutComponent,
-    AllActionCarriedOutComponent
+    AllActionCarriedOutComponent,
+    AddWareHouseComponent,
+    AllWareHouseComponent,
+    WareHouseTemplateComponent,
+    AddServiceBeanComponent,
+    AllServiceBeanComponent,
+    ServiceBeanTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -149,7 +161,13 @@ import { AllActionCarriedOutComponent } from '../../../action-carried-out-packag
     AllTaurusComponent,
     AllBatteryComponent,
     AddActionCarriedOutComponent,
-    AllActionCarriedOutComponent
+    AllActionCarriedOutComponent,
+    AddWareHouseComponent,
+    AllWareHouseComponent,
+    WareHouseTemplateComponent,
+    AddServiceBeanComponent,
+    AllServiceBeanComponent,
+    ServiceBeanTemplateComponent
   ]
 })
 export class SuiviMModule { }

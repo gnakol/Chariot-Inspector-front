@@ -33,6 +33,12 @@ import { AllBatteryComponent } from './components/battery-package/web-services/a
 import { AllTaurusComponent } from './components/taurus-package/web-services/all-taurus/all-taurus.component';
 import { AddActionCarriedOutComponent } from './components/action-carried-out-package/web-services/add-action-carried-out/add-action-carried-out.component';
 import { AllActionCarriedOutComponent } from './components/action-carried-out-package/web-services/all-action-carried-out/all-action-carried-out.component';
+import { AddWareHouseComponent } from './components/ware-house-package/web-services/add-ware-house/add-ware-house.component';
+import { AllWareHouseComponent } from './components/ware-house-package/web-services/all-ware-house/all-ware-house.component';
+import { WareHouseTemplateComponent } from './components/ware-house-package/ware-house-template/ware-house-template.component';
+import { AddServiceBeanComponent } from './components/service-bean-package/web-services/add-service-bean/add-service-bean.component';
+import { AllServiceBeanComponent } from './components/service-bean-package/web-services/all-service-bean/all-service-bean.component';
+import { ServiceBeanTemplateComponent } from './components/service-bean-package/service-bean-template/service-bean-template.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -50,6 +56,8 @@ const routes: Routes = [
       { path: 'add-battery', component : AddBatteryComponent},
       { path: 'add-taurus', component : AddTaurusComponent},
       { path: 'add-new-action-carried-out', component : AddActionCarriedOutComponent},
+      { path: 'add-new-ware-house', component : AddWareHouseComponent},
+      { path: 'add-new-service-bean', component : AddServiceBeanComponent},
       { path: 'admin-template', component : TemplateComponent},
       { path: 'user-home', component : UserHomeComponent},
       { path: 'all-users', component: AllUserComponent},
@@ -61,10 +69,14 @@ const routes: Routes = [
       { path: 'all-battery', component : AllBatteryComponent},
       { path: 'all-taurus', component : AllTaurusComponent},
       { path: 'all-action-carried-out', component : AllActionCarriedOutComponent},
+      { path: 'all-ware-house', component : AllWareHouseComponent},
+      { path: 'all-service-bean', component : AllServiceBeanComponent},
       { path: 'issue-search', component: IssueSearchComponent},
       { path: 'cart-template', component: CartTemplateComponent},
       { path: 'battery-template', component : BatteryTemplateComponent},
-      { path: 'taurus-template', component : TaurusTemplateComponent}
+      { path: 'taurus-template', component : TaurusTemplateComponent},
+      { path: 'ware-house-template', component : WareHouseTemplateComponent},
+      { path: 'service-bean-template', component : ServiceBeanTemplateComponent}
 
     ]
   },

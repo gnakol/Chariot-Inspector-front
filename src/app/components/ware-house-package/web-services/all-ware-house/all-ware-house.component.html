@@ -1,0 +1,27 @@
+<div class="card-container">
+    <h1 class="title">Liste des Entrepôts</h1>
+    <mat-form-field>
+      <mat-label>Filtrer par nom d'entrepôt</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer">
+    </mat-form-field>
+    <div *ngFor="let warehouse of pagedData">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle>{{ warehouse.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p><span class="label">ID :</span> <span class="value">{{ warehouse.idWareHouse }}</span></p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="viewDetails(warehouse)">Voir les détails</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="pagination-controls">
+      <button mat-raised-button (click)="prevPage()" [disabled]="currentPage === 0">Précédent</button>
+      <button mat-raised-button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">Suivant</button>
+    </div>
+  </div>
+  <footer class="footer">2024 Scapartois - Tous droits réservés</footer>
+  

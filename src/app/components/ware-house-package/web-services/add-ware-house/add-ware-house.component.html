@@ -1,0 +1,22 @@
+<div class="add-warehouse-container">
+    <h1 class="title">Ajout d'un Entrepôt</h1>
+    <form [formGroup]="wareHouseForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Informations sur l'entrepôt</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-fields">
+            <div class="form-group">
+              <label class="form-label">Nom de l'entrepôt</label>
+              <input matInput type="text" formControlName="name" placeholder="Entrez le nom de l'entrepôt">
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!wareHouseForm.valid">Ajouter</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  

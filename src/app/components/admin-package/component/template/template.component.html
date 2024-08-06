@@ -23,9 +23,14 @@
     <mat-card-title>Batteries</mat-card-title>
     <mat-card-content>Gérer les batteries</mat-card-content>
   </mat-card>
-  <mat-card class="admin-card" (click)="navigateTo('/admin/service')">
+  <mat-card class="admin-card" (click)="navigateTo('dashboard/service-bean-template')">
     <mat-icon class="admin-icon">build_circle</mat-icon>
     <mat-card-title>Services</mat-card-title>
     <mat-card-content>Gérer les services</mat-card-content>
+  </mat-card>
+  <mat-card class="admin-card" (click)="navigateTo('dashboard/ware-house-template')">
+    <mat-icon class="admin-icon">build_circle</mat-icon>
+    <mat-card-title>Entrepôt</mat-card-title>
+    <mat-card-content>Gérer les entrepôts</mat-card-content>
   </mat-card>
 </div>

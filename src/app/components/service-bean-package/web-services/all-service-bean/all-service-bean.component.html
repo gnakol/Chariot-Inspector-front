@@ -1,0 +1,23 @@
+<div class="card-container">
+    <h1 class="title">Liste des Services de Compte</h1>
+    <mat-form-field>
+      <mat-label>Filtrer par nom de service</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filtrer">
+    </mat-form-field>
+    <div *ngFor="let service of filteredServices">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle>{{ service.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p><span class="label">Entrepôt : </span> <span class="value">{{ service.wareHouseName }}</span></p> <!-- Afficher le nom -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="viewDetail(service)">Voir les détails</button>
+          <button mat-raised-button color="warn" (click)="deleteService(service)">Supprimer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

@@ -50,15 +50,12 @@ import { AddTeamComponent } from './components/team-package/web-service/add-team
 import { AllTeamComponent } from './components/team-package/web-service/all-team/all-team.component';
 import { AllShiftComponent } from './components/shift-package/web-service/all-shift/all-shift.component';
 import { AddShiftComponent } from './components/shift-package/web-service/add-shift/add-shift.component';
-import { TemplateProblemComponent } from './components/problem-package/template-problem/template-problem.component';
-import { HomeLeaderComponent } from './components/problem-package/leader/home-leader/home-leader.component';
-import { AllProblemActionComponent } from './components/problem-package/leader/web-service/all-problem-action/all-problem-action.component';
-import { IssueSearchComponent } from './components/issue-package/web-services/issue-search/issue-search.component';
-import { AddBatteryUsageComponent } from './components/battery-usage-package/web-service/add-battery-usage/add-battery-usage.component';
-import { CartTemplateComponent } from './components/cart-package/cart-template/cart-template.component';
-import { TaurusTemplateComponent } from './components/taurus-package/taurus-template/taurus-template.component';
-import { BatteryTemplateComponent } from './components/battery-package/battery-template/battery-template.component';
-import { AllTaurusComponent } from './components/taurus-package/web-services/all-taurus/all-taurus.component';
+import { AddFuelTypeComponent } from './components/fuel-type-package/web-services/add-fuel-type/add-fuel-type.component';
+import { AllFuelTypeComponent } from './components/fuel-type-package/web-services/all-fuel-type/all-fuel-type.component';
+import { AllCartCategoryComponent } from './components/cart-category-bean-package/web-services/all-cart-category/all-cart-category.component';
+import { AddCartCategoryComponent } from './components/cart-category-bean-package/web-services/add-cart-category/add-cart-category.component';
+import { AddManufacturerComponent } from './components/manufacturer-package/web-services/add-manufacturer/add-manufacturer.component';
+import { AllManufacturerComponent } from './components/manufacturer-package/web-services/all-manufacturer/all-manufacturer.component';
 
 
 @NgModule({
@@ -82,7 +79,13 @@ import { AllTaurusComponent } from './components/taurus-package/web-services/all
     AddTeamComponent,
     AllTeamComponent,
     AllShiftComponent,
-    AddShiftComponent
+    AddShiftComponent,
+    AddFuelTypeComponent,
+    AllFuelTypeComponent,
+    AllCartCategoryComponent,
+    AddCartCategoryComponent,
+    AddManufacturerComponent,
+    AllManufacturerComponent
   ],
   imports: [
     BrowserModule,

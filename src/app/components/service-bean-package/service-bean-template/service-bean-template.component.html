@@ -1,0 +1,14 @@
+<mat-toolbar color="primary" class="toolbar">
+    <span>Gestion des Services</span>
+</mat-toolbar>
+
+<div class="user-actions">
+    <button class="action-button create" (click)="openCreateServiceDialog()">
+        <span class="icon">+</span>
+        <span>Ajouter un service</span>
+    </button>
+    <button class="action-button list" (click)="openViewServiceList()">
+        <span class="icon">📋</span>
+        <span>Liste des Services</span> <!-- Corrected here -->
+    </button>
+</div>
