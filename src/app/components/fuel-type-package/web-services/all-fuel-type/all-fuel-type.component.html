@@ -1,1 +1,23 @@
-<p>all-fuel-type works!</p>
+<div class="card-container">
+    <h1 class="title">List of Fuel Types</h1>
+    <mat-form-field>
+      <mat-label>Filter by fuel type name</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+    <div *ngFor="let fuelType of filteredFuelTypes">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle>{{ fuelType.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <!-- Additional content can go here -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="viewDetail(fuelType)">View Details</button>
+          <button mat-raised-button color="warn" (click)="deleteFuelType(fuelType)">Delete</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

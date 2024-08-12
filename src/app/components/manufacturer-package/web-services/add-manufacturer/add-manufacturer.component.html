@@ -1,1 +1,20 @@
-<p>add-manufacturer works!</p>
+<div class="add-manufacturer-container">
+    <h1 class="title">Ajouter un partenaire fabriquant chariot</h1>
+    <form [formGroup]="manufacturerForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title> Fabriquant</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-group">
+            <label class="form-label">Nom du fabriquant</label>
+            <input matInput type="text" formControlName="name" placeholder="Enter son nom">
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!manufacturerForm.valid">Add</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  

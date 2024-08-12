@@ -1,1 +1,20 @@
-<p>add-fuel-type works!</p>
+<div class="add-fuel-type-container">
+    <h1 class="title">Ajouter un chariot par type de d'alimentation</h1>
+    <form [formGroup]="fuelTypeForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Alimentation chariot</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-group">
+            <label class="form-label">Nom</label>
+            <input matInput type="text" formControlName="name" placeholder="Entrer une alimentation">
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!fuelTypeForm.valid">Ajouter</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  

@@ -39,6 +39,15 @@ import { WareHouseTemplateComponent } from './components/ware-house-package/ware
 import { AddServiceBeanComponent } from './components/service-bean-package/web-services/add-service-bean/add-service-bean.component';
 import { AllServiceBeanComponent } from './components/service-bean-package/web-services/all-service-bean/all-service-bean.component';
 import { ServiceBeanTemplateComponent } from './components/service-bean-package/service-bean-template/service-bean-template.component';
+import { AddManufacturerComponent } from './components/manufacturer-package/web-services/add-manufacturer/add-manufacturer.component';
+import { ManufacturerTemplateComponent } from './components/manufacturer-package/manufacturer-template/manufacturer-template.component';
+import { AllManufacturerComponent } from './components/manufacturer-package/web-services/all-manufacturer/all-manufacturer.component';
+import { FuelTypeTemplateComponent } from './components/fuel-type-package/fuel-type-template/fuel-type-template.component';
+import { CartCategoryTemplateComponent } from './components/cart-category-bean-package/cart-category-template/cart-category-template.component';
+import { AddCartCategoryComponent } from './components/cart-category-bean-package/web-services/add-cart-category/add-cart-category.component';
+import { AddFuelTypeComponent } from './components/fuel-type-package/web-services/add-fuel-type/add-fuel-type.component';
+import { AllCartCategoryComponent } from './components/cart-category-bean-package/web-services/all-cart-category/all-cart-category.component';
+import { AllFuelTypeComponent } from './components/fuel-type-package/web-services/all-fuel-type/all-fuel-type.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -58,6 +67,9 @@ const routes: Routes = [
       { path: 'add-new-action-carried-out', component : AddActionCarriedOutComponent},
       { path: 'add-new-ware-house', component : AddWareHouseComponent},
       { path: 'add-new-service-bean', component : AddServiceBeanComponent},
+      { path: 'add-new-manufacturer', component : AddManufacturerComponent},
+      { path: 'add-new-cart-category', component : AddCartCategoryComponent},
+      { path: 'add-new-fuel-type', component : AddFuelTypeComponent},
       { path: 'admin-template', component : TemplateComponent},
       { path: 'user-home', component : UserHomeComponent},
       { path: 'all-users', component: AllUserComponent},
@@ -71,12 +83,18 @@ const routes: Routes = [
       { path: 'all-action-carried-out', component : AllActionCarriedOutComponent},
       { path: 'all-ware-house', component : AllWareHouseComponent},
       { path: 'all-service-bean', component : AllServiceBeanComponent},
+      { path: 'all-manufacturer', component : AllManufacturerComponent},
+      { path: 'all-cart-category', component : AllCartCategoryComponent},
+      { path: 'all-fuel-type', component : AllFuelTypeComponent},
       { path: 'issue-search', component: IssueSearchComponent},
       { path: 'cart-template', component: CartTemplateComponent},
       { path: 'battery-template', component : BatteryTemplateComponent},
       { path: 'taurus-template', component : TaurusTemplateComponent},
       { path: 'ware-house-template', component : WareHouseTemplateComponent},
-      { path: 'service-bean-template', component : ServiceBeanTemplateComponent}
+      { path: 'service-bean-template', component : ServiceBeanTemplateComponent},
+      { path: 'manufacturer-template', component : ManufacturerTemplateComponent},
+      { path: 'fuel-type-template', component : FuelTypeTemplateComponent},
+      { path: 'cart-category-template', component : CartCategoryTemplateComponent}
 
     ]
   },

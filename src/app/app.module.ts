@@ -56,6 +56,9 @@ import { AllCartCategoryComponent } from './components/cart-category-bean-packag
 import { AddCartCategoryComponent } from './components/cart-category-bean-package/web-services/add-cart-category/add-cart-category.component';
 import { AddManufacturerComponent } from './components/manufacturer-package/web-services/add-manufacturer/add-manufacturer.component';
 import { AllManufacturerComponent } from './components/manufacturer-package/web-services/all-manufacturer/all-manufacturer.component';
+import { ManufacturerTemplateComponent } from './components/manufacturer-package/manufacturer-template/manufacturer-template.component';
+import { FuelTypeTemplateComponent } from './components/fuel-type-package/fuel-type-template/fuel-type-template.component';
+import { CartCategoryTemplateComponent } from './components/cart-category-bean-package/cart-category-template/cart-category-template.component';
 
 
 @NgModule({
@@ -79,13 +82,7 @@ import { AllManufacturerComponent } from './components/manufacturer-package/web-
     AddTeamComponent,
     AllTeamComponent,
     AllShiftComponent,
-    AddShiftComponent,
-    AddFuelTypeComponent,
-    AllFuelTypeComponent,
-    AllCartCategoryComponent,
-    AddCartCategoryComponent,
-    AddManufacturerComponent,
-    AllManufacturerComponent
+    AddShiftComponent
   ],
   imports: [
     BrowserModule,

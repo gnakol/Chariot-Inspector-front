@@ -1,1 +1,20 @@
-<p>add-cart-category works!</p>
+<div class="add-cart-category-container">
+    <h1 class="title">Ajouter une Categorie de chariot</h1>
+    <form [formGroup]="cartCategoryForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Information sur la categorie de chariot</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="form-group">
+            <label class="form-label"> Nom de la Categorie</label>
+            <input matInput type="text" formControlName="name" placeholder="Entrer nom de la categorie">
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!cartCategoryForm.valid">Add</button>
+        </mat-card-actions>
+      </mat-card>
+    </form>
+  </div>
+  

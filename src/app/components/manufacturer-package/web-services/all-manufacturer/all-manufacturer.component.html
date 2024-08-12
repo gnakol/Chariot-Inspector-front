@@ -1,1 +1,23 @@
-<p>all-manufacturer works!</p>
+<div class="card-container">
+    <h1 class="title">Liste des partenaires</h1>
+    <mat-form-field>
+      <mat-label>Filter by manufacturer name</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+    <div *ngFor="let manufacturer of filteredManufacturers">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-subtitle>{{ manufacturer.name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <!-- Additional content can go here -->
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="viewDetail(manufacturer)">View Details</button>
+          <!-- <button mat-raised-button color="warn" (click)="deleteManufacturer(manufacturer)">Delete</button> -->
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

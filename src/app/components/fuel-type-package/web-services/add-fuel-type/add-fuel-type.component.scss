@@ -1,0 +1,103 @@
+/* Container général de la page d'ajout de type de carburant */
+.add-fuel-type-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0A2E36 0%, #026773 100%);
+    color: white;
+    padding: 20px;
+  }
+  
+  /* Style pour le titre */
+  .title {
+    width: 100%;
+    text-align: center;
+    color: #FFD700;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Style pour le mat-card */
+  mat-card {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #333;
+  }
+  
+  /* Style pour le mat-card-header */
+  mat-card-header {
+    background-color: #006064;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  /* Style pour le mat-card-title */
+  mat-card-title {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  /* Style pour les groupes de formulaire */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  /* Style pour les labels */
+  .form-label {
+    color: #4CAF50;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  /* Style pour les input */
+  input[matInput] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    background: white;
+    color: black;
+    width: 100%;
+  }
+  
+  /* Style pour les boutons */
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    width: auto;
+    color: white;
+    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+  
+  /* Animation légère pour le bouton au survol */
+  button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Désactivation des boutons */
+  button[disabled] {
+    background-color: #9E9E9E;
+    box-shadow: none;
+  }
+  

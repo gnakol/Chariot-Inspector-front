@@ -67,6 +67,15 @@ import { WareHouseTemplateComponent } from '../../../ware-house-package/ware-hou
 import { AddServiceBeanComponent } from '../../../service-bean-package/web-services/add-service-bean/add-service-bean.component';
 import { AllServiceBeanComponent } from '../../../service-bean-package/web-services/all-service-bean/all-service-bean.component';
 import { ServiceBeanTemplateComponent } from '../../../service-bean-package/service-bean-template/service-bean-template.component';
+import { ManufacturerTemplateComponent } from '../../../manufacturer-package/manufacturer-template/manufacturer-template.component';
+import { AddManufacturerComponent } from '../../../manufacturer-package/web-services/add-manufacturer/add-manufacturer.component';
+import { AllManufacturerComponent } from '../../../manufacturer-package/web-services/all-manufacturer/all-manufacturer.component';
+import { AddCartCategoryComponent } from '../../../cart-category-bean-package/web-services/add-cart-category/add-cart-category.component';
+import { AllCartCategoryComponent } from '../../../cart-category-bean-package/web-services/all-cart-category/all-cart-category.component';
+import { AddFuelTypeComponent } from '../../../fuel-type-package/web-services/add-fuel-type/add-fuel-type.component';
+import { AllFuelTypeComponent } from '../../../fuel-type-package/web-services/all-fuel-type/all-fuel-type.component';
+import { CartCategoryTemplateComponent } from '../../../cart-category-bean-package/cart-category-template/cart-category-template.component';
+import { FuelTypeTemplateComponent } from '../../../fuel-type-package/fuel-type-template/fuel-type-template.component';
 // ***********************************************
 
 
@@ -111,7 +120,16 @@ import { ServiceBeanTemplateComponent } from '../../../service-bean-package/serv
     WareHouseTemplateComponent,
     AddServiceBeanComponent,
     AllServiceBeanComponent,
-    ServiceBeanTemplateComponent
+    ServiceBeanTemplateComponent,
+    ManufacturerTemplateComponent,
+    AddManufacturerComponent,
+    AllManufacturerComponent,
+    AddCartCategoryComponent,
+    AllCartCategoryComponent,
+    AddFuelTypeComponent,
+    AllFuelTypeComponent,
+    CartCategoryTemplateComponent,
+    FuelTypeTemplateComponent
   ],
   imports: [
     CommonModule,
@@ -167,7 +185,16 @@ import { ServiceBeanTemplateComponent } from '../../../service-bean-package/serv
     WareHouseTemplateComponent,
     AddServiceBeanComponent,
     AllServiceBeanComponent,
-    ServiceBeanTemplateComponent
+    ServiceBeanTemplateComponent,
+    ManufacturerTemplateComponent,
+    AddManufacturerComponent,
+    AllManufacturerComponent,
+    AddFuelTypeComponent,
+    AllFuelTypeComponent,
+    AddCartCategoryComponent,
+    AllCartCategoryComponent,
+    CartCategoryTemplateComponent,
+    FuelTypeTemplateComponent
   ]
 })
 export class SuiviMModule { }
