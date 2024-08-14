@@ -40,6 +40,18 @@ export class ServiceBeanService {
     return this.http.delete<any>(`${this.baseUrlAccountServiceBean}/remove-account-service-bean/${idServiceBean}`, { headers, responseType: 'text' as 'json' });
   }
 
+  getServicesByWarehouseId(wareHouseId: number, page: number = 0, size: number = 10): Observable<AccountServiceResponse> {
+    const headers = this.getHeaders();
+    return this.http.get<AccountServiceResponse>(`${this.baseUrlAccountServiceBean}/get-all-services-bean-by-warehouse-id/${wareHouseId}`, { headers });
+  }
+
+  getAccountServiceBeanById(idAccountServiceBean : number) : Observable<AccountServiceDTO>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<AccountServiceDTO>(`${this.baseUrlAccountServiceBean}/get-account-service-bean-by-id/${idAccountServiceBean}`, {headers});
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {

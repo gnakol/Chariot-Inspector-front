@@ -11,6 +11,8 @@ import { AccountTeamService } from '../../../../account-team-package/service/acc
 import { TeamService } from '../../../../team-package/service/team.service';
 import { AccountTeamDTO } from '../../../../account-team-package/bean/account-team';
 import { Taurus } from '../../../bean/taurus';
+import { AccountServiceDTO } from '../../../../service-bean-package/bean/sevice-bean';
+import { ServiceBeanService } from '../../../../service-bean-package/service-bean.service';
 
 @Component({
   selector: 'app-add-usage',
@@ -24,6 +26,7 @@ export class AddUsageComponent implements OnInit {
   taurus: Taurus | undefined;
   taurusNumbers = [101, 102, 103, 104, 105, 106];
   teamNames = ['BENOIS', 'THOMAZO', 'NIGHT'];
+  accountServiceData : AccountServiceDTO | undefined;
 
   constructor(
     private fb: FormBuilder,
@@ -33,7 +36,8 @@ export class AddUsageComponent implements OnInit {
     private taurusService: TaurusService,
     private userService: UserService,
     private accountTeamService: AccountTeamService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private serviceBeanService : ServiceBeanService
   ) { }
 
   ngOnInit(): void {
@@ -54,18 +58,32 @@ export class AddUsageComponent implements OnInit {
     if (token) {
       const payload = this.authService.parseJwt(token);
       const email = payload.sub;
-
+  
       this.userService.getUserIdByEmail(email).subscribe(
         (userIdResponse: any) => {
           const userId = userIdResponse;
           this.userService.getAccountById(userId).subscribe(
             (data: Account) => {
               this.user = data;
-              this.usageForm.patchValue({
-                name: this.user.name,
-                firstName: this.user.firstName,
-                service: this.user.service
-              });
+              console.log('User data:', this.user);  // Debugging: Vérifier les données utilisateur
+  
+              if (this.user.accountServiceBeanId) {
+                this.serviceBeanService.getAccountServiceBeanById(this.user.accountServiceBeanId).subscribe(
+                  (serviceData: AccountServiceDTO) => {
+                    this.accountServiceData = serviceData;
+                    console.log('Service data:', this.accountServiceData);  // Debugging: Vérifier les données du service
+  
+                    this.usageForm.patchValue({
+                      name: this.user?.name,
+                      firstName: this.user?.firstName,
+                      service: this.accountServiceData?.name
+                    });
+                  },
+                  (error: any) => {
+                    console.error('Error loading service data:', error);
+                  }
+                );
+              }
             },
             (error: any) => {
               console.error('Error loading user data:', error);
@@ -78,7 +96,7 @@ export class AddUsageComponent implements OnInit {
       );
     }
   }
-
+  
   onSubmit() {
     if (this.usageForm.valid) {
       const taurusNumber = this.usageForm.value.taurusNumber;

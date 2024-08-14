@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
+import { WareHouseService } from '../../../ware-house-package/service/ware-house.service';
+import { ServiceBeanService } from '../../../service-bean-package/service-bean.service';
 
 @Component({
   selector: 'app-update-user',
@@ -11,6 +13,9 @@ import { UserService } from '../../service/user.service';
 export class UpdateUserComponent implements OnInit {
   accountForm!: FormGroup;
   userId!: number;
+  wareHouses: any[] = [];
+  services: any[] = [];
+  
   roles = [
     { idRole: 1, roleName: 'RECEPTIONNAIRE' },
     { idRole: 2, roleName: 'CHEF_EQUIPE' },
@@ -24,7 +29,9 @@ export class UpdateUserComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private wareHouseService: WareHouseService,
+    private serviceBeanService: ServiceBeanService
   ) { }
 
   ngOnInit(): void {
@@ -34,12 +41,27 @@ export class UpdateUserComponent implements OnInit {
       firstName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: [''],
-      service: ['', Validators.required],
+      wareHouse: ['', Validators.required],
+      accountServiceBeanId: ['', Validators.required],
       civility: ['', Validators.required],
       roleDTOS: [[], Validators.required]
     });
 
+    this.loadWarehouses();
     this.loadUserData();
+  }
+
+  loadWarehouses() {
+    this.wareHouseService.getAllWareHouse().subscribe(data => {
+      this.wareHouses = data.content;
+    });
+  }
+
+  onWarehouseChange(event: any) {
+    const warehouseId = event.value;
+    this.serviceBeanService.getServicesByWarehouseId(warehouseId).subscribe(data => {
+      this.services = data.content;
+    });
   }
 
   loadUserData() {
@@ -50,10 +72,23 @@ export class UpdateUserComponent implements OnInit {
             name: user.name,
             firstName: user.firstName,
             email: user.email,
-            service: user.service,
+            wareHouse: user.accountServiceBeanId,  // Adjusted based on your DTO structure
+            accountServiceBeanId: user.accountServiceBeanId,
             civility: user.civility,
             roleDTOS: user.roles ? user.roles.map((role: any) => role.idRole) : []
           });
+
+          // Load services for the user's warehouse
+          this.serviceBeanService.getAccountServiceBeanById(user.accountServiceBeanId).subscribe(
+            serviceData => {
+              if (serviceData) {
+                this.accountForm.patchValue({
+                  wareHouse: serviceData.wareHouseId
+                });
+                this.onWarehouseChange({ value: serviceData.wareHouseId });
+              }
+            }
+          );
         }
       },
       error => {

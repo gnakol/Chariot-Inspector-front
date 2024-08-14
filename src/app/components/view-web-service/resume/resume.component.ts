@@ -17,6 +17,8 @@ import { forkJoin } from 'rxjs';
 import { BatteryUsage } from '../../battery-usage-package/bean/battery-usage';
 import { CartService } from '../../cart-package/service/cart.service';
 import { BatteryService } from '../../battery-package/service/battery.service';
+import { AccountServiceDTO } from '../../service-bean-package/bean/sevice-bean';
+import { ServiceBeanService } from '../../service-bean-package/service-bean.service';
 
 interface CartNode {
   item: string;
@@ -37,6 +39,7 @@ interface CartFlatNode {
 export class ResumeComponent implements OnInit {
 
   accountData: Account | null = null;
+  accountServiceData : AccountServiceDTO | null = null;
   batteryUsageData: BatteryUsage[] = [];
   taurusUsageData: TaurusUsage | null = null;
   taurusData: Taurus | null = null;
@@ -78,7 +81,8 @@ export class ResumeComponent implements OnInit {
     private teamService: TeamService,
     private shiftService: ShiftService,
     private cartService : CartService,
-    private batteryService : BatteryService
+    private batteryService : BatteryService,
+    private serviceBeanService : ServiceBeanService
   ) {}
 
   ngOnInit(): void {
@@ -88,6 +92,17 @@ export class ResumeComponent implements OnInit {
     this.pickupData = this.resumeService.getPickupData();
     this.issueData = this.resumeService.getIssueData() || [];
     this.accountTeamData = this.resumeService.getAccountTeamData();
+
+    if (this.accountData) {
+      this.serviceBeanService.getAccountServiceBeanById(this.accountData.accountServiceBeanId).subscribe(
+        (serviceData) => {
+          this.accountServiceData = serviceData;
+        },
+        (error) => {
+          console.error('Error fetching service data:', error);
+        }
+      );
+    }
 
     if(this.pickupData)
     {

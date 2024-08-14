@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
+import { WareHouseService } from '../../../ware-house-package/service/ware-house.service';
+import { ServiceBeanService } from '../../../service-bean-package/service-bean.service';
 
 @Component({
   selector: 'app-add-user',
@@ -11,6 +13,11 @@ import { Router } from '@angular/router';
 export class AddUserComponent implements OnInit {
 
   accountForm!: FormGroup;
+
+  wareHouses : any[] = [];
+
+  services : any[] = [];
+
   roles = [
     { idRole: 1, roleName: 'RECEPTIONNAIRE' },
     { idRole: 2, roleName: 'CHEF_EQUIPE' },
@@ -23,7 +30,9 @@ export class AddUserComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private userService: UserService, 
-    private router: Router
+    private router: Router,
+    private wareHouseService : WareHouseService,
+    private serviceBeanService : ServiceBeanService
   ) { }
 
   ngOnInit(): void {
@@ -32,12 +41,28 @@ export class AddUserComponent implements OnInit {
       firstName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      service: ['', Validators.required],
+      wareHouse: ['', Validators.required],
+      accountServiceBeanId: ['', Validators.required],
       civility: ['', Validators.required],
       roleIds: [[], Validators.required]
     });
+
+    this.loadWarehouses();
   }
 
+  loadWarehouses() {
+    this.wareHouseService.getAllWareHouse().subscribe(data => {
+      this.wareHouses = data.content;
+    });
+  }
+
+  onWarehouseChange(event: any) {
+    const warehouseId = event.value;
+    this.serviceBeanService.getServicesByWarehouseId(warehouseId).subscribe(data => {
+      this.services = data.content;
+    });
+  }
+  
   onRoleSelectionChange(event: any) {
     console.log('Selected Role IDs:', event.value);
   }
@@ -46,13 +71,15 @@ export class AddUserComponent implements OnInit {
     if (this.accountForm.valid) {
       const formValue = this.accountForm.value;
 
+      console.log('contenue du service recuperer :', formValue.accountServiceBeanId);
+
       // Créer l'objet Account avec les rôles inclus
       const account = {
         name: formValue.name,
         firstName: formValue.firstName,
         email: formValue.email,
         password: formValue.password,
-        service: formValue.service,
+        accountServiceBeanId: formValue.accountServiceBeanId,
         civility: formValue.civility,
         roleDTOS: formValue.roleIds.map((idRole: number) => ({ idRole }))
       };

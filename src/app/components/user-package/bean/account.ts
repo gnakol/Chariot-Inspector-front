@@ -12,15 +12,11 @@ export interface Account{
 
       password : string;
 
-      service : string;
+      accountServiceBeanId: number;
 
       civility : string;
 
-      //taurusNumber : number;
-      
-      //pickUpDateTime : Date;
-
-      //function : string;
+      roleDTOS: Role[];
 }
 
 export interface AccountDTO {

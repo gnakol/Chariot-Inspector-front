@@ -6,6 +6,7 @@ import { Pickup } from '../../pickup-package/bean/pickup';
 import { Issue } from '../../issue-package/bean/issue';
 import { AccountTeamDTO } from '../../account-team-package/bean/account-team';
 import { BatteryUsage } from '../../battery-usage-package/bean/battery-usage';
+import { AccountServiceDTO } from '../../service-bean-package/bean/sevice-bean';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class ResumeService {
   private pickupData: Pickup | null = null;
   private issueData: Issue[] = [];
   private accountTeamData: AccountTeamDTO | null = null;
+  private accountServiceData : AccountServiceDTO | null = null;
 
   constructor() { }
 
@@ -80,6 +82,16 @@ export class ResumeService {
 
   getIssueData(): Issue[] {
     return this.issueData;
+  }
+
+  setAccountServiceData(accountService : AccountServiceDTO) : void
+  {
+    this.accountServiceData = accountService;
+  }
+
+  getAccountServiceData() : AccountServiceDTO | null
+  {
+    return this.accountServiceData;
   }
 
   clearData(): void {

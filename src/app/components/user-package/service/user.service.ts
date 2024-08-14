@@ -46,6 +46,7 @@ export class UserService {
     const headers = this.getHeaders();
     return this.http.get<AccountResponse>(`${this.baseUrl}/all?page=${page}&size=${size}`, { headers });
   }
+  
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
