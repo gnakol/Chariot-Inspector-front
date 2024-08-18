@@ -76,6 +76,7 @@ import { AddFuelTypeComponent } from '../../../fuel-type-package/web-services/ad
 import { AllFuelTypeComponent } from '../../../fuel-type-package/web-services/all-fuel-type/all-fuel-type.component';
 import { CartCategoryTemplateComponent } from '../../../cart-category-bean-package/cart-category-template/cart-category-template.component';
 import { FuelTypeTemplateComponent } from '../../../fuel-type-package/fuel-type-template/fuel-type-template.component';
+import { UpdateCartComponent } from '../../../cart-package/web-services/update-cart/update-cart.component';
 // ***********************************************
 
 
@@ -129,7 +130,8 @@ import { FuelTypeTemplateComponent } from '../../../fuel-type-package/fuel-type-
     AddFuelTypeComponent,
     AllFuelTypeComponent,
     CartCategoryTemplateComponent,
-    FuelTypeTemplateComponent
+    FuelTypeTemplateComponent,
+    UpdateCartComponent
   ],
   imports: [
     CommonModule,
@@ -194,7 +196,8 @@ import { FuelTypeTemplateComponent } from '../../../fuel-type-package/fuel-type-
     AddCartCategoryComponent,
     AllCartCategoryComponent,
     CartCategoryTemplateComponent,
-    FuelTypeTemplateComponent
+    FuelTypeTemplateComponent,
+    UpdateCartComponent
   ]
 })
 export class SuiviMModule { }

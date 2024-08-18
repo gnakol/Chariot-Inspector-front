@@ -27,6 +27,13 @@ export class CartCategoryService {
     return this.http.delete<void>(`${this.baseUrlCartCategory}/delete-cart-category/${idCategory}`, { headers });
   }
 
+  getIdCartCategoryByName(name : string) : Observable<number>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<number>(`${this.baseUrlCartCategory}/get-id-cart-category-by-name?name=${name}`, {headers});
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {

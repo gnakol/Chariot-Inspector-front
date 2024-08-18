@@ -1,8 +1,9 @@
-export interface Cart{
+export interface Cart {
+      idCart: number;
+      cartNumber: string;
+      manufacturerId: number;  // added
+      categoryId: number;      // added
+      fuelTypeId: number;      // added
 
-      idCart : number;
-
-      cartNumber : string;
-
-      brand : string;
 }
+    

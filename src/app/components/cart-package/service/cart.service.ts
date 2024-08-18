@@ -44,20 +44,18 @@ export class CartService {
   }
 
   public addNewCart(cart: Cart): Observable<Cart> {
-
     const token = this.authService.getToken();
-
     if (!token) {
       throw new Error('No token found');
     }
-
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     });
-
+  
     return this.http.post<Cart>(`${this.baseUrl}/add-new-cart`, cart, { headers });
   }
+  
 
   public getIdCartByNum(cartNumber : string) : Observable<any>
   {
@@ -85,6 +83,13 @@ export class CartService {
       const headers = { Authorization: `Bearer ${token}` };
 
       return this.http.get<any>(`${this.baseUrl}/get-cart-by-id/${idCart}`, {headers});
+  }
+
+  removeCart(idCart : number) : Observable<any>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.delete<any>(`${this.baseUrl}/remove-cart/${idCart}`, { headers, responseType: 'text' as 'json' });
   }
 
   private getHeaders(): HttpHeaders {

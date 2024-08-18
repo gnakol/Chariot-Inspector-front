@@ -59,6 +59,7 @@ import { AllManufacturerComponent } from './components/manufacturer-package/web-
 import { ManufacturerTemplateComponent } from './components/manufacturer-package/manufacturer-template/manufacturer-template.component';
 import { FuelTypeTemplateComponent } from './components/fuel-type-package/fuel-type-template/fuel-type-template.component';
 import { CartCategoryTemplateComponent } from './components/cart-category-bean-package/cart-category-template/cart-category-template.component';
+import { UpdateCartComponent } from './components/cart-package/web-services/update-cart/update-cart.component';
 
 
 @NgModule({

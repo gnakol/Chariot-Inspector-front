@@ -8,6 +8,8 @@ import { AuthService } from '../../../../authenticate/core/auth.service';
 import { UserService } from '../../../user-package/service/user.service';
 import { Cart } from '../../../cart-package/bean/cart';
 import { Pickup } from '../../bean/pickup';
+import { IssueService } from '../../../issue-package/service/issue.service';
+import { Issue } from '../../../issue-package/bean/issue';
 
 @Component({
   selector: 'app-add-pickup',
@@ -26,7 +28,8 @@ export class AddPickupComponent implements OnInit {
     private pickupService: PickupService,
     private resumeService: ResumeService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private issueService : IssueService
   ) { }
 
   ngOnInit(): void {
@@ -85,6 +88,63 @@ export class AddPickupComponent implements OnInit {
     });
   }
 
+  loadRelevantFields() {
+    const selectedCartId = this.pickupForm.get('cartId')?.value;
+    const selectedCart = this.carts.find(cart => cart.idCart === selectedCartId);
+  
+    if (selectedCart) {
+      this.pickupService.getRelevantFields(selectedCart.idCart).subscribe(
+        relevantFieldsMap => {
+          const relevantFields: string[] = [];
+  
+          // Parcourir les entrées de l'objet
+          Object.entries(relevantFieldsMap).forEach(([key, value]) => {
+            if (value) {
+              relevantFields.push(key);
+            }
+          });
+  
+          // Masquer ou afficher les champs en fonction des relevantFields
+          this.updateFormFieldsVisibility(relevantFields);
+        },
+        error => {
+          console.error('Error loading relevant fields:', error);
+        }
+      );
+    }
+  }
+  
+  
+  
+
+  updateFormFieldsVisibility(relevantFields: string[]) {
+    // Liste complète des champs du formulaire
+    const fields = [
+      'conditionChassis',            // État du châssis / carter
+      'wheelsTornPlat',              // Roues non déchirées et absence de plat
+      'batteryCablesSockets',        // Câbles et prises batterie
+      'conditionForks',              // État des fourches
+      'cleanNonSlipPlatform',        // Plateforme propre et anti-dérapante
+      'windshield',                  // Pare-brise (pour chariot frontal)
+      'gasBlockStrap',               // Bloc gaz + sangle (pour chariot frontal)
+      'forwardReverseControl',       // Commandes de marche avant/arrière
+      'honk',                        // Klaxon
+      'functionalElevationSystem',   // Système d'élévation fonctionnel
+      'emergencyStop',               // Arrêt d'urgence
+      'noLeak',                      // Absence de fuite
+      'antiCrushButton'              // Bouton anti-écrasement
+    ];
+  
+    fields.forEach(field => {
+      if (relevantFields.includes(field)) {
+        this.pickupForm.get(field)?.enable();
+      } else {
+        this.pickupForm.get(field)?.disable();
+      }
+    });
+  }
+  
+
   onSubmit(): void {
     if (this.pickupForm.valid) {
       const newPickup: Pickup = {
@@ -104,4 +164,43 @@ export class AddPickupComponent implements OnInit {
       );
     }
   }
+
+  createIssuesIfNeeded(pickup: Pickup) {
+    const fieldsToCheck: Array<{ field: keyof Pickup, label: string }> = [
+      { field: 'conditionChassis', label: 'État du châssis / carter' },
+      { field: 'wheelsTornPlat', label: 'Roues non déchirées et absence de plat' },
+      { field: 'batteryCablesSockets', label: 'Câbles et prises batterie' },
+      { field: 'conditionForks', label: 'État des fourches' },
+      { field: 'cleanNonSlipPlatform', label: 'Plateforme propre et anti-dérapante' },
+      { field: 'windshield', label: 'Pare-brise' },
+      { field: 'gasBlockStrap', label: 'Bloc gaz + sangle' },
+      { field: 'forwardReverseControl', label: 'Commandes de marche avant/arrière' },
+      { field: 'honk', label: 'Klaxon' },
+      { field: 'functionalElevationSystem', label: 'Système d\'élévation fonctionnel' },
+      { field: 'emergencyStop', label: 'Arrêt d\'urgence' },
+      { field: 'noLeak', label: 'Absence de fuite' },
+      { field: 'antiCrushButton', label: 'Bouton anti-écrasement' }
+    ];
+  
+    fieldsToCheck.forEach(({ field, label }) => {
+      if (pickup[field] === 'MAUVAIS') {
+        const newIssue: Partial<Issue> = {
+          description: `${label} est en mauvais état`,
+          accountId: pickup.accountId,
+          workSessionId: localStorage.getItem('workSessionId') || ''
+        };
+  
+        this.issueService.addNewIssue(newIssue as Issue).subscribe(
+          issueData => {
+            console.log('Problème ajouté:', issueData);
+          },
+          error => {
+            console.error('Erreur lors de l\'ajout du problème:', error);
+          }
+        );
+      }
+    });
+  }
+  
+  
 }

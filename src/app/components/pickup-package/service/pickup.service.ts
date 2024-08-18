@@ -66,6 +66,13 @@ export class PickupService {
     return this.http.get<Pickup>(`${this.baseUrlPickup}/take-pickup-by-work-session-id?workSessionId=${workSessionId}`, {headers});
   }
 
+  getRelevantFields(cartId: number): Observable<Map<string, boolean>> {
+
+    const headers = this.getHeaders();
+    
+    return this.http.get<Map<string, boolean>>(`${this.baseUrlPickup}/relevant-fields/${cartId}`, { headers });
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {

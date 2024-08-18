@@ -27,6 +27,13 @@ export class FuelTypeService {
     return this.http.delete<void>(`${this.baseUrlFuelType}/delete-fuel-type/${idFuelType}`, { headers });
   }
 
+  getIdFuelTypeByName(name : string) : Observable<number>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<number>(`${this.baseUrlFuelType}/get-fuel-type-id-by-name?name=${name}`, {headers});
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {

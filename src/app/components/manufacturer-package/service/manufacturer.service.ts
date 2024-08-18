@@ -33,6 +33,13 @@ export class ManufacturerService {
     return this.http.get<ManufacturerDTO>(`${this.baseUrlManufacturer}/get-by-id-manufacturer/${idManufacturer}`, {headers});
   }
 
+  getIdManufacturerByName(name : string) : Observable<number>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<number>(`${this.baseUrlManufacturer}/get-id-manufacturer-by-name?name=${name}`, {headers});
+  }
+
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');
     if (!token) {

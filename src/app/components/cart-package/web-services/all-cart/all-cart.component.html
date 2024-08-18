@@ -11,10 +11,15 @@
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content>
-        <p><span class="label">Marque :</span> <span class="value">{{ cart.brand }}</span></p>
+        <p><span class="label">Fabricant :</span> <span class="value">{{ getManufacturerName(cart.manufacturerId) }}</span></p>
+        <p><span class="label">Catégorie :</span> <span class="value">{{ getCategoryName(cart.categoryId) }}</span></p>
+        <p><span class="label">Type d'alimentation :</span> <span class="value">{{ getFuelTypeName(cart.fuelTypeId) }}</span></p>
       </mat-card-content>
+      
       <mat-card-actions>
         <button mat-raised-button color="primary" (click)="viewDetails(cart)">Voir les détails</button>
+        <button mat-raised-button color="warn" (click)="deleteCart(cart)">Supprimer</button>
+        <button mat-raised-button color="accent" (click)="editCart(cart)">Modifier</button>
       </mat-card-actions>
     </mat-card>
   </div>

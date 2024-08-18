@@ -12,8 +12,34 @@
             <input matInput type="text" formControlName="cartNumber" placeholder="Entrez le numéro du chariot">
           </div>
           <div class="form-group">
-            <label class="form-label">Marque</label>
-            <input matInput type="text" formControlName="brand" placeholder="Entrez la marque du chariot">
+            <label class="form-label">Fabricant</label>
+            <mat-form-field>
+              <mat-select formControlName="manufacturerName" placeholder="Sélectionnez un fabricant">
+                <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer">
+                  {{ manufacturer }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Catégorie</label>
+            <mat-form-field>
+              <mat-select formControlName="categoryName" placeholder="Sélectionnez une catégorie">
+                <mat-option *ngFor="let category of categories" [value]="category">
+                  {{ category }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Type d'alimentation</label>
+            <mat-form-field>
+              <mat-select formControlName="fuelTypeName" placeholder="Sélectionnez un type d'alimentation">
+                <mat-option *ngFor="let fuelType of fuelTypes" [value]="fuelType">
+                  {{ fuelType }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
         </div>
       </mat-card-content>
