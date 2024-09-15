@@ -1,1 +1,46 @@
-<p>all-pickup works!</p>
+<div class="all-pickup-container">
+  <div class="scapartois-title">Tous les Pickups</div>
+  
+  <!-- Barre de recherche -->
+  <mat-form-field appearance="fill">
+    <mat-label>Rechercher</mat-label>
+    <input matInput (input)="applyFilter($event)" placeholder="Filtrer par prénom, numéro de chariot, ou Work Session ID">
+  </mat-form-field>
+  
+  <table class="table-pickups">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Prénom</th>
+        <th>Numéro de Chariot</th>
+        <th>Work Session ID</th>
+        <th>Mise à jour</th>
+        <th>Supprimer</th>
+        <th>Détail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pickup of filteredPickups; let i = index">
+        <td>{{ i + 1 }}</td> <!-- Numéro de la ligne -->
+        <td>{{ pickup.accountFirstName }}</td>
+        <td>{{ pickup.cartNumber }}</td>
+        <td>{{ pickup.workSessionId }}</td>
+        <td>
+          <button mat-raised-button color="primary" (click)="editPickup(pickup.idPickup)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button mat-raised-button color="warn" (click)="removePickup(pickup)">
+            <mat-icon style="color: red;">delete</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button mat-raised-button color="accent" (click)="viewDetails(pickup.idPickup)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

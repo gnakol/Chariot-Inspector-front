@@ -1,1 +1,47 @@
-<p>all-usage works!</p>
+<div class="all-usage-container">
+    <div class="scapartois-title">Tous les Usages de Taurus</div>
+    
+    <!-- Barre de recherche -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Filtrer par prénom, numéro de Taurus, ou Work Session ID">
+    </mat-form-field>
+    
+    <table class="table-usages">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Numéro de Taurus</th>
+          <th>Work Session ID</th>
+          <th>Mise à jour</th>
+          <th>Supprimer</th>
+          <th>Détail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usage of filteredUsages; let i = index">
+          <td>{{ i + 1 }}</td> <!-- Numéro de la ligne -->
+          <td>{{ usage.accountFirstName }}</td>
+          <td>{{ usage.taurusNumber || 'N/A' }}</td>
+          <td>{{ usage.workSessionId }}</td>
+          <td>
+            <button mat-raised-button color="primary" (click)="editUsage(usage.idTaurusUsage)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="warn" (click)="removeUsage(usage)">
+              <mat-icon style="color: red;">delete</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="accent" (click)="viewDetails(usage.idTaurusUsage)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

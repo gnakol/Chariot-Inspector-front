@@ -1,7 +1,8 @@
 import { AccountDTO } from "../../user-package/bean/account";
+import { AccountTeamDTO } from "./account-team";
 
 export interface AccountTeamResponse {
-    content: AccountDTO[];
+    content: AccountTeamDTO[];
     pageable: any;
     totalElements: number;
     totalPages: number;

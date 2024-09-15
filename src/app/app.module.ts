@@ -60,6 +60,19 @@ import { ManufacturerTemplateComponent } from './components/manufacturer-package
 import { FuelTypeTemplateComponent } from './components/fuel-type-package/fuel-type-template/fuel-type-template.component';
 import { CartCategoryTemplateComponent } from './components/cart-category-bean-package/cart-category-template/cart-category-template.component';
 import { UpdateCartComponent } from './components/cart-package/web-services/update-cart/update-cart.component';
+import { DetailPickupComponent } from './components/pickup-package/web-services/detail-pickup/detail-pickup.component';
+import { RemovePickupComponent } from './components/pickup-package/web-services/remove-pickup/remove-pickup.component';
+import { SearchPickupComponent } from './components/pickup-package/web-services/search-pickup/search-pickup.component';
+import { SaisineSuivisComponent } from './components/admin-package/component/saisine-suivis/saisine-suivis.component';
+import { DetailUsageComponent } from './components/taurus-package/web-services/taurus-usage/detail-usage/detail-usage.component';
+import { AllBatteryUsageComponent } from './components/battery-usage-package/web-service/all-battery-usage/all-battery-usage.component';
+import { DetailBatteryUsageComponent } from './components/battery-usage-package/web-service/detail-battery-usage/detail-battery-usage.component';
+import { UpdateBatteryUsageComponent } from './components/battery-usage-package/web-service/update-battery-usage/update-battery-usage.component';
+import { DetailIssueComponent } from './components/issue-package/web-services/detail-issue/detail-issue.component';
+import { DetailAccountTeamComponent } from './components/account-team-package/web-service/detail-account-team/detail-account-team.component';
+import { AddAuditComponent } from './components/audit-package/web-services/add-audit/add-audit.component';
+import { AllAuditComponent } from './components/audit-package/web-services/all-audit/all-audit.component';
+import { AuditTemplateComponent } from './components/audit-package/audit-template/audit-template.component';
 
 
 @NgModule({
@@ -68,18 +81,10 @@ import { UpdateCartComponent } from './components/cart-package/web-services/upda
     RemoveBatteryComponent,
     UpdateBatteryComponent,
     RemoveUserComponent,
-    AllIssueComponent,
-    UpdateIssueComponent,
     RemoveIssueComponent,
     RemoveActionCarriedOutComponent,
     UpdateActionCarriedOutComponent,
-    AllUsageComponent,
     AddTaurusComponent,
-    AllPickupComponent,
-    AllSessionComponent,
-    AddAccountTeamComponent,
-    AllAccountTeamComponent,
-    DeleteAccountTeamComponent,
     AddTeamComponent,
     AllTeamComponent,
     AllShiftComponent,

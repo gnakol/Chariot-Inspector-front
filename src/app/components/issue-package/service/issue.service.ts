@@ -62,6 +62,33 @@ export class IssueService {
     return this.http.get<number>(`${this.baseUrlIssue}/get-id-issue-by-work-session-id/${workSessionId}`, { headers });
   }
 
+  getAllIssue() : Observable<IssueResponse>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<IssueResponse>(`${this.baseUrlIssue}/all-issue`, {headers});
+  }
+
+  removeIssue(idIssue : number) : Observable<any>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.delete<any>(`${this.baseUrlIssue}/remove-issue/${idIssue}`, { headers, responseType: 'text' as 'json' });
+  }
+
+  updateIssue(idIssue: number, issue: Issue): Observable<Issue> {
+    const headers = this.getHeaders();
+    return this.http.put<Issue>(`${this.baseUrlIssue}/update-issue/${idIssue}`, issue, { headers });
+  }
+
+  getIssuesByWorkSessionId(workSessionId: string): Observable<Issue[]> {
+    const headers = this.getHeaders();
+  
+    return this.http.get<Issue[]>(`${this.baseUrlIssue}/issues-by-work-session/${workSessionId}`, { headers });
+  }
+  
+  
+
 
 
   private getHeaders(): HttpHeaders {

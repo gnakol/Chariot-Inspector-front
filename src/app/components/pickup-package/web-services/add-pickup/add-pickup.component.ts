@@ -17,6 +17,7 @@ import { Issue } from '../../../issue-package/bean/issue';
   styleUrls: ['./add-pickup.component.scss']
 })
 export class AddPickupComponent implements OnInit {
+
   pickupForm!: FormGroup;
   account: any;
   carts: Cart[] = [];
@@ -29,7 +30,7 @@ export class AddPickupComponent implements OnInit {
     private resumeService: ResumeService,
     private authService: AuthService,
     private userService: UserService,
-    private issueService : IssueService
+    private issueService : IssueService 
   ) { }
 
   ngOnInit(): void {

@@ -1,0 +1,52 @@
+.all-account-team-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0A2E36 0%, #026773 100%);
+    color: white;
+    padding: 40px 20px;
+  }
+  
+  .scapartois-title {
+    width: 100%;
+    text-align: center;
+    color: #90caf9;
+    margin-bottom: 40px;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .table-account-teams {
+    width: 100%;
+    max-width: 1200px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: #000;
+  }
+  
+  .table-account-teams th, .table-account-teams td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .table-account-teams th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .table-account-teams tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .table-account-teams tr:hover {
+    background-color: #f1f1f1;
+  }
+  

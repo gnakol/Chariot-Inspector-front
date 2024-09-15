@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../../authenticate/core/auth.service';
-import { Pickup } from '../bean/pickup';
-import { Observable } from 'rxjs';
+import { Pickup, PickupResponse } from '../bean/pickup';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +71,32 @@ export class PickupService {
     const headers = this.getHeaders();
     
     return this.http.get<Map<string, boolean>>(`${this.baseUrlPickup}/relevant-fields/${cartId}`, { headers });
+  }
+
+  removePickup(idPickup : number) : Observable<any> 
+  {
+    const headers = this.getHeaders();
+
+    return this.http.delete<any>(`${this.baseUrlPickup}/remove-pickup-by-id/${idPickup}`, { headers, responseType: 'text' as 'json' });
+  }
+
+  updatePickup(pickup : Pickup) : Observable<Pickup>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.put<Pickup>(`${this.baseUrlPickup}/update-new-pickup/${pickup.idPickup}`, pickup, {headers});
+  }
+
+  allPickups() : Observable<PickupResponse>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<PickupResponse>(`${this.baseUrlPickup}/all-pickup`, {headers});
+  }
+
+  filterPickups(search: string): Observable<Pickup[]> {
+    const headers = this.getHeaders();
+    return this.http.get<Pickup[]>(`${this.baseUrlPickup}/all-pickup-filter?search=${search}`, { headers });
   }
 
   private getHeaders(): HttpHeaders {

@@ -48,6 +48,18 @@ import { AddCartCategoryComponent } from './components/cart-category-bean-packag
 import { AddFuelTypeComponent } from './components/fuel-type-package/web-services/add-fuel-type/add-fuel-type.component';
 import { AllCartCategoryComponent } from './components/cart-category-bean-package/web-services/all-cart-category/all-cart-category.component';
 import { AllFuelTypeComponent } from './components/fuel-type-package/web-services/all-fuel-type/all-fuel-type.component';
+import { SaisineSuivisComponent } from './components/admin-package/component/saisine-suivis/saisine-suivis.component';
+import { AllPickupComponent } from './components/pickup-package/web-services/all-pickup/all-pickup.component';
+import { DetailPickupComponent } from './components/pickup-package/web-services/detail-pickup/detail-pickup.component';
+import { DetailUsageComponent } from './components/taurus-package/web-services/taurus-usage/detail-usage/detail-usage.component';
+import { AllUsageComponent } from './components/taurus-package/web-services/taurus-usage/all-usage/all-usage.component';
+import { AllBatteryUsageComponent } from './components/battery-usage-package/web-service/all-battery-usage/all-battery-usage.component';
+import { DetailBatteryUsageComponent } from './components/battery-usage-package/web-service/detail-battery-usage/detail-battery-usage.component';
+import { DetailIssueComponent } from './components/issue-package/web-services/detail-issue/detail-issue.component';
+import { AllIssueComponent } from './components/issue-package/web-services/all-issue/all-issue.component';
+import { AllAccountTeamComponent } from './components/account-team-package/web-service/all-account-team/all-account-team.component';
+import { DetailAccountTeamComponent } from './components/account-team-package/web-service/detail-account-team/detail-account-team.component';
+import { AllSessionComponent } from './components/work-session-package/web-service/all-session/all-session.component';
 
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
@@ -71,6 +83,7 @@ const routes: Routes = [
       { path: 'add-new-cart-category', component : AddCartCategoryComponent},
       { path: 'add-new-fuel-type', component : AddFuelTypeComponent},
       { path: 'admin-template', component : TemplateComponent},
+      { path: 'saisine-suivis', component : SaisineSuivisComponent},
       { path: 'user-home', component : UserHomeComponent},
       { path: 'all-users', component: AllUserComponent},
       { path: 'update-user/:id', component: UpdateUserComponent },
@@ -86,6 +99,12 @@ const routes: Routes = [
       { path: 'all-manufacturer', component : AllManufacturerComponent},
       { path: 'all-cart-category', component : AllCartCategoryComponent},
       { path: 'all-fuel-type', component : AllFuelTypeComponent},
+      { path: 'all-pickups', component : AllPickupComponent},
+      { path: 'all-taurus-usage', component : AllUsageComponent},
+      { path: 'all-battery-usage', component : AllBatteryUsageComponent},
+      { path: 'all-issue', component : AllIssueComponent},
+      { path: 'all-account-team', component : AllAccountTeamComponent},
+      { path: 'all-work-session', component : AllSessionComponent},
       { path: 'issue-search', component: IssueSearchComponent},
       { path: 'cart-template', component: CartTemplateComponent},
       { path: 'battery-template', component : BatteryTemplateComponent},
@@ -94,7 +113,12 @@ const routes: Routes = [
       { path: 'service-bean-template', component : ServiceBeanTemplateComponent},
       { path: 'manufacturer-template', component : ManufacturerTemplateComponent},
       { path: 'fuel-type-template', component : FuelTypeTemplateComponent},
-      { path: 'cart-category-template', component : CartCategoryTemplateComponent}
+      { path: 'cart-category-template', component : CartCategoryTemplateComponent},
+      { path: 'detail-pickup/:id', component : DetailPickupComponent},
+      { path: 'detail-usage/:id', component : DetailUsageComponent},
+      { path: 'detail-battery-usage', component : DetailBatteryUsageComponent},
+      { path: 'detail-issue/:id', component : DetailIssueComponent},
+      { path: 'detail-account-team', component : DetailAccountTeamComponent}
 
     ]
   },

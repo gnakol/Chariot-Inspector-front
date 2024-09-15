@@ -4,71 +4,150 @@
   <h1 class="main-title">Scapartois Smile Reception</h1>
 
   <div class="resume-content">
+    <!-- Informations Utilisateur -->
     <div class="card-wrapper" *ngIf="accountData">
       <div class="resume-card user-info">
-        <h2>Informations Utilisateur</h2>
-        <p><strong>Nom:</strong> {{ accountData.name }}</p>
-        <p><strong>Prénom:</strong> {{ accountData.firstName }}</p>
-        <p><strong>Service:</strong> {{ accountServiceData?.name }}</p>
+        <h2><mat-icon>person</mat-icon> Informations Utilisateur</h2>
+        <div class="info-item">
+          <mat-icon>badge</mat-icon>
+          <p>{{ accountData.name }} {{ accountData.firstName }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>business</mat-icon>
+          <p>Service: {{ accountServiceData?.name }}</p>
+        </div>
       </div>
     </div>
 
+    <!-- Informations du Taurus -->
     <div class="card-wrapper" *ngIf="taurusData && taurusUsageData">
       <div class="resume-card taurus-info">
-        <h2>Informations du Taurus</h2>
-        <p><strong>Numéro de Taurus:</strong> {{ taurusData.taurusNumber }}</p>
-        <p *ngIf="taurusUsageData.usageDate"><strong>Date d'utilisation:</strong> {{ taurusUsageData.usageDate }}</p>
+        <h2><mat-icon>local_shipping</mat-icon> Informations du Taurus</h2>
+        <div class="info-item">
+          <mat-icon>label</mat-icon>
+          <p>Numéro: {{ taurusData.taurusNumber }}</p>
+        </div>
+        <div class="info-item" *ngIf="taurusUsageData.usageDate">
+          <mat-icon>event</mat-icon>
+          <p>Date d'utilisation: {{ taurusUsageData.usageDate }}</p>
+        </div>
       </div>
     </div>
 
+    <!-- Informations du Chariot -->
     <div class="card-wrapper" *ngIf="pickupData">
       <div class="resume-card cart-info">
-        <h2>Informations du Chariot</h2>
-        <p><strong>Numéro du Chariot:</strong> {{ cartNumber }}</p>
-        <p><strong>État du châssis / carter:</strong> {{ pickupData.conditionChassis }}</p>
-        <p><strong>Roues non déchirées et absence de plat:</strong> {{ pickupData.wheelsTornPlat }}</p>
-        <p><strong>Câbles et prises batterie:</strong> {{ pickupData.batteryCablesSockets }}</p>
-        <p><strong>État des fourches:</strong> {{ pickupData.conditionForks }}</p>
-        <p><strong>Plateforme propre et anti-dérapante:</strong> {{ pickupData.cleanNonSlipPlatform }}</p>
-        <p><strong>Pare-brise:</strong> {{ pickupData.windshield }}</p>
-        <p><strong>Bloc gaz + sangle:</strong> {{ pickupData.gasBlockStrap }}</p>
-        <p><strong>Commandes de marche avant/arrière:</strong> {{ pickupData.forwardReverseControl }}</p>
-        <p><strong>Klaxon:</strong> {{ pickupData.honk }}</p>
-        <p><strong>Système d'élévation fonctionnel:</strong> {{ pickupData.functionalElevationSystem }}</p>
-        <p><strong>Arrêt d'urgence:</strong> {{ pickupData.emergencyStop }}</p>
-        <p><strong>Absence de fuite:</strong> {{ pickupData.noLeak }}</p>
-        <p><strong>Bouton anti écrasement:</strong> {{ pickupData.antiCrushButton }}</p>
-        <p><strong>Date et heure de prise en charge:</strong> {{ pickupData.pickupDateTime }} </p>
-        <p><strong>Date et heure de retour:</strong> {{ pickupData.returnDateTime }} </p>
+        <h2><mat-icon>construction</mat-icon> Informations du Chariot</h2>
+        <div class="info-item">
+          <mat-icon>build_circle</mat-icon>
+          <p>Numéro du Chariot: {{ cartNumber }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>build</mat-icon>
+          <p>Châssis: {{ pickupData.conditionChassis }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>settings</mat-icon>
+          <p>Roues: {{ pickupData.wheelsTornPlat }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>battery_alert</mat-icon>
+          <p>Batterie: {{ pickupData.batteryCablesSockets }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>settings_input_composite</mat-icon>
+          <p>Fourches: {{ pickupData.conditionForks }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>layers</mat-icon>
+          <p>Plateforme: {{ pickupData.cleanNonSlipPlatform }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>shield</mat-icon>
+          <p>Pare-brise: {{ pickupData.windshield }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>security</mat-icon>
+          <p>Bloc gaz: {{ pickupData.gasBlockStrap }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>sync_alt</mat-icon>
+          <p>Commandes: {{ pickupData.forwardReverseControl }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>volume_up</mat-icon>
+          <p>Klaxon: {{ pickupData.honk }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>elevator</mat-icon>
+          <p>Élévation: {{ pickupData.functionalElevationSystem }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>emergency</mat-icon>
+          <p>Arrêt d'urgence: {{ pickupData.emergencyStop }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>water_drop</mat-icon>
+          <p>Absence de fuite: {{ pickupData.noLeak }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>pan_tool</mat-icon>
+          <p>Bouton anti écrasement: {{ pickupData.antiCrushButton }}</p>
+        </div>
+        <div class="info-item">
+          <mat-icon>access_time</mat-icon>
+          <p>Prise en charge: {{ pickupData.pickupDateTime }} </p>
+        </div>
+        <div class="info-item">
+          <mat-icon>exit_to_app</mat-icon>
+          <p>Retour: {{ pickupData.returnDateTime }} </p>
+        </div>
       </div>
     </div>
 
+    <!-- Informations de la Batterie -->
     <div class="card-wrapper" *ngIf="batteryUsageData.length > 0">
       <div class="resume-card battery-info">
-        <h2>Informations de la Batterie</h2>
-        <div *ngFor="let batteryUsage of batteryUsageData">
-          <p><strong>Numéro de batterie:</strong> {{ batteryNumber.get(batteryUsage.batteryId) }}</p>
-          <p><strong>Niveau de charge:</strong> {{ batteryUsage.chargeLevel }}</p>
-          <p><strong>État de la batterie:</strong> {{ batteryUsage.state }}</p>
-          <p><strong>Date de changement:</strong> {{ batteryUsage.changeTime }}</p>
+        <h2><mat-icon>battery_charging_full</mat-icon> Informations de la Batterie</h2>
+        <div *ngFor="let batteryUsage of batteryUsageData" class="info-item">
+          <mat-icon>battery_std</mat-icon>
+          <p>Batterie: {{ batteryNumber.get(batteryUsage.batteryId) }} ({{ batteryUsage.chargeLevel }}%)</p>
+        </div>
+        <div *ngFor="let batteryUsage of batteryUsageData" class="info-item">
+          <mat-icon>event</mat-icon>
+          <p>Date de changement: {{ batteryUsage.changeTime }}</p>
+        </div>
+        <div *ngFor="let batteryUsage of batteryUsageData" class="info-item">
+          <mat-icon>battery_alert</mat-icon>
+          <p>État de la batterie: {{ batteryUsage.state }}</p>
         </div>
       </div>
     </div>
 
-    <div class="card-wrapper issue-wrapper" *ngIf="issueData.length > 0">
+    <!-- Problèmes Signalés -->
+    <div class="card-wrapper" *ngIf="issueData.length > 0">
       <div class="resume-card issue-container">
-        <h2>Problèmes Signalés</h2>
-        <div *ngFor="let issue of issueData">
-          <p><strong>Description:</strong> {{ issue.description }}</p>
-          <p><strong>Date de Création:</strong> {{ issue.createdAt | date:'short' }}</p>
+        <h2><mat-icon>report_problem</mat-icon> Problèmes Signalés</h2>
+        <div *ngFor="let issue of issueData" class="info-item">
+          <mat-icon>warning</mat-icon>
+          <p>{{ issue.description }}</p>
+          <small>{{ issue.createdAt | date:'short' }}</small>
         </div>
       </div>
     </div>
+
+    <!-- Info sur l'Équipe -->
     <div class="card-wrapper" *ngIf="teamName || shiftName">
       <div class="resume-card team-shift-info">
-        <h2>Info sur l'Équipe</h2>
-        <p *ngIf="teamName"><strong>L'équipe de :</strong> {{ teamName }}</p>
-        <p *ngIf="shiftName"><strong>Horaire du :</strong> {{ shiftName }}</p>
+        <h2><mat-icon>groups</mat-icon> Info sur l'Équipe</h2>
+        <div class="info-item" *ngIf="teamName">
+          <mat-icon>people</mat-icon>
+          <p>Équipe: {{ teamName }}</p>
+        </div>
+        <div class="info-item" *ngIf="shiftName">
+          <mat-icon>schedule</mat-icon>
+          <p>Horaire: {{ shiftName }}</p>
+        </div>
       </div>
     </div>    
   </div>

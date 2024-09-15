@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BatteryUsage } from '../bean/battery-usage';
+import { BatteryUsage, BatteryUsageResponse } from '../bean/battery-usage';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -31,6 +31,20 @@ export class BatteryUsageService {
     const headers = this.getHeaders();
 
     return this.http.get<BatteryUsage>(`${this.baseUrl}/get-battery-usage-by-cart-id/${cartId}`, {headers});
+  }
+
+  getAllBatteryUsage() : Observable<BatteryUsageResponse>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.get<BatteryUsageResponse>(`${this.baseUrl}/all-battery-usage`, {headers});
+  }
+
+  removeBatteryUsage(idBatteryUsage : number) : Observable<any>
+  {
+    const headers = this.getHeaders();
+
+    return this.http.delete<any>(`${this.baseUrl}/remove-battery-usage-by-id/${idBatteryUsage}`, { headers, responseType: 'text' as 'json' });
   }
 
 

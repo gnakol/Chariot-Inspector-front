@@ -1,1 +1,46 @@
-<p>all-issue works!</p>
+<div class="all-issue-container">
+    <div class="scapartois-title">Tous les Problèmes</div>
+    
+    <!-- Barre de recherche -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Filtrer par prénom, nom ou Work Session ID">
+    </mat-form-field>
+    
+    <table class="table-issues">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Description</th>
+          <th>Work Session ID</th>
+          <th>Mise à jour</th>
+          <th>Supprimer</th>
+          <!-- <th>Voir la description</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let issue of filteredIssues; let i = index">
+          <td>{{ i + 1 }}</td> <!-- Numéro de la ligne -->
+          <td>{{ issue.accountFirstName }}</td>
+          <td>
+            <button mat-raised-button color="accent" (click)="viewDescription(issue)">
+              <mat-icon>visibility</mat-icon> Voir la description
+            </button>
+          </td>
+          <td>{{ issue.workSessionId }}</td>
+          <td>
+            <button mat-raised-button color="primary" (click)="editIssue(issue.idIssue)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="warn" (click)="removeIssue(issue)">
+              <mat-icon style="color: red;">delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

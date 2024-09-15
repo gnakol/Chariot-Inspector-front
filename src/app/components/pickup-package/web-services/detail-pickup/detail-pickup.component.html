@@ -1,0 +1,87 @@
+<div class="add-cart-container" *ngIf="pickup">
+  <h1 class="title">Détails du Pickup</h1>
+  <div class="modern-form">
+    <div class="section-header">
+      <label class="form-label">Numéro du chariot</label>
+      <div class="cart-number-field">{{ cartNumber }}</div>
+    </div>
+
+    <div class="form-group-card">
+      <div class="form-group" *ngIf="pickup.conditionChassis">
+        <label class="form-label">État du châssis / carter</label>
+        <div>{{ pickup.conditionChassis }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.wheelsTornPlat">
+        <label class="form-label">Roues non déchirées et absence de plat</label>
+        <div>{{ pickup.wheelsTornPlat }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.batteryCablesSockets">
+        <label class="form-label">Câbles et prises batterie</label>
+        <div>{{ pickup.batteryCablesSockets }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.conditionForks">
+        <label class="form-label">État des fourches</label>
+        <div>{{ pickup.conditionForks }}</div>
+      </div>
+    </div>
+
+    <div class="form-group-card">
+      <div class="form-group" *ngIf="pickup.cleanNonSlipPlatform">
+        <label class="form-label">Plateforme propre et anti-dérapante</label>
+        <div>{{ pickup.cleanNonSlipPlatform }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.windshield">
+        <label class="form-label">Pare-brise</label>
+        <div>{{ pickup.windshield }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.gasBlockStrap">
+        <label class="form-label">Bloc gaz + sangle</label>
+        <div>{{ pickup.gasBlockStrap }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.forwardReverseControl">
+        <label class="form-label">Commandes de marche avant/arrière</label>
+        <div>{{ pickup.forwardReverseControl }}</div>
+      </div>
+    </div>
+
+    <div class="form-group-card">
+      <div class="form-group" *ngIf="pickup.honk">
+        <label class="form-label">Klaxon</label>
+        <div>{{ pickup.honk }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.functionalElevationSystem">
+        <label class="form-label">Système d'élévation fonctionnel</label>
+        <div>{{ pickup.functionalElevationSystem }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.emergencyStop">
+        <label class="form-label">Arrêt d'urgence</label>
+        <div>{{ pickup.emergencyStop }}</div>
+      </div>
+      <div class="form-group" *ngIf="pickup.noLeak">
+        <label class="form-label">Absence de fuite</label>
+        <div>{{ pickup.noLeak }}</div>
+      </div>
+    </div>
+
+    <div class="form-group-card">
+      <div class="form-group" *ngIf="pickup.antiCrushButton">
+        <label class="form-label">Bouton anti écrasement</label>
+        <div>{{ pickup.antiCrushButton }}</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date et heure de prise en charge</label>
+        <div>{{ pickup.pickupDateTime | date:'dd/MM/yyyy, HH:mm' }}</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date et heure de retour</label>
+        <div>{{ pickup.returnDateTime | date:'dd/MM/yyyy, HH:mm' }}</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Affichage pendant le chargement des données -->
+<div *ngIf="!pickup" class="loading-container">
+  <p>Chargement des détails du pickup...</p>
+</div>

@@ -1,0 +1,51 @@
+<div class="all-battery-usage-container">
+    <div class="scapartois-title">Tous les Usages de Batterie</div>
+    
+    <!-- Barre de recherche -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Filtrer par numéro de batterie, numéro de chariot, ou Work Session ID">
+    </mat-form-field>
+    
+    <table class="table-usages">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Numéro de Chariot</th>
+          <th>Numéro de Batterie</th>
+          <th>État</th>
+          <th>Niveau de Charge (%)</th>
+          <th>Work Session ID</th>
+          <th>Mise à jour</th>
+          <th>Supprimer</th>
+          <th>Détail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usage of filteredBatteryUsages; let i = index">
+          <td>{{ i + 1 }}</td> <!-- Numéro de la ligne -->
+          <td>{{ usage.cartNumber }}</td>
+          <td>{{ usage.batteryNumber }}</td>
+          <td>{{ usage.state }}</td>
+          <td>{{ usage.chargeLevel }}%</td>
+          <td>{{ usage.workSessionId }}</td>
+          <td>
+            <button mat-raised-button color="primary" (click)="editUsage(usage.idBatteryUsage)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="warn" (click)="removeUsage(usage)">
+              <mat-icon style="color: red;">delete</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="accent" (click)="viewDetails(usage.idBatteryUsage)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

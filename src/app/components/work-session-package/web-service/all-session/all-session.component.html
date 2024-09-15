@@ -1,1 +1,49 @@
-<p>all-session works!</p>
+<div class="all-session-container">
+    <div class="scapartois-title">Toutes les Sessions de Travail</div>
+    
+    <!-- Barre de recherche -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Filtrer par prénom, Work Session ID">
+    </mat-form-field>
+    
+    <table class="table-sessions">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Work Session ID</th>
+          <th>Heure de début</th>
+          <th>Heure de fin</th>
+          <th>Mise à jour</th>
+          <th>Supprimer</th>
+          <th>Détail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let session of filteredSessions; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ session.accountFirstName }}</td>
+          <td>{{ session.workSessionId }}</td>
+          <td>{{ session.startTime | date:'dd/MM/yyyy, HH:mm' }}</td>
+          <td>{{ session.endTime | date:'dd/MM/yyyy, HH:mm' }}</td>
+          <td>
+            <button mat-raised-button color="primary" (click)="editWorkSession(session.idWorkSession)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="warn" (click)="removeWorkSession(session)">
+              <mat-icon style="color: red;">delete</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="accent" (click)="viewDetails(session.idWorkSession)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

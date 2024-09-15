@@ -7,6 +7,8 @@ import { BatteryUsage } from '../../bean/battery-usage';
 import { Pickup } from '../../../pickup-package/bean/pickup';
 import { Battery } from '../../../battery-package/bean/battery';
 import { BatteryService } from '../../../battery-package/service/battery.service';
+import { IssueService } from '../../../issue-package/service/issue.service';
+import { Issue } from '../../../issue-package/bean/issue';
 
 @Component({
   selector: 'app-add-battery-usage',
@@ -23,7 +25,8 @@ export class AddBatteryUsageComponent implements OnInit {
     private batteryService: BatteryService,
     private batteryUsageService: BatteryUsageService,
     private resumeService: ResumeService,
-    private router: Router
+    private router: Router,
+    private issueService : IssueService
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class AddBatteryUsageComponent implements OnInit {
       const newBatteryUsage: BatteryUsage = {
         ...this.batteryUsageForm.value,
         cartId: this.pickupData.cartId,
-        workSessionId: this.pickupData.workSessionId // Assurez-vous de l'ajouter si nécessaire
+        workSessionId: this.pickupData.workSessionId
       };
   
       console.log('New battery usage:', newBatteryUsage);
@@ -66,6 +69,12 @@ export class AddBatteryUsageComponent implements OnInit {
       this.batteryUsageService.addNewBatteryUsage(newBatteryUsage).subscribe(
         (data) => {
           console.log('Usage de batterie ajouté avec succès', data);
+
+          // Si l'état est "MAUVAIS", on crée un problème
+          if (newBatteryUsage.state === 'MAUVAIS') {
+            this.createIssueForBatteryUsage(newBatteryUsage);
+          }
+          
           this.router.navigate(['/dashboard/suivi']);
         },
         (error) => {
@@ -76,5 +85,56 @@ export class AddBatteryUsageComponent implements OnInit {
       console.warn('Form is invalid or pickupData is null');
     }
   }
+
+  createIssueForBatteryUsage(batteryUsage: BatteryUsage): void {
+    const newDescription = `La batterie utilisée dans le chariot ${batteryUsage.cartId} est en mauvais état.`;
+  
+    this.issueService.getIssuesByWorkSessionId(batteryUsage.workSessionId!).subscribe(
+      (existingIssues: Issue[]) => {
+        if (existingIssues.length > 0) {
+          // Fusionner les descriptions
+          const existingIssue = existingIssues[0];
+          const updatedDescription = `${existingIssue.description} ${newDescription}`;
+          
+          const updatedIssue: Partial<Issue> = {
+            ...existingIssue,
+            description: updatedDescription,
+          };
+  
+          // Mettre à jour l'issue existante
+          this.issueService.updateIssue(existingIssue.idIssue, updatedIssue as Issue).subscribe(
+            () => {
+              console.log('Issue mise à jour avec succès');
+            },
+            error => {
+              console.error('Erreur lors de la mise à jour du problème', error);
+            }
+          );
+        } else {
+          // Créer une nouvelle issue si aucune n'existe
+          const newIssue: Partial<Issue> = {
+            description: newDescription,
+            createdAt: new Date(),
+            accountId: this.pickupData?.accountId,
+            workSessionId: batteryUsage.workSessionId
+          };
+  
+          this.issueService.addNewIssue(newIssue as Issue).subscribe(
+            () => {
+              console.log('Problème ajouté avec succès');
+            },
+            error => {
+              console.error('Erreur lors de la création du problème:', error);
+            }
+          );
+        }
+      },
+      error => {
+        console.error('Erreur lors de la vérification des problèmes existants:', error);
+      }
+    );
+  }
+  
+  
   
 }

@@ -1,86 +1,85 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #e0f7e9; /* Vert subtile */
+  background: linear-gradient(135deg, #0A2E36 0%, #026773 100%);
   margin: 0;
   padding: 0;
+  color: #fff;
 }
 
 .resume-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding: 20px;
-  animation: fadeIn 1s ease-in-out;
-}
-
-header, footer {
-  background-color: #2e7d32; /* Vert professionnel */
-  color: white;
-  padding: 20px;
-  text-align: center;
-  width: 100%;
-}
-
-header h1, footer p {
-  margin: 0;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .main-title {
-  color: #1b5e20;
-  margin-bottom: 20px;
+  text-align: center;
   font-size: 2.5em;
-  animation: slideInFromLeft 0.5s ease-in-out;
+  color: #90caf9;
+  margin-bottom: 40px;
 }
 
 .resume-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  width: 100%;
-  max-width: 1200px;
 }
 
 .card-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .resume-card {
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 350px;
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .resume-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-  color: #1b5e20;
+.combined-info h2 {
   margin-top: 0;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.resume-card h2 {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #026773;
 }
 
-@keyframes slideInFromLeft {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.info-item mat-icon {
+  margin-right: 10px;
+  color: #00796b;
+}
+
+.info-item p {
+  margin: 0;
+  font-size: 1.2em;
+  color: #000;
+}
+
+.info-item small {
+  margin-left: auto;
+  color: #666;
+}
+
+.footer {
+  background-color: #026773;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }

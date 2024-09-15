@@ -4,6 +4,7 @@ import { TaurusUsage } from '../bean/taurusUsage';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../authenticate/core/auth.service';
 import { Taurus } from '../bean/taurus';
+import { TaurusUsageResponse } from '../bean/page';
 
 @Injectable({
   providedIn: 'root'
@@ -108,6 +109,40 @@ export class TaurusService {
 
     return this.http.get<TaurusUsage>(`${this.baseUrl}/take-taurus-usage-by-work-session-id?workSessionId=${workSessionId}`, {headers});
   }
+
+  getAllTaurusUsages(): Observable<TaurusUsageResponse> {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<TaurusUsageResponse>(`${this.baseUrl}/all-taurus-usage`, { headers });
+  }
+
+  getAllUsages(): Observable<TaurusUsageResponse> {
+    const headers = this.getHeaders();
+    return this.http.get<TaurusUsageResponse>(`${this.baseUrl}/all-taurus-usage`, { headers });
+  }
+
+  removeTaurusUsage(idTaurusUsage: number): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.delete<any>(`${this.baseUrl}/remove-taurus-usage-by-id/${idTaurusUsage}`, { headers, responseType: 'text' as 'json' });
+  }
+
+  searchTaurusUsages(query: string, page: number, size: number): Observable<TaurusUsageResponse> {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    const params = {
+      query: query,
+      page: page.toString(),
+      size: size.toString(),
+    };
+  
+    return this.http.get<TaurusUsageResponse>(`${this.baseUrl}/all-taurus-usage-by-filter`, { headers, params });
+  }
+  
 
   private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('jwtToken');

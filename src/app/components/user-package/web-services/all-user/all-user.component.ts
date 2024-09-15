@@ -15,7 +15,11 @@ export class AllUserComponent implements OnInit {
   displayedColumns: string[] = ['name', 'firstName', 'email', 'service', 'roles', 'civility', 'edit', 'delete', 'view'];
   dataSource = new MatTableDataSource<any>();
 
-  constructor(private userService: UserService, public dialog: MatDialog, private router: Router) {}
+  constructor(
+    private userService: UserService, 
+    public dialog: MatDialog, 
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -39,6 +43,7 @@ export class AllUserComponent implements OnInit {
   }
 
   deleteUser(user: any) {
+
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
       data: { message: `Êtes-vous sûr de vouloir supprimer l'utilisateur ${user.name} ${user.firstName} ?` }

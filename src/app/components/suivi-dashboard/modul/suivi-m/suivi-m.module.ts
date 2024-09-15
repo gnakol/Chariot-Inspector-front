@@ -77,6 +77,27 @@ import { AllFuelTypeComponent } from '../../../fuel-type-package/web-services/al
 import { CartCategoryTemplateComponent } from '../../../cart-category-bean-package/cart-category-template/cart-category-template.component';
 import { FuelTypeTemplateComponent } from '../../../fuel-type-package/fuel-type-template/fuel-type-template.component';
 import { UpdateCartComponent } from '../../../cart-package/web-services/update-cart/update-cart.component';
+import { AllPickupComponent } from '../../../pickup-package/web-services/all-pickup/all-pickup.component';
+import { SearchPickupComponent } from '../../../pickup-package/web-services/search-pickup/search-pickup.component';
+import { RemovePickupComponent } from '../../../pickup-package/web-services/remove-pickup/remove-pickup.component';
+import { DetailPickupComponent } from '../../../pickup-package/web-services/detail-pickup/detail-pickup.component';
+import { SaisineSuivisComponent } from '../../../admin-package/component/saisine-suivis/saisine-suivis.component';
+import { DetailUsageComponent } from '../../../taurus-package/web-services/taurus-usage/detail-usage/detail-usage.component';
+import { AllUsageComponent } from '../../../taurus-package/web-services/taurus-usage/all-usage/all-usage.component';
+import { AllBatteryUsageComponent } from '../../../battery-usage-package/web-service/all-battery-usage/all-battery-usage.component';
+import { DetailBatteryUsageComponent } from '../../../battery-usage-package/web-service/detail-battery-usage/detail-battery-usage.component';
+import { UpdateBatteryUsageComponent } from '../../../battery-usage-package/web-service/update-battery-usage/update-battery-usage.component';
+import { AllIssueComponent } from '../../../issue-package/web-services/all-issue/all-issue.component';
+import { UpdateIssueComponent } from '../../../issue-package/web-services/update-issue/update-issue.component';
+import { DetailIssueComponent } from '../../../issue-package/web-services/detail-issue/detail-issue.component';
+import { AllAccountTeamComponent } from '../../../account-team-package/web-service/all-account-team/all-account-team.component';
+import { AddAccountTeamComponent } from '../../../account-team-package/web-service/add-account-team/add-account-team.component';
+import { DeleteAccountTeamComponent } from '../../../account-team-package/web-service/delete-account-team/delete-account-team.component';
+import { DetailAccountTeamComponent } from '../../../account-team-package/web-service/detail-account-team/detail-account-team.component';
+import { AllSessionComponent } from '../../../work-session-package/web-service/all-session/all-session.component';
+import { AuditTemplateComponent } from '../../../audit-package/audit-template/audit-template.component';
+import { AddAuditComponent } from '../../../audit-package/web-services/add-audit/add-audit.component';
+import { AllAuditComponent } from '../../../audit-package/web-services/all-audit/all-audit.component';
 // ***********************************************
 
 
@@ -131,7 +152,28 @@ import { UpdateCartComponent } from '../../../cart-package/web-services/update-c
     AllFuelTypeComponent,
     CartCategoryTemplateComponent,
     FuelTypeTemplateComponent,
-    UpdateCartComponent
+    UpdateCartComponent,
+    AllPickupComponent,
+    SearchPickupComponent,
+    RemovePickupComponent,
+    DetailPickupComponent,
+    SaisineSuivisComponent,
+    DetailUsageComponent,
+    AllUsageComponent,
+    AllBatteryUsageComponent,
+    DetailBatteryUsageComponent,
+    UpdateBatteryUsageComponent,
+    AllIssueComponent,
+    UpdateIssueComponent,
+    DetailIssueComponent,
+    AllAccountTeamComponent,
+    AddAccountTeamComponent,
+    DeleteAccountTeamComponent,
+    DetailAccountTeamComponent,
+    AllSessionComponent,
+    AuditTemplateComponent,
+    AddAuditComponent,
+    AllAuditComponent
   ],
   imports: [
     CommonModule,
@@ -197,7 +239,28 @@ import { UpdateCartComponent } from '../../../cart-package/web-services/update-c
     AllCartCategoryComponent,
     CartCategoryTemplateComponent,
     FuelTypeTemplateComponent,
-    UpdateCartComponent
+    UpdateCartComponent,
+    AllPickupComponent,
+    SearchPickupComponent,
+    RemovePickupComponent,
+    DetailPickupComponent,
+    SaisineSuivisComponent,
+    DetailUsageComponent,
+    AllUsageComponent,
+    AllBatteryUsageComponent,
+    DetailBatteryUsageComponent,
+    UpdateBatteryUsageComponent,
+    AllIssueComponent,
+    UpdateIssueComponent,
+    DetailIssueComponent,
+    AllAccountTeamComponent,
+    DeleteAccountTeamComponent,
+    AddAccountTeamComponent,
+    DetailAccountTeamComponent,
+    AllSessionComponent,
+    AuditTemplateComponent,
+    AddAuditComponent,
+    AllAuditComponent
   ]
 })
 export class SuiviMModule { }

@@ -1,1 +1,49 @@
-<p>all-account-team works!</p>
+<div class="all-account-team-container">
+    <div class="scapartois-title">Tous les Account Teams</div>
+    
+    <!-- Barre de recherche -->
+    <mat-form-field appearance="fill">
+      <mat-label>Rechercher</mat-label>
+      <input matInput (input)="applyFilter($event)" placeholder="Filtrer par prénom, nom de team, nom de shift ou Work Session ID">
+    </mat-form-field>
+    
+    <table class="table-account-teams">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Nom de Team</th>
+          <th>Nom de Shift</th>
+          <th>Work Session ID</th>
+          <th>Mise à jour</th>
+          <th>Supprimer</th>
+          <th>Détail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let accountTeam of filteredAccountTeams; let i = index">
+          <td>{{ i + 1 }}</td> <!-- Numéro de la ligne -->
+          <td>{{ accountTeam.accountFirstName }}</td>
+          <td>{{ accountTeam.teamName }}</td>
+          <td>{{ accountTeam.shiftName }}</td>
+          <td>{{ accountTeam.workSessionId }}</td>
+          <td>
+            <button mat-raised-button color="primary" (click)="editAccountTeam(accountTeam.idAccountTeam)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="warn" (click)="removeAccountTeam(accountTeam)">
+              <mat-icon style="color: red;">delete</mat-icon>
+            </button>
+          </td>
+          <td>
+            <button mat-raised-button color="accent" (click)="viewDetails(accountTeam.idAccountTeam)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

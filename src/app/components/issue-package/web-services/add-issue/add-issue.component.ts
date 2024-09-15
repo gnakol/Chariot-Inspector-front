@@ -6,6 +6,7 @@ import { Account } from '../../../user-package/bean/account';
 import { AuthService } from '../../../../authenticate/core/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Issue } from '../../bean/issue';
 
 @Component({
   selector: 'app-add-issue',
@@ -66,21 +67,53 @@ export class AddIssueComponent implements OnInit {
 
   onSubmit() {
     if (this.issueForm.valid) {
-      const newIssue = this.issueForm.value;
-
-      newIssue.workSessionId = localStorage.getItem('workSessionId') || '';
-      
-      this.issueService.addNewIssue(newIssue).subscribe(
-        (data) => {
-          console.log('Problème ajouté avec succès', data);
-          this.resumeService.setIssueData(data); // Ajoute le nouvel issue à la liste existante
-          this.router.navigate(['/dashboard/suivi']); // Rediriger vers la page de suivi
+      const userIssueDescription = this.issueForm.value.description;
+  
+      const newIssue: Partial<Issue> = {
+        description: userIssueDescription,
+        accountId: this.issueForm.value.accountId,
+        workSessionId: localStorage.getItem('workSessionId') ?? '',
+        createdAt: new Date(this.issueForm.value.createdAt)
+      };
+  
+      // Vérifier si un problème existant a été généré automatiquement pour cette session de travail
+      this.issueService.getIssuesByWorkSessionId(newIssue.workSessionId!).subscribe(
+        (existingIssues: Issue[]) => {
+          if (existingIssues.length > 0) {
+            // Fusionner les descriptions
+            const existingIssue = existingIssues[0];
+            newIssue.description = `${existingIssue.description} ${userIssueDescription}`;
+  
+            // Mettre à jour l'issue existante
+            this.issueService.updateIssue(existingIssue.idIssue, newIssue as Issue).subscribe(
+              () => {
+                console.log('Issue mise à jour avec succès');
+                this.router.navigate(['/dashboard/suivi']);
+              },
+              error => {
+                console.error('Erreur lors de la mise à jour du problème', error);
+              }
+            );
+          } else {
+            // Créer une nouvelle issue si aucune n'existe
+            this.issueService.addNewIssue(newIssue as Issue).subscribe(
+              () => {
+                console.log('Problème ajouté avec succès');
+                this.router.navigate(['/dashboard/suivi']);
+              },
+              error => {
+                console.error('Erreur lors de l\'ajout du problème', error);
+              }
+            );
+          }
         },
-        (error) => {
-          console.error('Erreur lors de l\'ajout du problème', error);
+        error => {
+          console.error('Erreur lors de la vérification des problèmes existants', error);
         }
       );
     }
   }
+  
+  
   
 }

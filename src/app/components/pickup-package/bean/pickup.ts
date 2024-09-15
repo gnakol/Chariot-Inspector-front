@@ -39,7 +39,7 @@ export interface Pickup{
     conditionForks: string;
 }
 
-interface PickupResponse {
+export interface PickupResponse {
     content: Pickup[];
     pageable: any;
     totalElements: number;
